@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 
 const loginURL = "http://localhost:5000/auth/login";
 
-async function loginUser(credentials) {
+export default async function LoginUser(credentials) {
   const response = await fetch(loginURL, {
     method: "POST",
     headers: {
@@ -15,8 +15,24 @@ async function loginUser(credentials) {
     try {
       const data = await response.json();
       // Guardar el token y el rol del usuario como cookies
-      Cookies.set('token', data.token, { expires: 1 }); // Establecer la duración de la cookie en 1 día
-      Cookies.set('userRole', data.userData.role, { expires: 1 }); // Establecer la duración de la cookie en 1 día
+      Cookies.set('token', data.token, { 
+        expires: 1, 
+        sameSite: 'none', 
+        secure: true 
+      });
+      
+      Cookies.set('userRole', data.userData.role, { 
+        expires: 1, 
+        sameSite: 'none', 
+        secure: true 
+      });
+  
+      Cookies.set('userName', data.userData.nom, { 
+        expires: 1, 
+        sameSite: 'none', 
+        secure: true 
+      });
+      
       return data;
     } catch (e) {
       console.error("Error parsing JSON:", e);
@@ -32,7 +48,3 @@ async function loginUser(credentials) {
     throw new Error(error.message);
   }
 }
-
-export default {
-  loginUser,
-};

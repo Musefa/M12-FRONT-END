@@ -1,16 +1,23 @@
 import './App.css';
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './components/Header';
 import LoginPage from './services/LoginPage';
+import HomePage from './services/HomePage'; // Asegúrate de crear este componente
+import { UserProvider } from './contexts/UserContext';
 
-
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <h1>Lista de Grupos</h1>
-      <LoginPage/>
-      {/* Otros componentes y contenido */}
-    </div>
+    <UserProvider>
+      <Router>
+        <div className="App">
+          <Header />
+          <Routes>
+            <Route exact path="/" element={<HomePage />} />
+            <Route path="/auth/login" element={<LoginPage />} />
+          </Routes>
+        </div>
+      </Router>
+    </UserProvider>
   );
 }
-
-export default App;
