@@ -18,7 +18,7 @@ export function UserProvider({ children }) {
     if (storedRole) {
       setUserRole(storedRole);
     }
-  }, []);
+  }, [userRole]); // Agrega userRole como dependencia del efecto
 
   return (
     <UserContext.Provider value={{ userName, setUserName, userRole, setUserRole }}>

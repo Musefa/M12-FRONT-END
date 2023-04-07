@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoginUser from '../components/LoginController';
+import LoginUser from '../services/LoginController';
 import { useUserContext } from '../contexts/UserContext'
 
 export default function LoginPage() {
