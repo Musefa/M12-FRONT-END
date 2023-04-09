@@ -43,7 +43,7 @@ export default function Header() {
           {userName && userRole === "administrador" && (
             <>
               <li className="admin-link">
-              <span className="icon">
+                <span className="icon">
                   <PlantillaIcon />
                 </span>
                 <Link to="/plantillas">Plantillas</Link>
@@ -55,7 +55,7 @@ export default function Header() {
                 <Link to="/grupos">Grupos</Link>
               </li>
               <li className="admin-link">
-              <span className="icon">
+                <span className="icon">
                   <ConvocatoriaIcon />
                 </span>
                 <Link to="/convocatorias">Convocatorias</Link>
@@ -76,7 +76,9 @@ export default function Header() {
           )}
           {!userName && (
             <li>
-              <Link to="/auth/login">Iniciar sesión</Link>
+              <Link to="/auth/login">
+                Iniciar sesión
+              </Link>
             </li>
           )}
           {userName && (
@@ -90,10 +92,10 @@ export default function Header() {
               {isProfileDropdownOpen && (
                 <ul className="dropdown-menu">
                   <li>
-                    <Link to="/edit-profile">Editar perfil</Link>
+                    <Link to="/edit-profile">Perfil</Link>
                   </li>
                   <li>
-                    <button onClick={handleLogout}>Cerrar sesión</button>
+                    <button onClick={handleLogout}>Salir</button>
                   </li>
                 </ul>
               )}

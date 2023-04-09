@@ -1,25 +1,48 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import LoginUser from '../services/LoginController';
-import { useUserContext } from '../contexts/UserContext'
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import LoginUser from "../services/LoginController";
+import { useUserContext } from "../contexts/UserContext";
+import ReCAPTCHA from "react-google-recaptcha";
+import "../styles/LoginPage.css";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const recaptchaRef = useRef(null);
+  const [recaptchaPassed, setRecaptchaPassed] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailIsValid, setEmailIsValid] = useState(null);
+  const [passwordIsValid, setPasswordIsValid] = useState(null);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { setUserName, setUserRole } = useUserContext();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (recaptchaRef.current) {
+      recaptchaRef.current.reset();
+    }
+  }, [location]);
+
+  const validateEmail = (email) => {
+    const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    setEmailIsValid(regex.test(email));
+  };
+
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&_]{8,}$/;
+    setPasswordIsValid(regex.test(password));
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await LoginUser({ email, password });
       if (response && response.token) {
-        setUserName(response.userData.nom); // Actualiza el nombre de usuario en el contexto
-        setUserRole(response.userData.role); // Actualiza el rol del usuario en el contexto
-        navigate('/');
+        setUserName(response.userData.nom);
+        setUserRole(response.userData.role);
+        navigate("/");
       } else {
-        setError('Login failed');
+        setError("Login failed");
       }
     } catch (error) {
       setError(error.message);
@@ -27,16 +50,65 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <label>Email</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <label>Password</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">Login</button>
-      </form>
-      {error && <p>{error}</p>}
+    <div className="login-page">
+      <div className="login-div">
+        <h1>INICIO DE SESIÓN</h1>
+        <form onSubmit={handleLogin}>
+          <label>Correo electrónico</label>
+          <div className="input-container">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                validateEmail(e.target.value);
+              }}
+            />
+            {emailIsValid !== null && (
+              <span className={emailIsValid ? "valid" : "invalid"}>
+                {emailIsValid ? "✔" : "✖"}
+              </span>
+            )}
+          </div>
+          {emailIsValid === false && (
+            <p className="error-message">Correo electrónico no válido</p>
+          )}
+          <label>Contraseña</label>
+          <div className="input-container">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                validatePassword(e.target.value);
+              }}
+            />
+            {passwordIsValid !== null && (
+              <span className={passwordIsValid ? "valid" : "invalid"}>
+                {passwordIsValid ? "✔" : "✖"}
+              </span>
+            )}
+          </div>
+          {passwordIsValid === false && (
+            <p className="error-message">
+              La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial como @, $, !, %, *, ?, o &.
+            </p>
+          )}
+          <div className="captcha-container">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey="key"
+              onChange={() => setRecaptchaPassed(true)}
+            />
+          </div>
+          <button type="submit" disabled={!emailIsValid || !passwordIsValid || !recaptchaPassed}>
+            Iniciar sesión
+          </button>
+          <p>No tienes cuenta? <Link to="/register">Registrate</Link></p>
+        </form>
+        {error && <p className="error-message">{error}</p>}
+      </div>
     </div>
+
   );
 }
