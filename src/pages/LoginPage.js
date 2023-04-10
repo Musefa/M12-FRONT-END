@@ -16,6 +16,9 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { setUserName, setUserRole } = useUserContext();
+  const [emailErrorMessage, setEmailErrorMessage] = useState("");
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+
 
   useEffect(() => {
     const renderRecaptcha = () => {
@@ -33,15 +36,29 @@ export default function LoginPage() {
       removeRecaptcha();
     };
   }, []);
-  
+
   const validateEmail = (email) => {
     const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-    setEmailIsValid(regex.test(email));
+    if (regex.test(email)) {
+      setEmailIsValid(true);
+      setEmailErrorMessage("");
+    } else {
+      setEmailIsValid(false);
+      setEmailErrorMessage("Correo electrónico no válido");
+    }
   };
 
   const validatePassword = (password) => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&_]{8,}$/;
-    setPasswordIsValid(regex.test(password));
+    if (regex.test(password)) {
+      setPasswordIsValid(true);
+      setPasswordErrorMessage("");
+    } else {
+      setPasswordIsValid(false);
+      setPasswordErrorMessage(
+        "La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial como @, $, !, %, *, ?, o &."
+      );
+    }
   };
 
   const handleLogin = async (e) => {
@@ -81,8 +98,13 @@ export default function LoginPage() {
               </span>
             )}
           </div>
-          {emailIsValid === false && (
-            <p className="error-message">Correo electrónico no válido</p>
+          {emailErrorMessage && (
+            <div className="error-popup1">
+              {emailErrorMessage}
+              <span className="close-btn" onClick={() => setEmailErrorMessage("")}>
+                ×
+              </span>
+            </div>
           )}
           <label>Contraseña</label>
           <div className="input-container">
@@ -100,13 +122,19 @@ export default function LoginPage() {
               </span>
             )}
           </div>
-          {passwordIsValid === false && (
-            <p className="error-message">
-              La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial como @, $, !, %, *, ?, o &.
-            </p>
+          {passwordErrorMessage && (
+            <div className="error-popup2">
+              {passwordErrorMessage}
+              <span
+                className="close-btn"
+                onClick={() => setPasswordErrorMessage("")}
+              >
+                ×
+              </span>
+            </div>
           )}
           <div className="captcha-container">
-          <div id="g-recaptcha" ref={recaptchaRef}></div>
+            <div id="g-recaptcha" ref={recaptchaRef}></div>
           </div>
           <button type="submit" disabled={!emailIsValid || !passwordIsValid || !recaptchaPassed}>
             Iniciar sesión

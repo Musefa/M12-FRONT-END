@@ -109,4 +109,45 @@ p {
     justify-content: center;
     margin-top: 15%;
   }
+
+  .error-popup2 {
+    position: fixed;
+    top: 400px;
+    right: 20px;
+    width: 300px;
+    height: 100px;
+    text-align: left;
+    background-color: #f8d7da;
+    color: #721c24;
+    font-size: 0.8rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+  }
+
+  .error-popup1 {
+    position: fixed;
+    top: 325px;
+    right: 20px;
+    text-align: left;
+    background-color: #f8d7da;
+    color: #721c24;
+    font-size: 0.8rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+  }
   
+  .close-btn {
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+ 
