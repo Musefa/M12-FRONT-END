@@ -35,8 +35,8 @@ export default async function LoginUser(credentials) {
       
       return data;
     } catch (e) {
-      console.error("Error parsing JSON:", e);
-      throw new Error("Unable to parse JSON data");
+      console.error("Error de autenticacion:", e);
+      throw new Error("Error de autenticacion");
     }
   } else {
     let error;
