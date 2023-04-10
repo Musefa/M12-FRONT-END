@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import LoginUser from "../services/LoginController";
 import { useUserContext } from "../contexts/UserContext";
-import ReCAPTCHA from "react-google-recaptcha";
 import "../styles/LoginPage.css";
+import { loadRecaptcha, removeRecaptcha } from "../services/Recapthcha";
 
 export default function LoginPage() {
+  const recaptchaKey = "6LcK1HQlAAAAAHwo4Ii71XaUQx6JUsoCkCa7mgc_";
   const recaptchaRef = useRef(null);
   const [recaptchaPassed, setRecaptchaPassed] = useState(false);
   const [email, setEmail] = useState("");
@@ -15,14 +16,24 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { setUserName, setUserRole } = useUserContext();
-  const location = useLocation();
 
   useEffect(() => {
-    if (recaptchaRef.current) {
-      recaptchaRef.current.reset();
-    }
-  }, [location]);
+    const renderRecaptcha = () => {
+      if (recaptchaRef.current) {
+        window.grecaptcha.render(recaptchaRef.current, {
+          sitekey: recaptchaKey,
+          callback: () => setRecaptchaPassed(true),
+        });
+      }
+    };
 
+    loadRecaptcha(renderRecaptcha);
+
+    return () => {
+      removeRecaptcha();
+    };
+  }, []);
+  
   const validateEmail = (email) => {
     const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
     setEmailIsValid(regex.test(email));
@@ -95,11 +106,7 @@ export default function LoginPage() {
             </p>
           )}
           <div className="captcha-container">
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey="key"
-              onChange={() => setRecaptchaPassed(true)}
-            />
+          <div id="g-recaptcha" ref={recaptchaRef}></div>
           </div>
           <button type="submit" disabled={!emailIsValid || !passwordIsValid || !recaptchaPassed}>
             Iniciar sesión
