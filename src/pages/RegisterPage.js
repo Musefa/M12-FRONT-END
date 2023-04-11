@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import RegisterUser from "../services/RegisterController";
 import { useUserContext } from "../contexts/UserContext";
+import "../styles/RegisterPage.css";
 import { loadRecaptcha, removeRecaptcha } from "../services/Recaptcha";
 
 export default function RegisterPage() {
@@ -160,4 +161,4 @@ export default function RegisterPage() {
             </div>
         </div>
     );
-}        
+}    
