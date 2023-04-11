@@ -1,35 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { getPlantillas } from "../services/PlantillaController";
+import React, { useState, useEffect } from 'react';
+import { getPlantillas } from '../services/PlantillaController';
+import { Link } from 'react-router-dom';
+import PlantillaDelete from './PlantillaDelete'; // Importa el componente PlantillaDelete
 
 function PlantillaList() {
   const [plantillas, setPlantillas] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchPlantillas() {
       try {
-        const data = await getPlantillas();
-        setPlantillas(data);
+        const plantillas = await getPlantillas();
+        setPlantillas(plantillas);
       } catch (error) {
-        console.error("Error fetching plantillas:", error);
+        console.error('Error fetching plantillas:', error);
       }
     }
 
-    fetchData();
+    fetchPlantillas();
   }, []);
 
   return (
-    <div>
-      <h2>Listado de plantillas</h2>
-      <ul>
-        {plantillas.map((plantilla) => (
-          <li key={plantilla._id}>
-            {plantilla.nom}{" "}
-            <Link to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {plantillas.map((plantilla) => (
+        <li key={plantilla._id}>
+          {plantilla.nom}{" "}
+          <Link to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
+          {/* Agrega el componente PlantillaDelete para cada plantilla */}
+          <PlantillaDelete plantillaId={plantilla._id} />
+        </li>
+      ))}
+    </ul>
   );
 }
 

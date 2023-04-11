@@ -63,3 +63,21 @@ export async function updatePlantilla(id, plantilla) {
 
   return await response.json();
 }
+
+export async function deletePlantilla(id) {
+  const token = Cookies.get('token');
+  const response = await fetch(plantillasURL + '/delete/' + id, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || 'Error al eliminar la plantilla');
+  }
+
+  return await response.json();
+}
