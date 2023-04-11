@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import LoginUser from "../services/LoginController";
 import { useUserContext } from "../contexts/UserContext";
 import "../styles/LoginPage.css";
-import { loadRecaptcha, removeRecaptcha } from "../services/Recapthcha";
+import { loadRecaptcha, removeRecaptcha } from "../services/Recaptcha";
 
 export default function LoginPage() {
   const recaptchaKey = "6LcK1HQlAAAAAHwo4Ii71XaUQx6JUsoCkCa7mgc_";
