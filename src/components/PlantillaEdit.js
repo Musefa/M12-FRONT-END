@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getPlantillas, updatePlantilla } from "../services/PlantillaController";
 import PlantillaForm from "./PlantillaForm";
+import { useNavigate } from "react-router-dom";
+
 
 function PlantillaEdit() {
   const [plantilla, setPlantilla] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPlantilla() {
@@ -27,6 +30,7 @@ function PlantillaEdit() {
     try {
       await updatePlantilla(id, updatedPlantilla);
       alert("Plantilla actualizada correctamente.");
+      navigate("/plantillas");
     } catch (error) {
       console.error("Error updating plantilla:", error);
       alert("Error al actualizar la plantilla.");
