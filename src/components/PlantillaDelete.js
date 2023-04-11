@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { deletePlantilla } from '../services/PlantillaController';
 import { useNavigate } from 'react-router-dom';
 
-function PlantillaDelete({ plantillaId }) {
+function PlantillaDelete({ plantillaId, onUpdate }) {
   const [confirmation, setConfirmation] = useState('');
   const [showConfirmation, setShowConfirmation] = useState(false);
   const navigate = useNavigate();
@@ -12,6 +12,7 @@ function PlantillaDelete({ plantillaId }) {
       try {
         await deletePlantilla(plantillaId);
         alert('Plantilla eliminada correctamente.');
+        onUpdate(); // Llama a la función de actualización
         navigate('/plantillas');
       } catch (error) {
         console.error('Error al eliminar la plantilla:', error);
