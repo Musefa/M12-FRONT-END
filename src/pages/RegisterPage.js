@@ -12,9 +12,14 @@ export default function RegisterPage() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const { setUserName, setUserRole } = useUserContext();
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        if (password !== confirmPassword) {
+          setError("Las contraseñas no coinciden");
+          return;
+        }
         try {
             const response = await RegisterUser({ nom, cognom, email, password });
             if (response && response.token) {
@@ -61,6 +66,13 @@ export default function RegisterPage() {
                         value={password}
                         name="password"
                         onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <label>Confirmar contraseña</label>
+                    <input
+                        type="password"
+                        value={confirmPassword}
+                        name="confirmPassword"
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <button type="submit">
                         Registrarse
