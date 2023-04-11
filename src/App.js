@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import { UserProvider } from './contexts/UserContext';
 import PlantillaPage from "./pages/PlantillaPage";
+import PlantillaEdit from "./components/PlantillaEdit";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="/auth/login" element={<LoginPage />} />
             <Route path="/auth/register" element={<RegisterPage />} />
             <Route path="/plantillas" element={<PlantillaPage />} />
+            <Route path="/plantillas/edit/:id" element={<PlantillaEdit />} /> {/* Agrega esta línea */}
           </Routes>
         </div>
       </Router>
