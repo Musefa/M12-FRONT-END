@@ -24,7 +24,7 @@ function PlantillaList() {
       {plantillas.map((plantilla) => (
         <li key={plantilla._id}>
           {plantilla.nom}{' '}
-          <Link to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
+          <Link className="plantilla-form-editar" to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
           <PlantillaDelete plantillaId={plantilla._id} onUpdate={fetchPlantillas} />
         </li>
       ))}
