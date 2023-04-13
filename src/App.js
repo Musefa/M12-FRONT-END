@@ -9,8 +9,9 @@ import { UserProvider } from './contexts/UserContext';
 import PlantillaPage, { PlantillaCreate } from "./pages/PlantillaPage";
 import PlantillaEdit from "./components/PlantillaEdit";
 import ProtectedRoute from './components/ProtectedRoute';
-import GrupPage, { GrupCreate } from "./pages/GrupPage"; // Importa GrupCreate aquí
+import GrupPage from "./pages/GrupPage"; // Importa GrupCreate aquí
 import GrupEdit from "./components/GrupEdit";
+import GrupCreatePage from "./pages/GrupCreatePage";
 
 export default function App() {
   return (
@@ -27,7 +28,7 @@ export default function App() {
             <Route path="/plantillas/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaCreate /></ProtectedRoute>} />
             <Route path="/grups" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupPage /></ProtectedRoute>} />
             <Route path="/grups/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupEdit /></ProtectedRoute>} />
-            <Route path="/grups/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupCreate /></ProtectedRoute>} /> {/* Agrega esta línea para GrupCreate */}
+            <Route path="/grups/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupCreatePage /></ProtectedRoute>} /> {/* Agrega esta línea para GrupCreate */}
           </Routes>
         </div>
       </Router>
