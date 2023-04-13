@@ -9,6 +9,7 @@ import { UserProvider } from './contexts/UserContext';
 import PlantillaPage, { PlantillaCreate } from "./pages/PlantillaPage";
 import PlantillaEdit from "./components/PlantillaEdit";
 import ProtectedRoute from './components/ProtectedRoute';
+import GrupPage from "./pages/GrupPage"; 
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/plantillas" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaPage /></ProtectedRoute>} />
             <Route path="/plantillas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaEdit /></ProtectedRoute>} />
             <Route path="/plantillas/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaCreate /></ProtectedRoute>} />
+            <Route path="/grups" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupPage /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>

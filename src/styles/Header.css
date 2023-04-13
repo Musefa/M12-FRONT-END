@@ -27,7 +27,7 @@ span.text {
 }
 
 nav li {
-  margin: 0 10px;
+  /*margin: 0 10px;*/
   display: flex;
   align-items: center;
 }
@@ -38,48 +38,73 @@ nav a {
 }
 
 nav button {
-background-color: transparent;
-border: none;
-color: inherit;
-cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 nav .dropdown {
-position: relative;
-cursor: pointer;
+  position: relative;
+  cursor: pointer;
 }
 
 nav .dropdown span {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 nav .dropdown-menu {
-position: absolute;
-top: 100%;
-left: 50%;
-transform: translateX(-45%);
-display: flex;
-flex-direction: column;
-background-color: #10223e;
-padding: 10px;
-border-radius: 5px;
-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-z-index: 1;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-45%);
+  display: flex;
+  flex-direction: column;
+  background-color: #10223e;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 nav .dropdown-menu li {
-margin: 5px 0;
-border-bottom: 1px solid white;
-padding-bottom: 5px;
+  margin: 5px 0;
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
 }
 
 nav .dropdown-menu li:last-child {
-border-bottom: none;
+  border-bottom: none;
 }
 
 .admin-link {
   margin: 0 -40%;
   margin-left: 0%;
   font-weight: bold;
+}
+
+/* Estilos para pantallas grandes */
+@media screen and (min-width: 992px) {
+  .admin-link {
+    margin: 0;
+  }
+}
+
+/* Estilos para pantallas medianas */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  span.icon img {
+    width: 80%;
+  }
+
+  .admin-link {
+    margin: 0;
+    font-size: small;
+    margin-right: 1rem;
+  }
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 767px) {
+  /* Agrega aquí tus estilos */
 }

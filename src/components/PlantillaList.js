@@ -20,7 +20,7 @@ function PlantillaList() {
   }
 
   return (
-    <ul>
+    <ul className="plantilla-form__item">
       {plantillas.map((plantilla) => (
         <li key={plantilla._id}>
           {plantilla.nom}{' '}
