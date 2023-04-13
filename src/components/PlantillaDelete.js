@@ -32,16 +32,17 @@ function PlantillaDelete({ plantillaId, onUpdate }) {
   }
 
   return (
-    <div>
+    <div className="plantilla-delete">
       {showConfirmation && (
         <input
           type="text"
           placeholder="Escribe 'borrar' para confirmar"
           value={confirmation}
           onChange={(e) => setConfirmation(e.target.value)}
+          className="plantilla-delete__confirmation"
         />
       )}
-      <button onClick={handleButtonClick}>
+      <button onClick={handleButtonClick} className="plantilla-delete__button">
         {showConfirmation ? 'Eliminar definitivamente' : 'Eliminar plantilla'}
       </button>
     </div>

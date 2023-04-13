@@ -1,8 +1,9 @@
 import React from "react";
 import PlantillaList from "../components/PlantillaList";
-import PlantillaForm from "../components/PlantillaForm"; // Agrega esta línea
-import { createPlantilla } from "../services/PlantillaController"; // Agrega esta línea
+import PlantillaForm from "../components/PlantillaForm";
+import { createPlantilla } from "../services/PlantillaController";
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/PlantillaPage.css";
 
 function PlantillaCreate() {
   const navigate = useNavigate();
@@ -18,18 +19,28 @@ function PlantillaCreate() {
     }
   }
 
-  return <PlantillaForm onSubmit={handleCreate} />;
+  return (
+    <div className="plantilla-form-container">
+      <h1 className="plantilla-form-title">Crear nueva plantilla</h1>
+      <PlantillaForm onSubmit={handleCreate} />
+      <Link to="/plantillas" className="plantilla-form-link">
+        Volver a la lista de plantillas
+      </Link>
+    </div>
+  );
 }
 
 function PlantillaPage() {
   return (
-    <div>
-      <h1>Página de plantillas</h1>
-      <Link to="/plantillas/create">Crear nueva plantilla</Link>
+    <div className="plantilla-page-container">
+      <h1 className="plantilla-page-title">Página de plantillas</h1>
+      <Link to="/plantillas/create" className="plantilla-page-link">
+        Crear nueva plantilla
+      </Link>
       <PlantillaList />
     </div>
   );
 }
 
-export { PlantillaCreate }; // Agrega esta línea
+export { PlantillaCreate };
 export default PlantillaPage;

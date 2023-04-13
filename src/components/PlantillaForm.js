@@ -31,28 +31,29 @@ function PlantillaForm({ onSubmit, initialPlantilla = { nom: "", puntsOrdreDia: 
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+      <label className="plantilla-form__label">
         Nombre:
-        <input type="text" value={plantilla.nom} onChange={handleChangeNom} required />
+        <input type="text" value={plantilla.nom} onChange={handleChangeNom} className="plantilla-form__input" required />
       </label>
-      <h3>Puntos del orden del día</h3>
+      <h3 className="plantilla-form__subtitle">Puntos del orden del día</h3>
       {plantilla.puntsOrdreDia.map((punt, index) => (
         <div key={index}>
           <input
             type="text"
             value={punt}
             onChange={(e) => handleChangePuntsOrdreDia(e, index)}
+            className="plantilla-form__input"
             required
           />
-          <button type="button" onClick={() => handleRemovePuntOrdreDia(index)}>
+          <button type="button" onClick={() => handleRemovePuntOrdreDia(index)} className="plantilla-form__button">
             Eliminar
           </button>
         </div>
       ))}
-      <button type="button" onClick={handleAddPuntOrdreDia}>
+      <button type="button" onClick={handleAddPuntOrdreDia} className="plantilla-form__button">
         Añadir punto del orden del día
       </button>
-      <button type="submit">Guardar</button>
+      <button type="submit" className="plantilla-form__button">Guardar</button>
     </form>
   );
 }
