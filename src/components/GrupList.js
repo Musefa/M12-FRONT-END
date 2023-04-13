@@ -35,13 +35,15 @@ function GrupList() {
               ))}
             </ul>
             {console.log(grup)}
+            <Link to={`/grups/edit/${grup._id}`}>Editar</Link> {/* Agrega esta línea */}
+            <GrupDelete grupId={grup._id} onUpdate={fetchGrups} /> {/* Agrega esta línea */}
           </li>
         ))
       ) : (
         <li>No se encontraron grupos</li>
       )}
     </ul>
-    </>
+  </>
   );
 }
 
