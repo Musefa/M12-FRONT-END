@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getPlantillas } from '../services/PlantillaController';
+import { getPlantillas } from '../../services/PlantillaController';
 import { Link } from 'react-router-dom';
 import PlantillaDelete from './PlantillaDelete';
 
@@ -20,7 +20,7 @@ function PlantillaList() {
   }
 
   return (
-    <ul>
+    <ul className="plantilla-form__item">
       {plantillas.map((plantilla) => (
         <li key={plantilla._id}>
           {plantilla.nom}{' '}

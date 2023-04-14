@@ -52,7 +52,7 @@ export default function Header() {
                 <span className="icon">
                   <GrupIcon />
                 </span>
-                <Link to="/grupos">Grupos</Link>
+                <Link to="/grups">Grupos</Link>
               </li>
               <li className="admin-link">
                 <span className="icon">
