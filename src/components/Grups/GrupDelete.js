@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { deletePlantilla } from '../services/PlantillaController';
+import { deleteGrup } from '../../services/GrupController';
 import { useNavigate } from 'react-router-dom';
 
-function PlantillaDelete({ plantillaId, onUpdate }) {
+function GrupDelete({ grupId, onUpdate }) {
   const [confirmation, setConfirmation] = useState('');
   const [showConfirmation, setShowConfirmation] = useState(false);
   const navigate = useNavigate();
@@ -10,13 +10,13 @@ function PlantillaDelete({ plantillaId, onUpdate }) {
   async function handleDelete() {
     if (confirmation === 'borrar') {
       try {
-        await deletePlantilla(plantillaId);
-        alert('Plantilla eliminada correctamente.');
-        onUpdate(); // Llama a la función de actualización
-        navigate('/plantillas');
+        await deleteGrup(grupId);
+        alert('Grupo eliminado correctamente.');
+        onUpdate();
+        navigate('/grups');
       } catch (error) {
-        console.error('Error al eliminar la plantilla:', error);
-        alert('Error al eliminar la plantilla.');
+        console.error('Error al eliminar el grupo:', error);
+        alert('Error al eliminar el grupo.');
       }
     } else {
       alert('Por favor, introduce la palabra "borrar" para confirmar la eliminación.');
@@ -32,21 +32,21 @@ function PlantillaDelete({ plantillaId, onUpdate }) {
   }
 
   return (
-    <div className="plantilla-delete">
+    <div className="grup-delete">
       {showConfirmation && (
         <input
           type="text"
           placeholder="Escribe 'borrar' para confirmar"
           value={confirmation}
           onChange={(e) => setConfirmation(e.target.value)}
-          className="plantilla-delete__confirmation"
+          className="grup-delete__confirmation"
         />
       )}
-      <button onClick={handleButtonClick} className="plantilla-delete__button">
-        {showConfirmation ? 'Eliminar definitivamente' : 'Eliminar plantilla'}
+      <button onClick={handleButtonClick} className="grup-delete__button">
+        {showConfirmation ? 'Eliminar definitivamente' : 'Eliminar grupo'}
       </button>
     </div>
   );
 }
 
-export default PlantillaDelete;
+export default GrupDelete;

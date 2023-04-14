@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getPlantillas } from '../services/PlantillaController';
+import { getPlantillas } from '../../services/PlantillaController';
 import { Link } from 'react-router-dom';
 import PlantillaDelete from './PlantillaDelete';
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { deleteGrup } from '../services/GrupController';
+import { deletePlantilla } from '../../services/PlantillaController';
 import { useNavigate } from 'react-router-dom';
 
-function GrupDelete({ grupId, onUpdate }) {
+function PlantillaDelete({ plantillaId, onUpdate }) {
   const [confirmation, setConfirmation] = useState('');
   const [showConfirmation, setShowConfirmation] = useState(false);
   const navigate = useNavigate();
@@ -10,13 +10,13 @@ function GrupDelete({ grupId, onUpdate }) {
   async function handleDelete() {
     if (confirmation === 'borrar') {
       try {
-        await deleteGrup(grupId);
-        alert('Grupo eliminado correctamente.');
-        onUpdate();
-        navigate('/grups');
+        await deletePlantilla(plantillaId);
+        alert('Plantilla eliminada correctamente.');
+        onUpdate(); // Llama a la función de actualización
+        navigate('/plantillas');
       } catch (error) {
-        console.error('Error al eliminar el grupo:', error);
-        alert('Error al eliminar el grupo.');
+        console.error('Error al eliminar la plantilla:', error);
+        alert('Error al eliminar la plantilla.');
       }
     } else {
       alert('Por favor, introduce la palabra "borrar" para confirmar la eliminación.');
@@ -32,21 +32,21 @@ function GrupDelete({ grupId, onUpdate }) {
   }
 
   return (
-    <div className="grup-delete">
+    <div className="plantilla-delete">
       {showConfirmation && (
         <input
           type="text"
           placeholder="Escribe 'borrar' para confirmar"
           value={confirmation}
           onChange={(e) => setConfirmation(e.target.value)}
-          className="grup-delete__confirmation"
+          className="plantilla-delete__confirmation"
         />
       )}
-      <button onClick={handleButtonClick} className="grup-delete__button">
-        {showConfirmation ? 'Eliminar definitivamente' : 'Eliminar grupo'}
+      <button onClick={handleButtonClick} className="plantilla-delete__button">
+        {showConfirmation ? 'Eliminar definitivamente' : 'Eliminar plantilla'}
       </button>
     </div>
   );
 }
 
-export default GrupDelete;
+export default PlantillaDelete;

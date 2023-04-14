@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getGrups } from "../services/GrupController";
+import { getGrups } from "../../services/GrupController";
 import { Link } from "react-router-dom";
 import GrupDelete from "./GrupDelete";
 

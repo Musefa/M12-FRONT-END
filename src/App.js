@@ -7,10 +7,10 @@ import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import { UserProvider } from './contexts/UserContext';
 import PlantillaPage, { PlantillaCreate } from "./pages/PlantillaPage";
-import PlantillaEdit from "./components/PlantillaEdit";
+import PlantillaEdit from "./components/Plantilles/PlantillaEdit";
 import ProtectedRoute from './components/ProtectedRoute';
-import GrupPage from "./pages/GrupPage"; // Importa GrupCreate aquí
-import GrupEdit from "./components/GrupEdit";
+import GrupPage from "./pages/GrupPage";
+import GrupEdit from "./components/Grups/GrupEdit";
 import GrupCreatePage from "./pages/GrupCreatePage";
 
 export default function App() {

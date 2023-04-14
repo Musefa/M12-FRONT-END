@@ -1,5 +1,5 @@
 import React from "react";
-import GrupList from "../components/GrupList";
+import GrupList from "../components/Grups/GrupList";
 import { Link } from "react-router-dom";
 
 function GrupPage() {

@@ -1,6 +1,6 @@
 import React from "react";
-import PlantillaList from "../components/PlantillaList";
-import PlantillaForm from "../components/PlantillaForm";
+import PlantillaList from "../components/Plantilles/PlantillaList";
+import PlantillaForm from "../components/Plantilles/PlantillaForm";
 import { createPlantilla } from "../services/PlantillaController";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/PlantillaPage.css";

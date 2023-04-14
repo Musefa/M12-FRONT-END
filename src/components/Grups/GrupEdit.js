@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getGrups, updateGrup, getUsersList } from "../services/GrupController";
+import { getGrups, updateGrup, getUsersList } from "../../services/GrupController";
 import GrupForm from "./GrupForm";
 import { useNavigate } from "react-router-dom";
 
