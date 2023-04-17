@@ -41,8 +41,8 @@ function GrupEdit() {
   }
 
   return (
-    <div>
-      <h2>Editar grupo</h2>
+    <div className="plantilla-page-container">
+      <h2 className="plantilla-form-title">Editar grupo</h2>
       {grup ? (
         <GrupForm onSubmit={handleSubmit} initialGrup={grup} usersList={usersList} />
       ) : (
