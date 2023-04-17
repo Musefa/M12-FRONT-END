@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [] }, usersList = [] }) {
   const [grup, setGrup] = useState(initialGrup);
+  const [selectedMemberIds, setSelectedMemberIds] = useState(initialGrup.membres.map(membre => membre._id));
+
+  useEffect(() => {
+    setGrup(initialGrup);
+    setSelectedMemberIds(initialGrup.membres.map(membre => membre._id));
+  }, [initialGrup]);
 
   function handleChangeNom(e) {
     setGrup({ ...grup, nom: e.target.value });
@@ -9,7 +15,9 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [] }, usersList 
 
   function handleChangeMembres(e) {
     const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
-    setGrup({ ...grup, membres: selectedOptions });
+    setSelectedMemberIds(selectedOptions);
+    const updatedMembres = selectedOptions.map(id => usersList.find(user => user._id === id));
+    setGrup({ ...grup, membres: updatedMembres });
   }
 
   function handleSubmit(e) {
@@ -26,9 +34,11 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [] }, usersList 
       <h3 className="plantilla-form__subtitle">Miembros</h3>
       <label className="plantilla-form__label">
         Seleccionar miembros:
-        <select multiple value={grup.membres} onChange={handleChangeMembres} className="plantilla-form__input" required>
+        <select multiple value={selectedMemberIds} onChange={handleChangeMembres} className="plantilla-form__input" required>
           {usersList.map(user => (
-            <option key={user._id} value={user._id}>{user.nom}</option>
+            <option key={user._id} value={user._id}>
+              {user.nom}
+            </option>
           ))}
         </select>
       </label>

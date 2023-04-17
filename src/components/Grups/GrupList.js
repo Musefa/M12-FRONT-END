@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { getGrups } from "../../services/GrupController";
+import { getGrups, getUsersList } from "../../services/GrupController";
 import { Link } from "react-router-dom";
 import GrupDelete from "./GrupDelete";
 
 function GrupList() {
   const [grups, setGrups] = useState([]);
+  const [usersList, setUsersList] = useState([]);
 
   useEffect(() => {
     fetchGrups();
+    fetchUsers();
   }, []);
 
   async function fetchGrups() {
@@ -17,6 +19,19 @@ function GrupList() {
     } catch (error) {
       console.error("Error fetching grups:", error);
     }
+  }
+
+  async function fetchUsers() {
+    try {
+      const users = await getUsersList();
+      setUsersList(users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  }
+
+  function getUserById(userId) {
+    return usersList.find(user => user._id === userId);
   }
 
   return (
@@ -29,9 +44,12 @@ function GrupList() {
               <br />
               <small>Membres:</small>
               <ul>
-                {grup.membres.map((membre) => (
-                  <li className="plantilla-form__item" key={membre._id}>{membre.nom}</li>
-                ))}
+                {grup.membres.map((membre) => {
+                  const user = getUserById(membre._id);
+                  return (
+                    <li className="plantilla-form__item" key={membre._id}>{user ? user.nom : 'Usuario desconocido'}</li>
+                  );
+                })}
               </ul>
               <div className="plantilla-delete">
                 <Link to={`/grups/edit/${grup._id}`} className="plantilla-form__button">
