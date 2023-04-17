@@ -20,7 +20,12 @@ function ConvocatoriaEdit() {
         const convocatorias = await getConvocatorias();
         const convocatoriaFound = convocatorias.find((c) => c._id === id);
         if (convocatoriaFound) {
-          setConvoctoria(convocatoriaFound);
+          setConvoctoria({
+            ...convocatoriaFound,
+            convocats: convocatoriaFound.convocats.map((grup) => grup._id),
+            plantilla: convocatoriaFound.plantilla._id,
+            responsable: convocatoriaFound.responsable._id,
+          });
         }
 
         const grups = await getGrups();

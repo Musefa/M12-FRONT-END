@@ -1,25 +1,36 @@
 import React, { useState } from "react";
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = ("0" + (date.getMonth() + 1)).slice(-2);
+  const day = ("0" + date.getDate()).slice(-2);
+  return `${year}-${month}-${day}`;
+}
+
 function ConvocatoriaForm({
-    onSubmit,
-    initialConvocatoria = {
-      data: "",
-      horaInici: "",
-      durada: "",
-      lloc: "",
-      puntsOrdreDia: [""],
-      convocats: [],
-      responsable: "",
-    },
-    usersList = [],
-    grupsList = [],
-    plantillasList = []
-  }) {
-    const [convocatoria, setConvocatoria] = useState(initialConvocatoria);
+  onSubmit,
+  initialConvocatoria = {
+    data: "",
+    horaInici: "",
+    durada: "",
+    lloc: "",
+    puntsOrdreDia: [""],
+    convocats: [],
+    responsable: "",
+  },
+  usersList = [],
+  grupsList = [],
+  plantillasList = []
+}) {
+  const [convocatoria, setConvocatoria] = useState({
+    ...initialConvocatoria,
+    data: initialConvocatoria.data ? formatDate(initialConvocatoria.data) : "",
+  });
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setConvocatoria({ ...convocatoria, [name]: value });
+    setConvocatoria((prevState) => ({ ...prevState, [name]: value }));
   }
 
   function handleChangePuntsOrdreDia(e, index) {
@@ -69,56 +80,59 @@ function ConvocatoriaForm({
       </label>
       <label>
         <h3>Puntos del orden del día</h3>
-      {convocatoria.puntsOrdreDia.map((punt, index) => (
-        <div key={index}>
-          <input
-            type="text"
-            value={punt}
-            onChange={(e) => handleChangePuntsOrdreDia(e, index)}
-            required
-          />
-          <button type="button" onClick={() => handleRemovePuntOrdreDia(index)}>
-            Eliminar
-          </button>
-        </div>
-      ))}
-      <button type="button" onClick={handleAddPuntOrdreDia}>
-        Añadir punto del orden del día
-      </button>
+        {convocatoria.puntsOrdreDia.map((punt, index) => (
+          <div key={index}>
+            <input
+              type="text"
+              value={punt}
+              onChange={(e) => handleChangePuntsOrdreDia(e, index)}
+              required
+            />
+            <button type="button" onClick={() => handleRemovePuntOrdreDia(index)}>
+              Eliminar
+            </button>
+          </div>
+        ))}
+        <button type="button" onClick={handleAddPuntOrdreDia}>
+          Añadir punto del orden del día
+        </button>
       </label>
       <label>
         Grupos convocados:
         <select multiple name="convocats" value={convocatoria.convocats} onChange={handleChangeConvocats} required>
           {grupsList.map((grup) => (
-            <option key={grup._id} value={grup._id}>{grup.nom}</option>
+            <option key={grup._id} value={grup._id} selected={convocatoria.convocats.includes(grup._id)}>
+              {grup.nom}
+            </option>
           ))}
         </select>
       </label>
       <label>
         Plantilla:
-        <select name="plantilla" value={convocatoria.plantilla}    onChange={handleChange} required>
-      <option value="">Selecciona una plantilla</option>
-      {plantillasList.map((plantilla) => (
-        <option key={plantilla._id} value={plantilla._id}>
-          {plantilla.nom}
-        </option>
-      ))}
-    </select>
-  </label>
-  <label>
-    Responsable:
-    <select name="responsable" value={convocatoria.responsable} onChange={handleChange} required>
-      <option value="">Selecciona un responsable</option>
-      {usersList.map((user) => (
-        <option key={user._id} value={user._id}>
-          {user.nom}
-        </option>
-      ))}
-    </select>
-  </label>
-  <button type="submit">Guardar</button>
-</form>
-);
+        <select name="plantilla" value={convocatoria.plantilla} onChange={handleChange} required>
+          <option value="">Selecciona una plantilla</option>
+          {plantillasList.map((plantilla) => (
+            <option key={plantilla._id} value={plantilla._id} selected={convocatoria.plantilla === plantilla._id}>
+              {plantilla.nom}
+            </option>
+          ))}
+        </select>
+
+      </label>
+      <label>
+        Responsable:
+        <select name="responsable" value={convocatoria.responsable} onChange={handleChange} required>
+          <option value="">Selecciona un responsable</option>
+          {usersList.map((user) => (
+            <option key={user._id} value={user._id} selected={convocatoria.responsable === user._id}>
+              {user.nom}
+            </option>
+          ))}
+        </select>
+      </label>
+      <button type="submit">Guardar</button>
+    </form>
+  );
 }
 
 export default ConvocatoriaForm;
