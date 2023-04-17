@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { getConvocatorias } from "../services/ConvocatoriaController";
+import React from "react";
 import ConvocatoriaList from "../components/Convocatorias/ConvocatoriaList";
+import { Link } from "react-router-dom";
+import "../styles/GrupPage.css";
 
-export default function ConvocatoriaPage() {
-  const [convocatorias, setConvocatorias] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getConvocatorias();
-        console.log(data);
-        setConvocatorias(data);
-      } catch (error) {
-        console.error("Error fetching convocatorias:", error);
-      }
-    }
-
-    fetchData();
-  }, []);
-
+function ConvocatoriaPage() {
   return (
-    <div>
-      <h1>Convocatorias</h1>
-      <ConvocatoriaList convocatorias={convocatorias} />
+    <div className="plantilla-page-container">
+      <h1 className="plantilla-page-title">Página de convocatorias</h1>
+      <Link to="/convocatorias/create" className="plantilla-page-link">
+        Crear nueva convocatoria
+      </Link>
+      <ConvocatoriaList />
     </div>
   );
 }
+
+export default ConvocatoriaPage;

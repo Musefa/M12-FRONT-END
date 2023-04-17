@@ -12,7 +12,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 import GrupPage from "./pages/GrupPage";
 import GrupEdit from "./components/Grups/GrupEdit";
 import GrupCreatePage from "./pages/GrupCreatePage";
-import ConvocatoriaPage from "./pages/ConvocatoriaPage"; // Añade esta línea
+import ConvocatoriaPage from "./pages/ConvocatoriaPage";
+import ConvocatoriaEdit from "./components/Convocatorias/ConvocatoriaEdit";
+import ConvocatoriaCreatePage from "./pages/ConvocatoriaCreatePage";
 
 export default function App() {
   return (
@@ -31,6 +33,8 @@ export default function App() {
             <Route path="/grups/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupEdit /></ProtectedRoute>} />
             <Route path="/grups/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupCreatePage /></ProtectedRoute>} />
             <Route path="/convocatorias" element={<ProtectedRoute roles={['administrador', 'directivo']}><ConvocatoriaPage /></ProtectedRoute>} /> {/* Añade esta línea */}
+            <Route path="/convocatorias/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><ConvocatoriaEdit /></ProtectedRoute>} />
+            <Route path="/convocatorias/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><ConvocatoriaCreatePage /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>

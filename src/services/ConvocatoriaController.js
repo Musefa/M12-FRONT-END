@@ -25,3 +25,51 @@ export async function getConvocatorias() {
     throw new Error(error.message);
   }
 }
+
+export async function createConvocatoria(convocatoria) {
+  const token = Cookies.get("token");
+  const response = await fetch(convocatoriasURL + "/create", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify(convocatoria),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error al crear la convocatoria");
+  }
+}
+
+export async function updateConvocatoria(id, convocatoria) {
+  const token = Cookies.get("token");
+  const response = await fetch(convocatoriasURL + "/update/" + id, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify(convocatoria),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error al actualizar la convocatoria");
+  }
+}
+
+export async function deleteConvocatoria(id) {
+  const token = Cookies.get("token");
+  const response = await fetch(convocatoriasURL + "/delete/" + id, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Error al eliminar la convocatoria");
+  }
+}
+

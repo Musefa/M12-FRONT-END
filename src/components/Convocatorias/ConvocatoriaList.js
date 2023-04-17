@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getConvocatorias } from "../../services/ConvocatoriaController";
+import { Link } from "react-router-dom";
+import ConvocatoriaDelete from "./ConvocatoriaDelete";
 
-export default function ConvocatoriaList({ convocatorias }) {
+export default function ConvocatoriaList() {
+  const [convocatorias, setConvocatorias] = useState([]);
+
+  useEffect(() => {
+    fetchConvocatorias();
+  }, []);
+
+  async function fetchConvocatorias() {
+    try {
+      const convocatorias = await getConvocatorias();
+      setConvocatorias(convocatorias);
+    } catch (error) {
+      console.error("Error fetching convocatorias:", error);
+    }
+  }
   return (
     <div>
       <table>
@@ -14,6 +31,7 @@ export default function ConvocatoriaList({ convocatorias }) {
             <th>Convocats</th>
             <th>Plantilla Punts</th>
             <th>Responsable</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -43,6 +61,10 @@ export default function ConvocatoriaList({ convocatorias }) {
                 ))}
               </td>
               <td>{convocatoria.responsable.nom}</td>
+              <td>
+              <Link to={`/convocatorias/edit/${convocatoria._id}`}>Editar</Link> {/* Agrega esta línea */}
+              <ConvocatoriaDelete convocatoriaId={convocatoria._id} onUpdate={fetchConvocatorias} /> {/* Agrega esta línea */}
+              </td>
             </tr>
           ))}
         </tbody>
