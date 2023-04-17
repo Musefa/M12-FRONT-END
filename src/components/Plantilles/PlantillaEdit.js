@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getPlantillas, updatePlantilla } from "../services/PlantillaController";
+import { getPlantillas, updatePlantilla } from "../../services/PlantillaController";
 import PlantillaForm from "./PlantillaForm";
 import { useNavigate } from "react-router-dom";
 

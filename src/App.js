@@ -7,8 +7,12 @@ import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import { UserProvider } from './contexts/UserContext';
 import PlantillaPage, { PlantillaCreate } from "./pages/PlantillaPage";
-import PlantillaEdit from "./components/PlantillaEdit";
+import PlantillaEdit from "./components/Plantilles/PlantillaEdit";
 import ProtectedRoute from './components/ProtectedRoute';
+import GrupPage from "./pages/GrupPage";
+import GrupEdit from "./components/Grups/GrupEdit";
+import GrupCreatePage from "./pages/GrupCreatePage";
+import ConvocatoriaPage from "./pages/ConvocatoriaPage"; // Añade esta línea
 
 export default function App() {
   return (
@@ -23,6 +27,10 @@ export default function App() {
             <Route path="/plantillas" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaPage /></ProtectedRoute>} />
             <Route path="/plantillas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaEdit /></ProtectedRoute>} />
             <Route path="/plantillas/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaCreate /></ProtectedRoute>} />
+            <Route path="/grups" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupPage /></ProtectedRoute>} />
+            <Route path="/grups/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupEdit /></ProtectedRoute>} />
+            <Route path="/grups/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupCreatePage /></ProtectedRoute>} />
+            <Route path="/convocatorias" element={<ProtectedRoute roles={['administrador', 'directivo']}><ConvocatoriaPage /></ProtectedRoute>} /> {/* Añade esta línea */}
           </Routes>
         </div>
       </Router>
