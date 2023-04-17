@@ -38,7 +38,7 @@ function PlantillaEdit() {
   }
 
   return (
-    <div>
+    <div className="plantilla-form-container">
       <h2>Editar plantilla</h2>
       {plantilla ? (
         <PlantillaForm onSubmit={handleSubmit} initialPlantilla={plantilla} />
