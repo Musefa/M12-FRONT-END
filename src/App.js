@@ -16,6 +16,8 @@ import ConvocatoriaPage from "./pages/ConvocatoriaPage";
 import ConvocatoriaEdit from "./components/Convocatorias/ConvocatoriaEdit";
 import ConvocatoriaCreatePage from "./pages/ConvocatoriaCreatePage";
 import ActaPage from "./pages/ActaPage";
+import ActaEdit from "./components/Actas/ActaEdit";
+import ActaCreatePage from "./pages/ActaCreatePage";
 
 export default function App() {
   return (
@@ -37,6 +39,8 @@ export default function App() {
             <Route path="/convocatorias/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><ConvocatoriaEdit /></ProtectedRoute>} />
             <Route path="/convocatorias/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><ConvocatoriaCreatePage /></ProtectedRoute>} />
             <Route path="/actas" element={<ProtectedRoute roles={['administrador', 'directivo']}><ActaPage /></ProtectedRoute>} />
+            <Route path="/actas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><ActaEdit /></ProtectedRoute>} />
+            <Route path="/actas/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><ActaCreatePage /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>
