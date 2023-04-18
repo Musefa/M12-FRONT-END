@@ -70,7 +70,7 @@ export default function Header() {
                 <span className="icon">
                   <AcordIcon />
                 </span>
-                <Link to="/acuerdos">Acuerdos</Link>
+                <Link to="/acords">Acuerdos</Link>
               </li>
             </>
           )}

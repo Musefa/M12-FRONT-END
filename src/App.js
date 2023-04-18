@@ -18,6 +18,7 @@ import ConvocatoriaCreatePage from "./pages/ConvocatoriaCreatePage";
 import ActaPage from "./pages/ActaPage";
 import ActaEdit from "./components/Actas/ActaEdit";
 import ActaCreatePage from "./pages/ActaCreatePage";
+import AcordPage from "./pages/AcordPage";
 
 export default function App() {
   return (
@@ -41,6 +42,7 @@ export default function App() {
             <Route path="/actas" element={<ProtectedRoute roles={['administrador', 'directivo']}><ActaPage /></ProtectedRoute>} />
             <Route path="/actas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><ActaEdit /></ProtectedRoute>} />
             <Route path="/actas/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><ActaCreatePage /></ProtectedRoute>} />
+            <Route path="/acords" element={<ProtectedRoute roles={['administrador', 'directivo']}><AcordPage /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>
