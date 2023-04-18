@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [] }, usersList = [] }) {
   const [grup, setGrup] = useState(initialGrup);
   const [selectedMemberIds, setSelectedMemberIds] = useState(initialGrup.membres.map(membre => membre._id));
-
-  useEffect(() => {
-    setGrup(initialGrup);
-    setSelectedMemberIds(initialGrup.membres.map(membre => membre._id));
-  }, [initialGrup]);
 
   function handleChangeNom(e) {
     setGrup({ ...grup, nom: e.target.value });
