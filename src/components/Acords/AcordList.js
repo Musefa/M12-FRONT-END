@@ -47,7 +47,7 @@ export default function AcordList() {
                 </Link>{" "}
                 <AcordDelete
                   className="plantilla-delete"
-                  convocatoriaId={acord._id}
+                  acordId={acord._id}
                   onUpdate={fetchAcords}
                 />{" "}
               </td>

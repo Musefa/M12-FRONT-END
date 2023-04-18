@@ -19,6 +19,8 @@ import ActaPage from "./pages/ActaPage";
 import ActaEdit from "./components/Actas/ActaEdit";
 import ActaCreatePage from "./pages/ActaCreatePage";
 import AcordPage from "./pages/AcordPage";
+import AcordEdit from "./components/Acords/AcordEdit";
+import AcordCreatePage from "./pages/AcordCreatePage";
 
 export default function App() {
   return (
@@ -43,6 +45,8 @@ export default function App() {
             <Route path="/actas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><ActaEdit /></ProtectedRoute>} />
             <Route path="/actas/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><ActaCreatePage /></ProtectedRoute>} />
             <Route path="/acords" element={<ProtectedRoute roles={['administrador', 'directivo']}><AcordPage /></ProtectedRoute>} />
+            <Route path="/acords/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><AcordEdit /></ProtectedRoute>} />
+            <Route path="/acords/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><AcordCreatePage /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>
