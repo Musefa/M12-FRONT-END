@@ -1,6 +1,8 @@
 import Cookies from "js-cookie";
 
-const grupsURL = "http://localhost:5000/grups";
+const API_URL = process.env.REACT_APP_API_URL;
+
+const grupsURL = `${API_URL}/grups`;
 
 export async function getUsersList() {
   const token = Cookies.get('token');

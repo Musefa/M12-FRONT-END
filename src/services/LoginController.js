@@ -1,6 +1,8 @@
 import Cookies from 'js-cookie';
 
-const loginURL = "http://localhost:5000/auth/login";
+const API_URL = process.env.REACT_APP_API_URL;
+
+const loginURL = `${API_URL}/auth/login`;
 
 export default async function LoginUser(credentials) {
   const response = await fetch(loginURL, {

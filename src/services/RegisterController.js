@@ -1,6 +1,8 @@
 import Cookies from 'js-cookie';
 
-const registerURL = "http://localhost:5000/auth/register";
+const API_URL = process.env.REACT_APP_API_URL;
+
+const registerURL = `${API_URL}/auth/register`;
 
 export default async function RegisterUser(userData) {
   const response = await fetch(registerURL, {

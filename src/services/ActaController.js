@@ -2,15 +2,15 @@ import Cookies from "js-cookie";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const convocatoriasURL = `${API_URL}/convocatorias`;
+const actasURL = `${API_URL}/actas`;
 
-export async function getConvocatorias() {
-  const token = Cookies.get('token');
-  const response = await fetch(convocatoriasURL, {
+export async function getActas() {
+  const token = Cookies.get("token");
+  const response = await fetch(actasURL, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + token
+      Authorization: "Bearer " + token,
     },
   });
 
@@ -22,47 +22,47 @@ export async function getConvocatorias() {
     try {
       error = await response.json();
     } catch (e) {
-      error = { message: response.statusText || "Error fetching convocatorias" };
+      error = { message: response.statusText || "Error fetching actas" };
     }
     throw new Error(error.message);
   }
 }
 
-export async function createConvocatoria(convocatoria) {
+export async function createActa(acta) {
   const token = Cookies.get("token");
-  const response = await fetch(convocatoriasURL + "/create", {
+  const response = await fetch(actasURL + "/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,
     },
-    body: JSON.stringify(convocatoria),
+    body: JSON.stringify(acta),
   });
 
   if (!response.ok) {
-    throw new Error("Error al crear la convocatoria");
+    throw new Error("Error al crear el acta");
   }
 }
 
-export async function updateConvocatoria(id, convocatoria) {
+export async function updateActa(id, acta) {
   const token = Cookies.get("token");
-  const response = await fetch(convocatoriasURL + "/update/" + id, {
+  const response = await fetch(actasURL + "/update/" + id, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,
     },
-    body: JSON.stringify(convocatoria),
+    body: JSON.stringify(acta),
   });
 
   if (!response.ok) {
-    throw new Error("Error al actualizar la convocatoria");
+    throw new Error("Error al actualizar el acta");
   }
 }
 
-export async function deleteConvocatoria(id) {
+export async function deleteActa(id) {
   const token = Cookies.get("token");
-  const response = await fetch(convocatoriasURL + "/delete/" + id, {
+  const response = await fetch(actasURL + "/delete/" + id, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -71,7 +71,6 @@ export async function deleteConvocatoria(id) {
   });
 
   if (!response.ok) {
-    throw new Error("Error al eliminar la convocatoria");
+    throw new Error("Error al eliminar el acta");
   }
 }
-

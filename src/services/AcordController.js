@@ -2,11 +2,11 @@ import Cookies from "js-cookie";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const convocatoriasURL = `${API_URL}/convocatorias`;
+const acordsURL = `${API_URL}/acords`;
 
-export async function getConvocatorias() {
+export async function getAcords() {
   const token = Cookies.get('token');
-  const response = await fetch(convocatoriasURL, {
+  const response = await fetch(acordsURL, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -22,47 +22,47 @@ export async function getConvocatorias() {
     try {
       error = await response.json();
     } catch (e) {
-      error = { message: response.statusText || "Error fetching convocatorias" };
+      error = { message: response.statusText || "Error fetching acords" };
     }
     throw new Error(error.message);
   }
 }
 
-export async function createConvocatoria(convocatoria) {
+export async function createAcord(acord) {
   const token = Cookies.get("token");
-  const response = await fetch(convocatoriasURL + "/create", {
+  const response = await fetch(acordsURL + "/create", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,
     },
-    body: JSON.stringify(convocatoria),
+    body: JSON.stringify(acord),
   });
 
   if (!response.ok) {
-    throw new Error("Error al crear la convocatoria");
+    throw new Error("Error al crear el acord");
   }
 }
 
-export async function updateConvocatoria(id, convocatoria) {
+export async function updateAcord(id, acord) {
   const token = Cookies.get("token");
-  const response = await fetch(convocatoriasURL + "/update/" + id, {
+  const response = await fetch(acordsURL + "/update/" + id, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,
     },
-    body: JSON.stringify(convocatoria),
+    body: JSON.stringify(acord),
   });
 
   if (!response.ok) {
-    throw new Error("Error al actualizar la convocatoria");
+    throw new Error("Error al actualizar el acord");
   }
 }
 
-export async function deleteConvocatoria(id) {
+export async function deleteAcord(id) {
   const token = Cookies.get("token");
-  const response = await fetch(convocatoriasURL + "/delete/" + id, {
+  const response = await fetch(acordsURL + "/delete/" + id, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export async function deleteConvocatoria(id) {
   });
 
   if (!response.ok) {
-    throw new Error("Error al eliminar la convocatoria");
+    throw new Error("Error al eliminar el acord");
   }
 }
 
