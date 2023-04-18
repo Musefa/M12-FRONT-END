@@ -1,7 +1,7 @@
 import React from "react";
 import ConvocatoriaList from "../components/Convocatorias/ConvocatoriaList";
 import { Link } from "react-router-dom";
-import "../styles/GrupPage.css";
+import "../styles/ConvocatoriaPage.css";
 
 function ConvocatoriaPage() {
   return (

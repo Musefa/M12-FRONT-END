@@ -21,7 +21,7 @@ function ConvocatoriaForm({
   },
   usersList = [],
   grupsList = [],
-  plantillasList = []
+  plantillasList = [],
 }) {
   const [convocatoria, setConvocatoria] = useState({
     ...initialConvocatoria,
@@ -40,7 +40,10 @@ function ConvocatoriaForm({
   }
 
   function handleAddPuntOrdreDia() {
-    setConvocatoria({ ...convocatoria, puntsOrdreDia: [...convocatoria.puntsOrdreDia, ""] });
+    setConvocatoria({
+      ...convocatoria,
+      puntsOrdreDia: [...convocatoria.puntsOrdreDia, ""],
+    });
   }
 
   function handleRemovePuntOrdreDia(index) {
@@ -51,7 +54,10 @@ function ConvocatoriaForm({
   }
 
   function handleChangeConvocats(e) {
-    const selectedOptions = Array.from(e.target.selectedOptions, (option) => option.value);
+    const selectedOptions = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
     setConvocatoria({ ...convocatoria, convocats: selectedOptions });
   }
 
@@ -61,25 +67,53 @@ function ConvocatoriaForm({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="plantilla-form-container">
       <label>
         Fecha:
-        <input type="date" name="data" value={convocatoria.data} onChange={handleChange} required />
+        <input
+          type="date"
+          name="data"
+          value={convocatoria.data}
+          onChange={handleChange}
+          required
+          className="plantilla-form__input"
+        />
       </label>
       <label>
         Hora de inicio:
-        <input type="time" name="horaInici" value={convocatoria.horaInici} onChange={handleChange} required />
+        <input
+          type="time"
+          name="horaInici"
+          value={convocatoria.horaInici}
+          onChange={handleChange}
+          required
+          className="plantilla-form__input"
+        />
       </label>
       <label>
         Duración:
-        <input type="number" name="durada" value={convocatoria.durada} onChange={handleChange} required />
+        <input
+          type="number"
+          name="durada"
+          value={convocatoria.durada}
+          onChange={handleChange}
+          required
+          className="plantilla-form__input"
+        />
       </label>
       <label>
         Lugar:
-        <input type="text" name="lloc" value={convocatoria.lloc} onChange={handleChange} required />
+        <input
+          type="text"
+          name="lloc"
+          value={convocatoria.lloc}
+          onChange={handleChange}
+          required
+          className="plantilla-form__input"
+        />
       </label>
       <label>
-        <h3>Puntos del orden del día</h3>
+        <h3 className="plantilla-form__subtitle">Puntos del orden del día</h3>
         {convocatoria.puntsOrdreDia.map((punt, index) => (
           <div key={index}>
             <input
@@ -87,21 +121,42 @@ function ConvocatoriaForm({
               value={punt}
               onChange={(e) => handleChangePuntsOrdreDia(e, index)}
               required
+              className="plantilla-form__input"
             />
-            <button type="button" onClick={() => handleRemovePuntOrdreDia(index)}>
+            <button
+              type="button"
+              onClick={() => handleRemovePuntOrdreDia(index)}
+              className="plantilla-form__button plantilla-delete__button"
+            >
               Eliminar
             </button>
           </div>
         ))}
-        <button type="button" onClick={handleAddPuntOrdreDia}>
+        <button
+          type="button"
+          onClick={handleAddPuntOrdreDia}
+          className="plantilla-form__button"
+        >
           Añadir punto del orden del día
         </button>
       </label>
       <label>
         Grupos convocados:
-        <select multiple name="convocats" value={convocatoria.convocats} onChange={handleChangeConvocats} required>
+        <select
+          multiple
+          name="convocats"
+          value={convocatoria.convocats}
+          onChange={handleChangeConvocats}
+          required
+          className="plantilla-form__input"
+        >
           {grupsList.map((grup) => (
-            <option key={grup._id} value={grup._id} selected={convocatoria.convocats.includes(grup._id)}>
+            <option
+              key={grup._id}
+              value={grup._id}
+              selected={convocatoria.convocats.includes(grup._id)}
+              className="plantilla-form__item"
+            >
               {grup.nom}
             </option>
           ))}
@@ -109,28 +164,49 @@ function ConvocatoriaForm({
       </label>
       <label>
         Plantilla:
-        <select name="plantilla" value={convocatoria.plantilla} onChange={handleChange} required>
+        <select
+          name="plantilla"
+          value={convocatoria.plantilla}
+          onChange={handleChange}
+          required
+          className="plantilla-form__input"
+        >
           <option value="">Selecciona una plantilla</option>
           {plantillasList.map((plantilla) => (
-            <option key={plantilla._id} value={plantilla._id} selected={convocatoria.plantilla === plantilla._id}>
+            <option
+              key={plantilla._id}
+              value={plantilla._id}
+              selected={convocatoria.plantilla === plantilla._id}
+            >
               {plantilla.nom}
             </option>
           ))}
         </select>
-
       </label>
       <label>
         Responsable:
-        <select name="responsable" value={convocatoria.responsable} onChange={handleChange} required>
+        <select
+          name="responsable"
+          value={convocatoria.responsable}
+          onChange={handleChange}
+          required
+          className="plantilla-form__input"
+        >
           <option value="">Selecciona un responsable</option>
           {usersList.map((user) => (
-            <option key={user._id} value={user._id} selected={convocatoria.responsable === user._id}>
+            <option
+              key={user._id}
+              value={user._id}
+              selected={convocatoria.responsable === user._id}
+            >
               {user.nom}
             </option>
           ))}
         </select>
       </label>
-      <button type="submit">Guardar</button>
+      <button type="submit" className="plantilla-form__button">
+        Guardar
+      </button>
     </form>
   );
 }

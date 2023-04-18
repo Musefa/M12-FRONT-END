@@ -43,27 +43,38 @@ export default function ConvocatoriaList() {
               <td>{convocatoria.lloc}</td>
               <td>
                 {convocatoria.puntsOrdreDia.map((punts) => (
-                  <li>{punts}</li>
+                  <li key={punts}>{punts}</li>
                 ))}
               </td>
               <td>
                 {convocatoria.convocats.map((grup) => (
                   <ul key={grup._id}>
                     {grup.membres.map((user) => (
-                      <li>{user.nom}</li>
+                      <li key={user._id}>{user.nom}</li>
                     ))}
                   </ul>
                 ))}
               </td>
               <td>
                 {convocatoria.plantilla.puntsOrdreDia.map((punts) => (
-                  <li>{punts}</li>
+                  <li key={punts}>{punts}</li>
                 ))}
               </td>
               <td>{convocatoria.responsable.nom}</td>
               <td>
-              <Link to={`/convocatorias/edit/${convocatoria._id}`}>Editar</Link> {/* Agrega esta línea */}
-              <ConvocatoriaDelete convocatoriaId={convocatoria._id} onUpdate={fetchConvocatorias} /> {/* Agrega esta línea */}
+                <Link
+                  className="plantilla-page-link"
+                  to={`/convocatorias/edit/${convocatoria._id}`}
+                >
+                  Editar
+                </Link>{" "}
+                {/* Agrega esta línea */}
+                <ConvocatoriaDelete
+                  className="plantilla-delete"
+                  convocatoriaId={convocatoria._id}
+                  onUpdate={fetchConvocatorias}
+                />{" "}
+                {/* Agrega esta línea */}
               </td>
             </tr>
           ))}
