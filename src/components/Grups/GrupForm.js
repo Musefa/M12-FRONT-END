@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useUserContext } from "../../contexts/UserContext";
 
-function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "" }, usersList = [] }) {
+function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", creador: null }, usersList = [] }) {
   const [grup, setGrup] = useState(initialGrup);
   const [selectedMemberIds, setSelectedMemberIds] = useState(initialGrup.membres.map(membre => membre._id));
+
+  const { userId } = useUserContext(); // Obtener userId desde el UserContext
 
   function handleChangeNom(e) {
     setGrup({ ...grup, nom: e.target.value });
@@ -21,7 +24,7 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "" },
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSubmit(grup);
+    onSubmit({ ...grup, creador: userId }); // Actualiza la propiedad creador antes de enviar
   }
 
   return (
