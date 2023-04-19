@@ -42,14 +42,16 @@ export default function Header() {
               </span>
             </Link>
           </li>
-          {userId && userRole === "administrador" && (
+          {userId && (userRole === "administrador" || userRole === "professor") && (
             <>
-              <li className="admin-link">
-                <span className="icon">
-                  <PlantillaIcon />
-                </span>
-                <Link to="/plantillas">Plantillas</Link>
-              </li>
+              {userRole === "administrador" && (
+                <li className="admin-link">
+                  <span className="icon">
+                    <PlantillaIcon />
+                  </span>
+                  <Link to="/plantillas">Plantillas</Link>
+                </li>
+              )}
               <li className="admin-link">
                 <span className="icon">
                   <GrupIcon />
@@ -107,4 +109,4 @@ export default function Header() {
       </nav>
     </header>
   );
-}
+}              

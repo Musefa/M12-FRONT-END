@@ -35,18 +35,18 @@ export default function App() {
             <Route path="/plantillas" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaPage /></ProtectedRoute>} />
             <Route path="/plantillas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaEdit /></ProtectedRoute>} />
             <Route path="/plantillas/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaCreate /></ProtectedRoute>} />
-            <Route path="/grups" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupPage /></ProtectedRoute>} />
-            <Route path="/grups/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupEdit /></ProtectedRoute>} />
-            <Route path="/grups/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><GrupCreatePage /></ProtectedRoute>} />
-            <Route path="/convocatorias" element={<ProtectedRoute roles={['administrador', 'directivo']}><ConvocatoriaPage /></ProtectedRoute>} /> {/* Añade esta línea */}
-            <Route path="/convocatorias/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><ConvocatoriaEdit /></ProtectedRoute>} />
-            <Route path="/convocatorias/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><ConvocatoriaCreatePage /></ProtectedRoute>} />
-            <Route path="/actas" element={<ProtectedRoute roles={['administrador', 'directivo']}><ActaPage /></ProtectedRoute>} />
-            <Route path="/actas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><ActaEdit /></ProtectedRoute>} />
-            <Route path="/actas/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><ActaCreatePage /></ProtectedRoute>} />
-            <Route path="/acords" element={<ProtectedRoute roles={['administrador', 'directivo']}><AcordPage /></ProtectedRoute>} />
-            <Route path="/acords/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><AcordEdit /></ProtectedRoute>} />
-            <Route path="/acords/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><AcordCreatePage /></ProtectedRoute>} />
+            <Route path="/grups" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><GrupPage /></ProtectedRoute>} />
+            <Route path="/grups/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><GrupEdit /></ProtectedRoute>} />
+            <Route path="/grups/create" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><GrupCreatePage /></ProtectedRoute>} />
+            <Route path="/convocatorias" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ConvocatoriaPage /></ProtectedRoute>} /> {/* Añade esta línea */}
+            <Route path="/convocatorias/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ConvocatoriaEdit /></ProtectedRoute>} />
+            <Route path="/convocatorias/create" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ConvocatoriaCreatePage /></ProtectedRoute>} />
+            <Route path="/actas" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ActaPage /></ProtectedRoute>} />
+            <Route path="/actas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ActaEdit /></ProtectedRoute>} />
+            <Route path="/actas/create" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ActaCreatePage /></ProtectedRoute>} />
+            <Route path="/acords" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><AcordPage /></ProtectedRoute>} />
+            <Route path="/acords/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><AcordEdit /></ProtectedRoute>} />
+            <Route path="/acords/create" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><AcordCreatePage /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>

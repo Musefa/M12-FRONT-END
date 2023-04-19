@@ -3,9 +3,12 @@ import PlantillaList from "../components/Plantilles/PlantillaList";
 import PlantillaForm from "../components/Plantilles/PlantillaForm";
 import { createPlantilla } from "../services/PlantillaController";
 import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "../contexts/UserContext";
 import "../styles/PlantillaPage.css";
 
 function PlantillaCreate() {
+  const { userId } = useUserContext();
+
   const navigate = useNavigate();
 
   async function handleCreate(plantilla) {
@@ -22,7 +25,7 @@ function PlantillaCreate() {
   return (
     <div className="plantilla-form-container">
       <h1 className="plantilla-form-title">Crear nueva plantilla</h1>
-      <PlantillaForm onSubmit={handleCreate} />
+      <PlantillaForm onSubmit={handleCreate} userId={userId} />
       <Link to="/plantillas" className="plantilla-form-link">
         Volver a la lista de plantillas
       </Link>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function PlantillaForm({ onSubmit, initialPlantilla = { nom: "", puntsOrdreDia: [""] } }) {
+function PlantillaForm({ onSubmit, initialPlantilla = { nom: "", puntsOrdreDia: [""] }, userId }) {
   const [plantilla, setPlantilla] = useState(initialPlantilla);
 
   function handleChangeNom(e) {
@@ -26,8 +26,8 @@ function PlantillaForm({ onSubmit, initialPlantilla = { nom: "", puntsOrdreDia: 
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSubmit(plantilla);
-  }
+    onSubmit({ ...plantilla, creador: userId });
+  }  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -35,6 +35,7 @@ function PlantillaForm({ onSubmit, initialPlantilla = { nom: "", puntsOrdreDia: 
         Nombre:
         <input type="text" value={plantilla.nom} onChange={handleChangeNom} className="plantilla-form__input" required />
       </label>
+      <input type="hidden" name="creador" value={userId} />
       <h3 className="plantilla-form__subtitle">Puntos del orden del día</h3>
       {plantilla.puntsOrdreDia.map((punt, index) => (
         <div key={index}>
