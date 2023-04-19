@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { getAcords } from "../../services/AcordController";
 import { Link } from "react-router-dom";
 import AcordDelete from "./AcordDelete";
@@ -8,28 +8,32 @@ export default function AcordList() {
   const [acords, setAcords] = useState([]);
   const { userId } = useUserContext();
 
-  useEffect(() => {
-    fetchAcords();
-  });
+  const filterAcords = useCallback(
+    (acords) => {
+      return acords.filter((acord) => {
+        const isResponsable = acord.acta.convocatoria.responsable._id === userId;
+        const isConvocado = acord.acta.convocatoria.convocats.some((grup) =>
+          grup.membres.some((user) => user._id === userId)
+        );
+        return isResponsable || isConvocado;
+      });
+    },
+    [userId]
+  );
 
-  function filterAcords(acords) {
-    return acords.filter((acord) => {
-      const isResponsable = acord.acta.convocatoria.responsable._id === userId;
-      const isConvocado = acord.acta.convocatoria.convocats.some((grup) =>
-        grup.membres.some((user) => user._id === userId)
-      );
-      return isResponsable || isConvocado;
-    });
-  }
-
-  async function fetchAcords() {
+  const fetchAcords = useCallback(async () => {
     try {
       const acords = await getAcords();
       setAcords(filterAcords(acords));
     } catch (error) {
       console.error("Error fetching acords:", error);
     }
-  }
+  }, [filterAcords]);
+
+  useEffect(() => {
+    fetchAcords();
+  }, [fetchAcords]);
+
   return (
     <div>
       <table>

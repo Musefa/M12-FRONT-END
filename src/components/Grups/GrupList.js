@@ -1,34 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { getGrups, getUsersList } from "../../services/GrupController";
 import { Link } from "react-router-dom";
 import GrupDelete from "./GrupDelete";
+import { useUserContext } from "../../contexts/UserContext";
 
 function GrupList() {
   const [grups, setGrups] = useState([]);
   const [usersList, setUsersList] = useState([]);
+  const { userId } = useUserContext();
 
-  useEffect(() => {
-    fetchGrups();
-    fetchUsers();
-  }, []);
-
-  async function fetchGrups() {
+  const fetchGrups = useCallback(async () => {
     try {
       const grups = await getGrups();
-      setGrups(grups);
+      const userGrups = grups.filter(grup => grup.membres.some(membre => membre._id === userId));
+      setGrups(userGrups);
     } catch (error) {
       console.error("Error fetching grups:", error);
     }
-  }
+  }, [userId]);
 
-  async function fetchUsers() {
+  const fetchUsers = useCallback(async () => {
     try {
       const users = await getUsersList();
       setUsersList(users);
     } catch (error) {
       console.error("Error fetching users:", error);
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    fetchGrups();
+    fetchUsers();
+  }, [fetchGrups, fetchUsers]);
 
   function getUserById(userId) {
     return usersList.find(user => user._id === userId);

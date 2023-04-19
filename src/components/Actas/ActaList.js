@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { getActas } from "../../services/ActaController";
 import { Link } from "react-router-dom";
 import ActaDelete from "./ActaDelete";
@@ -8,28 +8,31 @@ export default function ActaList() {
   const [actas, setActas] = useState([]);
   const { userId } = useUserContext();
 
-  useEffect(() => {
-    fetchActas();
-  });
+  const filterActas = useCallback(
+    (actas) => {
+      return actas.filter((acta) => {
+        const isResponsable = acta.convocatoria.responsable._id === userId;
+        const isConvocado = acta.convocatoria.convocats.some((grup) =>
+          grup.membres.some((user) => user._id === userId)
+        );
+        return isResponsable || isConvocado;
+      });
+    },
+    [userId]
+  );
 
-  function filterActas(actas) {
-    return actas.filter((acta) => {
-      const isResponsable = acta.convocatoria.responsable._id === userId;
-      const isConvocado = acta.convocatoria.convocats.some((grup) =>
-        grup.membres.some((user) => user._id === userId)
-      );
-      return isResponsable || isConvocado;
-    });
-  }
-
-  async function fetchActas() {
+  const fetchActas = useCallback(async () => {
     try {
       const actas = await getActas();
       setActas(filterActas(actas));
     } catch (error) {
       console.error("Error fetching actas:", error);
     }
-  }
+  }, [filterActas]);
+
+  useEffect(() => {
+    fetchActas();
+  }, [fetchActas]);
   
   return (
     <div>
