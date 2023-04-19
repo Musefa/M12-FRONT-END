@@ -6,7 +6,7 @@ import "../styles/AcordPage.css";
 function AcordPage() {
   return (
     <div className="plantilla-page-container">
-      <h1 className="plantilla-page-title">Página de actas</h1>
+      <h1 className="plantilla-page-title">Página d' acords</h1>
       <Link to="/acords/create" className="plantilla-page-link">
         Crear nuevo acuerdo
       </Link>

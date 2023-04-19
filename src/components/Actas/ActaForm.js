@@ -43,6 +43,17 @@ function ActaForm({
   return (
     <form onSubmit={handleSubmit} className="acta-form-container">
       <label>
+        Nom:
+        <input
+          type="text"
+          name="nom"
+          value={acta.nom}
+          onChange={handleChange}
+          required
+          className="acta-form__input"
+        />
+      </label>
+      <label>
         Estado:
         <input
           type="text"
@@ -113,7 +124,7 @@ function ActaForm({
               ...acta,
               acords: Array.from(
                 e.target.selectedOptions,
-                (option) => option.value          ),
+                (option) => option.value),
             })
           }
           required
@@ -137,7 +148,7 @@ function ActaForm({
         Guardar
       </button>
     </form>
-    );
+  );
 }
 
 export default ActaForm;

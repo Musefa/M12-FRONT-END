@@ -11,13 +11,14 @@ function formatDate(dateString) {
 function ConvocatoriaForm({
   onSubmit,
   initialConvocatoria = {
+    nom: "",
     data: "",
     horaInici: "",
     durada: "",
     lloc: "",
     puntsOrdreDia: [""],
     convocats: [],
-    responsable: "",
+    responsable: ""
   },
   usersList = [],
   grupsList = [],
@@ -68,6 +69,17 @@ function ConvocatoriaForm({
 
   return (
     <form onSubmit={handleSubmit} className="plantilla-form-container">
+      <label>
+        Nom:
+        <input
+          type="text"
+          name="nom"
+          value={convocatoria.nom}
+          onChange={handleChange}
+          required
+          className="plantilla-form__input"
+        />
+      </label>
       <label>
         Fecha:
         <input

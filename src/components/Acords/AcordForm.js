@@ -24,6 +24,17 @@ function AcordForm({
 
     return (
         <form onSubmit={handleSubmit} className="acord-form-container">
+              <label>
+                Nom:
+                <input
+                    type="text"
+                    name="nom"
+                    value={acord.nom}
+                    onChange={handleChange}
+                    required
+                    className="acord-form__input"
+                />
+            </label>
             <label>
                 Data Inici:
                 <input

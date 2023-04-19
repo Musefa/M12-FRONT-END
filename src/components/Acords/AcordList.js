@@ -24,20 +24,24 @@ export default function AcordList() {
       <table>
         <thead>
           <tr>
+            <th>Nom</th>
             <th>Data Inici</th>
             <th>Data Final</th>
             <th>Descripcio</th>
             <th>Acta</th>
+            <th>Creador</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           {acords.map((acord) => (
             <tr key={acord._id}>
+              <td>{acord.nom}</td>
               <td>{acord.dataInici}</td>
               <td>{acord.dataFinal}</td>
               <td>{acord.descripcio}</td>
               <td>{acord.acta.convocatoria.lloc}</td>
+              <td>{acord.creador ? acord.creador.nom : "null"}</td>
               <td>
                 <Link
                   className="plantilla-page-link"

@@ -23,7 +23,8 @@ function PlantillaList() {
     <ul className="plantilla-form__item">
       {plantillas.map((plantilla) => (
         <li key={plantilla._id}>
-          {plantilla.nom}{' '}
+          Nom: {plantilla.nom}<br />
+          Creador: {plantilla.creador.nom}<br />
           <Link className="plantilla-form-editar" to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
           <PlantillaDelete plantillaId={plantilla._id} onUpdate={fetchPlantillas} />
         </li>

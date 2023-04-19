@@ -51,6 +51,9 @@ function GrupList() {
                   );
                 })}
               </ul>
+              <br />
+              <strong>Creador: </strong>
+              {grup.creador.nom}
               <div className="plantilla-delete">
                 <Link to={`/grups/edit/${grup._id}`} className="plantilla-form__button">
                   Editar

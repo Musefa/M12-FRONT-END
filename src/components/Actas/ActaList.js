@@ -23,16 +23,20 @@ export default function ActaList() {
       <table>
         <thead>
           <tr>
+            <th>Nom </th>
             <th>Estat</th>
             <th>Descripcions</th>
             <th>Convocatoria</th>
             <th>Acords</th>
+            <th>Creador</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           {actas.map((acta) => (
             <tr key={acta._id}>
+              <td>{acta.nom}</td>
+
               <td>{acta.estat}</td>
               <td>
                 {acta.descripcions.map((descripcio) => (
@@ -45,6 +49,7 @@ export default function ActaList() {
                   <li key={acord}>{acord.descripcio}</li>
                 ))}
               </td>
+              <td>{acta.creador ? acta.creador.nom : "null"}</td>
               <td>
                 <Link
                   className="plantilla-page-link"

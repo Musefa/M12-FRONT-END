@@ -13,6 +13,7 @@ export default function ConvocatoriaList() {
   async function fetchConvocatorias() {
     try {
       const convocatorias = await getConvocatorias();
+      console.log(convocatorias)
       setConvocatorias(convocatorias);
     } catch (error) {
       console.error("Error fetching convocatorias:", error);
@@ -23,6 +24,7 @@ export default function ConvocatoriaList() {
       <table>
         <thead>
           <tr>
+            <th>Nom</th>
             <th>Data</th>
             <th>Hora Inici</th>
             <th>Durada</th>
@@ -31,12 +33,14 @@ export default function ConvocatoriaList() {
             <th>Convocats</th>
             <th>Plantilla Punts</th>
             <th>Responsable</th>
+            <th>Creador</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           {convocatorias.map((convocatoria) => (
             <tr key={convocatoria._id}>
+              <td>{convocatoria.nom}</td>
               <td>{convocatoria.data}</td>
               <td>{convocatoria.horaInici}</td>
               <td>{convocatoria.durada}</td>
@@ -61,6 +65,7 @@ export default function ConvocatoriaList() {
                 ))}
               </td>
               <td>{convocatoria.responsable.nom}</td>
+              <td>{convocatoria.creador ? convocatoria.creador.nom : "null"}</td>
               <td>
                 <Link
                   className="plantilla-page-link"
