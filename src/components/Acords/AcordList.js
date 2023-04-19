@@ -2,19 +2,30 @@ import React, { useState, useEffect } from "react";
 import { getAcords } from "../../services/AcordController";
 import { Link } from "react-router-dom";
 import AcordDelete from "./AcordDelete";
+import { useUserContext } from "../../contexts/UserContext";
 
 export default function AcordList() {
   const [acords, setAcords] = useState([]);
+  const { userId } = useUserContext();
 
   useEffect(() => {
     fetchAcords();
-  }, []);
+  });
+
+  function filterAcords(acords) {
+    return acords.filter((acord) => {
+      const isResponsable = acord.acta.convocatoria.responsable._id === userId;
+      const isConvocado = acord.acta.convocatoria.convocats.some((grup) =>
+        grup.membres.some((user) => user._id === userId)
+      );
+      return isResponsable || isConvocado;
+    });
+  }
 
   async function fetchAcords() {
     try {
       const acords = await getAcords();
-      console.log(acords);
-      setAcords(acords);
+      setAcords(filterAcords(acords));
     } catch (error) {
       console.error("Error fetching acords:", error);
     }
