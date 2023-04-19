@@ -2,23 +2,36 @@ import React, { useState, useEffect } from "react";
 import { getConvocatorias } from "../../services/ConvocatoriaController";
 import { Link } from "react-router-dom";
 import ConvocatoriaDelete from "./ConvocatoriaDelete";
+import { useUserContext } from "../../contexts/UserContext";
 
 export default function ConvocatoriaList() {
   const [convocatorias, setConvocatorias] = useState([]);
+  const { userId } = useUserContext();
 
   useEffect(() => {
     fetchConvocatorias();
-  }, []);
+  });
+
+  function filterConvocatorias(convocatorias) {
+    return convocatorias.filter((convocatoria) => {
+      const isResponsable = convocatoria.responsable._id === userId;
+      const isConvocado = convocatoria.convocats.some((grup) =>
+        grup.membres.some((user) => user._id === userId)
+      );
+      return isResponsable || isConvocado;
+    });
+  }
 
   async function fetchConvocatorias() {
     try {
       const convocatorias = await getConvocatorias();
-      console.log(convocatorias)
-      setConvocatorias(convocatorias);
+      console.log(convocatorias);
+      setConvocatorias(filterConvocatorias(convocatorias));
     } catch (error) {
       console.error("Error fetching convocatorias:", error);
     }
   }
+
   return (
     <div>
       <table>
