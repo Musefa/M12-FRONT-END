@@ -25,7 +25,6 @@ export default function ConvocatoriaList() {
   async function fetchConvocatorias() {
     try {
       const convocatorias = await getConvocatorias();
-      console.log(convocatorias);
       setConvocatorias(filterConvocatorias(convocatorias));
     } catch (error) {
       console.error("Error fetching convocatorias:", error);
