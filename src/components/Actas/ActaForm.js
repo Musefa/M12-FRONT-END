@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useUserContext } from "../../contexts/UserContext";
 
 function ActaForm({
   onSubmit,
@@ -7,10 +8,12 @@ function ActaForm({
     descripcions: [""],
     convocatoria: "",
     acords: [""],
+    creador: null
   },
   convocatoriaList = [],
   acordList = [],
 }) {
+  const { userId } = useUserContext();
   const [acta, setActa] = useState(initialActa);
 
   function handleChange(e) {
@@ -37,7 +40,7 @@ function ActaForm({
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSubmit(acta);
+    onSubmit({ ...acta, creador: userId });
   }
 
   return (

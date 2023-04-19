@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useUserContext } from "../../contexts/UserContext";
 
 function AcordForm({
     onSubmit,
@@ -7,9 +8,11 @@ function AcordForm({
         dataFinal: "",
         descripcio: "",
         acta: "",
+        creador: null
     },
     actaList = [],
 }) {
+    const { userId } = useUserContext();
     const [acord, setAcord] = useState(initialAcord);
 
     function handleChange(e) {
@@ -19,7 +22,7 @@ function AcordForm({
 
     function handleSubmit(e) {
         e.preventDefault();
-        onSubmit(acord);
+        onSubmit({ ...acord, creador: userId });
     }
 
     return (
