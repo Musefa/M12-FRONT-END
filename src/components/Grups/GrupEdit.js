@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import { getGrups, updateGrup, getUsersList } from "../../services/GrupController";
 import GrupForm from "./GrupForm";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../contexts/UserContext";
 
 function GrupEdit() {
   const [grup, setGrup] = useState(null);
   const [usersList, setUsersList] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+  const { userId, userRole } = useUserContext();
 
   useEffect(() => {
     async function fetchGrup() {
@@ -16,9 +18,13 @@ function GrupEdit() {
         const grups = await getGrups();
         const grupFound = grups.find((g) => g._id === id);
         if (grupFound) {
-          setGrup(grupFound);
+          if (userRole !== "administrador" && grupFound.creador._id !== userId) {
+            alert("No tienes permiso para editar este grupo.");
+            navigate("/");
+          } else {
+            setGrup(grupFound);
+          }
         }
-
         const users = await getUsersList();
         setUsersList(users);
       } catch (error) {
@@ -27,7 +33,7 @@ function GrupEdit() {
     }
 
     fetchGrup();
-  }, [id]);
+  }, [id, userId, userRole, navigate]);
 
   async function handleSubmit(updatedGrup) {
     try {
