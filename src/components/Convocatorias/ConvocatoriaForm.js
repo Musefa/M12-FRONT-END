@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useUserContext } from "../../contexts/UserContext"; // Importar useUserContext
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -18,12 +19,14 @@ function ConvocatoriaForm({
     lloc: "",
     puntsOrdreDia: [""],
     convocats: [],
-    responsable: ""
+    responsable: "",
+    creador: null
   },
   usersList = [],
   grupsList = [],
   plantillasList = [],
 }) {
+  const { userId } = useUserContext();
   const [convocatoria, setConvocatoria] = useState({
     ...initialConvocatoria,
     data: initialConvocatoria.data ? formatDate(initialConvocatoria.data) : "",
@@ -64,7 +67,7 @@ function ConvocatoriaForm({
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSubmit(convocatoria);
+    onSubmit({ ...convocatoria, creador: userId });
   }
 
   return (
