@@ -34,6 +34,12 @@ export default async function LoginUser(credentials) {
         sameSite: 'none', 
         secure: true 
       });
+
+      Cookies.set('userId', data.userData.userId, { 
+        expires: 1, 
+        sameSite: 'none', 
+        secure: true 
+      });
       
       return data;
     } catch (e) {

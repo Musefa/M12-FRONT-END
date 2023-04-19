@@ -42,6 +42,8 @@ function GrupList() {
             <li key={grup._id} className="plantilla-form__item">
               <strong>{grup.nom}</strong>
               <br />
+              Tipus: <small>{grup.tipus}</small>
+              <br />
               <small>Membres:</small>
               <ul>
                 {grup.membres.map((membre) => {

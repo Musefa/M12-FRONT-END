@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 
-function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [] }, usersList = [] }) {
+function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "" }, usersList = [] }) {
   const [grup, setGrup] = useState(initialGrup);
   const [selectedMemberIds, setSelectedMemberIds] = useState(initialGrup.membres.map(membre => membre._id));
 
   function handleChangeNom(e) {
     setGrup({ ...grup, nom: e.target.value });
+  }
+
+  function handleChangeTipus(e) {
+    setGrup({ ...grup, tipus: e.target.value });
   }
 
   function handleChangeMembres(e) {
@@ -25,6 +29,33 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [] }, usersList 
       <label className="plantilla-form__label">
         Nombre:
         <input type="text" value={grup.nom} onChange={handleChangeNom} className="plantilla-form__input" required />
+      </label>
+      <label>
+        Tipus:
+        <div>
+          <label>
+            Públic: 
+            <input
+              type="radio"
+              name="tipus"
+              value="Públic"
+              checked={grup.tipus === "Públic"}
+              onChange={handleChangeTipus}
+              required
+            />
+          </label>
+          Privat:
+          <label>
+            <input
+              type="radio"
+              name="tipus"
+              value="Privat"
+              checked={grup.tipus === "Privat"}
+              onChange={handleChangeTipus}
+              required
+            />
+          </label>
+        </div>
       </label>
       <h3 className="plantilla-form__subtitle">Miembros</h3>
       <label className="plantilla-form__label">

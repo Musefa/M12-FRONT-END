@@ -36,6 +36,12 @@ export default async function RegisterUser(userData) {
         sameSite: 'none', 
         secure: true 
       });
+
+      Cookies.set('userId', data.userData.userId, { 
+        expires: 1, 
+        sameSite: 'none', 
+        secure: true 
+      });
       
       return { token, userData };
     } catch (e) {

@@ -12,7 +12,7 @@ import { ReactComponent as ConvocatoriaIcon } from "../resources/icons/convocato
 import { ReactComponent as PlantillaIcon } from "../resources/icons/plantilla.svg";
 
 export default function Header() {
-  const { userName, setUserName, userRole, setUserRole } = useUserContext();
+  const { userName, setUserName, userRole, setUserRole, userId, setUserId } = useUserContext();
   const navigate = useNavigate();
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
@@ -24,8 +24,10 @@ export default function Header() {
     Cookies.remove("token");
     Cookies.remove("userRole");
     Cookies.remove("userName");
+    Cookies.remove("userId");
     setUserName("");
     setUserRole("");
+    setUserId("");
     navigate("/");
   };
 
@@ -40,7 +42,7 @@ export default function Header() {
               </span>
             </Link>
           </li>
-          {userName && userRole === "administrador" && (
+          {userId && userRole === "administrador" && (
             <>
               <li className="admin-link">
                 <span className="icon">

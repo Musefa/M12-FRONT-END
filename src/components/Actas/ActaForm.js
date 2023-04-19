@@ -55,14 +55,30 @@ function ActaForm({
       </label>
       <label>
         Estado:
-        <input
-          type="text"
-          name="estat"
-          value={acta.estat}
-          onChange={handleChange}
-          required
-          className="acta-form__input"
-        />
+        <div>
+          <label>
+            Oberta: 
+            <input
+              type="radio"
+              name="estat"
+              value="Oberta"
+              checked={acta.estat === "Oberta"}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          Tancada
+          <label>
+            <input
+              type="radio"
+              name="estat"
+              value="Tancada"
+              checked={acta.estat === "Tancada"}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
       </label>
       <label>
         <h3 className="acta-form__subtitle">Descripciones</h3>
