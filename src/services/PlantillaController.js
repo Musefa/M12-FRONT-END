@@ -16,7 +16,7 @@ export async function getPlantillas() {
 
   if (response.ok) {
     const data = await response.json();
-    return data.docs;
+    return data.list;
   } else {
     let error;
     try {
