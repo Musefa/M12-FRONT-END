@@ -6,7 +6,7 @@ import { useUserContext } from "../../contexts/UserContext";
 
 export default function AcordList() {
   const [acords, setAcords] = useState([]);
-  const { userId } = useUserContext();
+  const { userId, userRole } = useUserContext();
 
   const filterAcords = useCallback(
     (acords) => {
@@ -15,7 +15,8 @@ export default function AcordList() {
         const isConvocado = acord.acta.convocatoria.convocats.some((grup) =>
           grup.membres.some((user) => user._id === userId)
         );
-        return isResponsable || isConvocado;
+        const isCreador = acord.creador && acord.creador._id === userId;
+        return isResponsable || isConvocado || isCreador;
       });
     },
     [userId]
@@ -58,17 +59,21 @@ export default function AcordList() {
               <td>{acord.acta.convocatoria.lloc}</td>
               <td>{acord.creador ? acord.creador.nom : "null"}</td>
               <td>
-                <Link
-                  className="plantilla-page-link"
-                  to={`/acords/edit/${acord._id}`}
-                >
-                  Editar
-                </Link>{" "}
-                <AcordDelete
-                  className="plantilla-delete"
-                  acordId={acord._id}
-                  onUpdate={fetchAcords}
-                />{" "}
+                {(userRole === "administrador" || acord.creador._id === userId) && (
+                  <>
+                    <Link
+                      className="plantilla-page-link"
+                      to={`/acords/edit/${acord._id}`}
+                    >
+                      Editar
+                    </Link>{" "}
+                    <AcordDelete
+                      className="plantilla-delete"
+                      acordId={acord._id}
+                      onUpdate={fetchAcords}
+                    />
+                  </>
+                )}
               </td>
             </tr>
           ))}

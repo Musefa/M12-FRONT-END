@@ -4,20 +4,26 @@ import { getActas } from "../../services/ActaController";
 import { getAcords, updateAcord } from "../../services/AcordController";
 import AcordForm from "./AcordForm";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../contexts/UserContext"; 
 
 function AcordEdit() {
   const [acord, setAcord] = useState(null);
   const [actaList, setActaList] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+  const { userId, userRole } = useUserContext();
 
   useEffect(() => {
     async function fetchAcord() {
       try {
         const acords = await getAcords();
         const acordFound = acords.find((a) => a._id === id);
-        if (acordFound) {
+        if (acordFound && (userRole === "administrador" || acordFound.creador._id === userId)) {
           setAcord(acordFound);
+        }else {
+          // Enviar al usuario al inicio si no tiene permiso para editar
+          alert("No tienes permiso para editar esta convocatoria.");
+          navigate("/");
         }
 
         const actas = await getActas();
@@ -28,7 +34,7 @@ function AcordEdit() {
     }
 
     fetchAcord();
-  }, [id]);
+  }, [id, userId, userRole, navigate]);
 
   async function handleSubmit(updatedAcord) {
     try {

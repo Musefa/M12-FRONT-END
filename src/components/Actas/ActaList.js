@@ -6,7 +6,7 @@ import { useUserContext } from "../../contexts/UserContext";
 
 export default function ActaList() {
   const [actas, setActas] = useState([]);
-  const { userId } = useUserContext();
+  const { userId, userRole } = useUserContext();
 
   const filterActas = useCallback(
     (actas) => {
@@ -15,7 +15,8 @@ export default function ActaList() {
         const isConvocado = acta.convocatoria.convocats.some((grup) =>
           grup.membres.some((user) => user._id === userId)
         );
-        return isResponsable || isConvocado;
+        const isCreador = acta.creador && acta.creador._id === userId;
+        return isResponsable || isConvocado || isCreador;
       });
     },
     [userId]
@@ -33,7 +34,7 @@ export default function ActaList() {
   useEffect(() => {
     fetchActas();
   }, [fetchActas]);
-  
+
   return (
     <div>
       <table>
@@ -67,17 +68,21 @@ export default function ActaList() {
               </td>
               <td>{acta.creador ? acta.creador.nom : "null"}</td>
               <td>
-                <Link
-                  className="plantilla-page-link"
-                  to={`/actas/edit/${acta._id}`}
-                >
-                  Editar
-                </Link>{" "}
-                <ActaDelete
-                  className="plantilla-delete"
-                  actaId={acta._id}
-                  onUpdate={fetchActas}
-                />{" "}
+                {(userRole === "administrador" || acta.creador._id === userId) && (
+                  <>
+                    <Link
+                      className="plantilla-page-link"
+                      to={`/actas/edit/${acta._id}`}
+                    >
+                      Editar
+                    </Link>{" "}
+                    <ActaDelete
+                      className="plantilla-delete"
+                      actaId={acta._id}
+                      onUpdate={fetchActas}
+                    />
+                  </>
+                )}
               </td>
             </tr>
           ))}

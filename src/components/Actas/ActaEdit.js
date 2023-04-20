@@ -5,6 +5,7 @@ import { getConvocatorias } from "../../services/ConvocatoriaController";
 import { getAcords } from "../../services/AcordController";
 import ActaForm from "./ActaForm";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../contexts/UserContext";
 
 function ActaEdit() {
   const [acta, setActa] = useState(null);
@@ -12,14 +13,19 @@ function ActaEdit() {
   const [acordList, setAcordList] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+  const { userId, userRole } = useUserContext();
 
   useEffect(() => {
     async function fetchActa() {
       try {
         const actas = await getActas();
         const actaFound = actas.find((a) => a._id === id);
-        if (actaFound) {
+        if (actaFound && (userRole === "administrador" || actaFound.creador._id === userId)) {
           setActa(actaFound);
+        }else {
+          // Enviar al usuario al inicio si no tiene permiso para editar
+          alert("No tienes permiso para editar esta convocatoria.");
+          navigate("/");
         }
 
         const convocatorias = await getConvocatorias();
@@ -33,7 +39,7 @@ function ActaEdit() {
     }
 
     fetchActa();
-  }, [id]);
+  }, [id, userId, userRole, navigate]);
 
   async function handleSubmit(updatedActa) {
     try {

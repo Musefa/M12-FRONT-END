@@ -5,6 +5,7 @@ import { getGrups, getUsersList } from "../../services/GrupController";
 import { getPlantillas } from "../../services/PlantillaController";
 import ConvocatoriaForm from "./ConvocatoriaForm";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../contexts/UserContext"; // Importar useUserContext
 
 function ConvocatoriaEdit() {
   const [convocatoria, setConvoctoria] = useState(null);
@@ -13,19 +14,26 @@ function ConvocatoriaEdit() {
   const [plantillasList, setPlantillasList] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+  const { userId, userRole } = useUserContext(); // Utilizar useUserContext para obtener el userId y userRole
 
   useEffect(() => {
     async function fetchConvocatoria() {
       try {
         const convocatorias = await getConvocatorias();
         const convocatoriaFound = convocatorias.find((c) => c._id === id);
-        if (convocatoriaFound) {
+
+        // Comprobar si el usuario actual es el creador o un administrador
+        if (convocatoriaFound && (userRole === "administrador" || convocatoriaFound.creador._id === userId)) {
           setConvoctoria({
             ...convocatoriaFound,
             convocats: convocatoriaFound.convocats.map((grup) => grup._id),
             plantilla: convocatoriaFound.plantilla._id,
             responsable: convocatoriaFound.responsable._id,
           });
+        } else {
+          // Enviar al usuario al inicio si no tiene permiso para editar
+          alert("No tienes permiso para editar esta convocatoria.");
+          navigate("/");
         }
 
         const grups = await getGrups();
@@ -42,7 +50,7 @@ function ConvocatoriaEdit() {
     }
 
     fetchConvocatoria();
-  }, [id]);
+  }, [id, userId, userRole, navigate]);
 
   async function handleSubmit(updatedConvocatoria) {
     try {
@@ -64,6 +72,8 @@ function ConvocatoriaEdit() {
         <p>Cargando convocatoria...</p>
       )}
     </div>
+ 
+
   );
 }
 

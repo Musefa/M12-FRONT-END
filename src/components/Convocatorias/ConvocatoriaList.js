@@ -6,7 +6,7 @@ import { useUserContext } from "../../contexts/UserContext";
 
 export default function ConvocatoriaList() {
   const [convocatorias, setConvocatorias] = useState([]);
-  const { userId } = useUserContext();
+  const { userId, userRole } = useUserContext();
 
   const filterConvocatorias = useCallback(
     (convocatorias) => {
@@ -15,7 +15,8 @@ export default function ConvocatoriaList() {
         const isConvocado = convocatoria.convocats.some((grup) =>
           grup.membres.some((user) => user._id === userId)
         );
-        return isResponsable || isConvocado;
+        const isCreador = convocatoria.creador && convocatoria.creador._id === userId;
+        return isResponsable || isConvocado || isCreador;
       });
     },
     [userId]
@@ -82,19 +83,21 @@ export default function ConvocatoriaList() {
               <td>{convocatoria.responsable.nom}</td>
               <td>{convocatoria.creador ? convocatoria.creador.nom : "null"}</td>
               <td>
-                <Link
-                  className="plantilla-page-link"
-                  to={`/convocatorias/edit/${convocatoria._id}`}
-                >
-                  Editar
-                </Link>{" "}
-                {/* Agrega esta línea */}
-                <ConvocatoriaDelete
-                  className="plantilla-delete"
-                  convocatoriaId={convocatoria._id}
-                  onUpdate={fetchConvocatorias}
-                />{" "}
-                {/* Agrega esta línea */}
+                {(userRole === "administrador" || convocatoria.creador._id === userId) && (
+                  <>
+                    <Link
+                      className="plantilla-page-link"
+                      to={`/convocatorias/edit/${convocatoria._id}`}
+                    >
+                      Editar
+                    </Link>
+                    <ConvocatoriaDelete
+                      className="plantilla-delete"
+                      convocatoriaId={convocatoria._id}
+                      onUpdate={fetchConvocatorias}
+                    />
+                  </>
+                )}
               </td>
             </tr>
           ))}
