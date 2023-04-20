@@ -25,11 +25,12 @@ export default function ActaList() {
   const fetchActas = useCallback(async () => {
     try {
       const actas = await getActas();
-      setActas(filterActas(actas));
+      const filteredActas = userRole === "administrador" ? actas : filterActas(actas);
+      setActas(filteredActas);
     } catch (error) {
       console.error("Error fetching actas:", error);
     }
-  }, [filterActas]);
+  }, [filterActas, userRole]);
 
   useEffect(() => {
     fetchActas();

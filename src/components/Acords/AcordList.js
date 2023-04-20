@@ -25,11 +25,12 @@ export default function AcordList() {
   const fetchAcords = useCallback(async () => {
     try {
       const acords = await getAcords();
-      setAcords(filterAcords(acords));
+      const filteredAcords = userRole === "administrador" ? acords : filterAcords(acords);
+      setAcords(filteredAcords);
     } catch (error) {
       console.error("Error fetching acords:", error);
     }
-  }, [filterAcords]);
+  }, [filterAcords, userRole]);
 
   useEffect(() => {
     fetchAcords();
