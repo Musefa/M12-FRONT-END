@@ -25,11 +25,12 @@ export default function ConvocatoriaList() {
   const fetchConvocatorias = useCallback(async () => {
     try {
       const convocatorias = await getConvocatorias();
-      setConvocatorias(filterConvocatorias(convocatorias));
+      const filteredConvocatorias = userRole === "administrador" ? convocatorias : filterConvocatorias(convocatorias);
+      setConvocatorias(filteredConvocatorias);
     } catch (error) {
       console.error("Error fetching convocatorias:", error);
     }
-  }, [filterConvocatorias]);
+  }, [filterConvocatorias, userRole]);
 
   useEffect(() => {
     fetchConvocatorias();
