@@ -32,21 +32,21 @@ export default function App() {
             <Route exact path="/" element={<HomePage />} />
             <Route path="/auth/login" element={<LoginPage />} />
             <Route path="/auth/register" element={<RegisterPage />} />
-            <Route path="/plantillas" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaPage /></ProtectedRoute>} />
-            <Route path="/plantillas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaEdit /></ProtectedRoute>} />
-            <Route path="/plantillas/create" element={<ProtectedRoute roles={['administrador', 'directivo']}><PlantillaCreate /></ProtectedRoute>} />
-            <Route path="/grups" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><GrupPage /></ProtectedRoute>} />
-            <Route path="/grups/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><GrupEdit /></ProtectedRoute>} />
-            <Route path="/grups/create" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><GrupCreatePage /></ProtectedRoute>} />
-            <Route path="/convocatorias" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ConvocatoriaPage /></ProtectedRoute>} /> {/* Añade esta línea */}
-            <Route path="/convocatorias/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ConvocatoriaEdit /></ProtectedRoute>} />
-            <Route path="/convocatorias/create" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ConvocatoriaCreatePage /></ProtectedRoute>} />
-            <Route path="/actas" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ActaPage /></ProtectedRoute>} />
-            <Route path="/actas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ActaEdit /></ProtectedRoute>} />
-            <Route path="/actas/create" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><ActaCreatePage /></ProtectedRoute>} />
-            <Route path="/acords" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><AcordPage /></ProtectedRoute>} />
-            <Route path="/acords/edit/:id" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><AcordEdit /></ProtectedRoute>} />
-            <Route path="/acords/create" element={<ProtectedRoute roles={['administrador', 'directivo', 'professor']}><AcordCreatePage /></ProtectedRoute>} />
+            <Route path="/plantillas" element={<ProtectedRoute roles={['administrador', 'directiu']}><PlantillaPage /></ProtectedRoute>} />
+            <Route path="/plantillas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directiu']}><PlantillaEdit /></ProtectedRoute>} />
+            <Route path="/plantillas/create" element={<ProtectedRoute roles={['administrador', 'directiu']}><PlantillaCreate /></ProtectedRoute>} />
+            <Route path="/grups" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><GrupPage /></ProtectedRoute>} />
+            <Route path="/grups/edit/:id" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><GrupEdit /></ProtectedRoute>} />
+            <Route path="/grups/create" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><GrupCreatePage /></ProtectedRoute>} />
+            <Route path="/convocatorias" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><ConvocatoriaPage /></ProtectedRoute>} /> {/* Añade esta línea */}
+            <Route path="/convocatorias/edit/:id" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><ConvocatoriaEdit /></ProtectedRoute>} />
+            <Route path="/convocatorias/create" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><ConvocatoriaCreatePage /></ProtectedRoute>} />
+            <Route path="/actas" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><ActaPage /></ProtectedRoute>} />
+            <Route path="/actas/edit/:id" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><ActaEdit /></ProtectedRoute>} />
+            <Route path="/actas/create" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><ActaCreatePage /></ProtectedRoute>} />
+            <Route path="/acords" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><AcordPage /></ProtectedRoute>} />
+            <Route path="/acords/edit/:id" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><AcordEdit /></ProtectedRoute>} />
+            <Route path="/acords/create" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><AcordCreatePage /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>

@@ -42,9 +42,9 @@ export default function Header() {
               </span>
             </Link>
           </li>
-          {userId && (userRole === "administrador" || userRole === "professor") && (
+          {userId && (userRole === "administrador" || userRole === "professor" || userRole === "directiu") && (
             <>
-              {userRole === "administrador" && (
+              {(userRole === "administrador" || userRole === "directiu") && (
                 <li className="admin-link">
                   <span className="icon">
                     <PlantillaIcon />
