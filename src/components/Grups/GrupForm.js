@@ -15,10 +15,36 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
     setGrup({ ...grup, tipus: e.target.value });
   }
 
+  //Esta funcion solo funciona para la estructura antigua de seleccion de miembros con el select
+  /*
   function handleChangeMembres(e) {
     const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
     setSelectedMemberIds(selectedOptions);
     const updatedMembres = selectedOptions.map(id => usersList.find(user => user._id === id));
+    setGrup({ ...grup, membres: updatedMembres });
+  }
+  */
+
+  //Para poder seleccionar los miembros usando checkboxes
+  function handleChangeMembresCheckboxes(e) {
+    const memberId = e.target.value;
+    const isChecked = e.target.checked;
+
+    /*
+    const newSelectedMemberIds = isChecked
+      ? [...selectedMemberIds, memberId]
+      : selectedMemberIds.filter(id => id !== memberId);
+*/
+    var newSelectedMemberIds;
+    if (isChecked) {
+      newSelectedMemberIds = [...selectedMemberIds, memberId];
+    } else {
+      newSelectedMemberIds = selectedMemberIds.filter(id => id !== memberId);
+    }
+
+    setSelectedMemberIds(newSelectedMemberIds);
+
+    const updatedMembres = newSelectedMemberIds.map(id => usersList.find(user => user._id === id));
     setGrup({ ...grup, membres: updatedMembres });
   }
 
@@ -61,7 +87,25 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
         </div>
       </label>
       <h3 className="plantilla-form__subtitle">Miembros</h3>
-      <label className="plantilla-form__label">
+
+      <div className="plantilla-form__checkbox" style={{ maxHeight: "200px", overflowY: "auto" }}>
+        {usersList.map(user => (
+          <div key={user._id}>
+            <input
+              type="checkbox"
+              value={user._id}
+              checked={selectedMemberIds.includes(user._id)}
+              onChange={handleChangeMembresCheckboxes}
+              id={`member-${user._id}`}
+            />
+            <label htmlFor={`member-${user._id}`} style={{ marginLeft: "10px" }}>{user.nom + " " + user.cognom}</label>
+          </div>
+        ))}
+      </div>
+
+      {/*
+      Estructura antigua para seleccionar miembros con selects
+        <label className="plantilla-form__label">
         Seleccionar miembros:
         <select multiple value={selectedMemberIds} onChange={handleChangeMembres} className="plantilla-form__input" required>
           {usersList.map(user => (
@@ -71,6 +115,8 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
           ))}
         </select>
       </label>
+      */}
+
       <button type="submit" className="plantilla-form__button">Guardar</button>
     </form>
   );

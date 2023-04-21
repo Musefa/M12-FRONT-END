@@ -92,6 +92,17 @@
     font-size: 1em;
     margin-bottom: 10px;
   }
+
+  .plantilla-form__checkbox {
+    display: block;
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius:10px;
+    font-size: 1em;
+    margin-bottom: 10px;
+    margin-left: 33%;
+  }
   
   .plantilla-form__button {
     display: inline-block;
