@@ -29,9 +29,9 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
 
   return (
     <form onSubmit={handleSubmit}>
-      <label className="plantilla-form__label">
+      <label className="grup-form__label">
         Nombre:
-        <input type="text" value={grup.nom} onChange={handleChangeNom} className="plantilla-form__input" required />
+        <input type="text" value={grup.nom} onChange={handleChangeNom} className="grup-form__input" required />
       </label>
       <label>
         Tipus:
@@ -61,10 +61,10 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
           </label>
         </div>
       </label>
-      <h3 className="plantilla-form__subtitle">Miembros</h3>
-      <label className="plantilla-form__label">
+      <h3 className="grup-form__subtitle">Miembros</h3>
+      <label className="grup-form__label">
         Seleccionar miembros:
-        <select multiple value={selectedMemberIds} onChange={handleChangeMembres} className="plantilla-form__input" required>
+        <select multiple value={selectedMemberIds} onChange={handleChangeMembres} className="grup-form__input" required>
           {usersList.map(user => (
             <option key={user._id} value={user._id}>
               {user.nom}
@@ -72,7 +72,7 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
           ))}
         </select>
       </label>
-      <button type="submit" className="plantilla-form__button">Guardar</button>
+      <button type="submit" className="grup-form__button">Guardar</button>
     </form>
   );
 }

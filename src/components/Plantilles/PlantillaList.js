@@ -25,7 +25,7 @@ function PlantillaList() {
         <li key={plantilla._id}>
           Nom: {plantilla.nom}<br />
           Creador: {plantilla.creador.nom}<br />
-          <Link className="plantilla-form-editar" to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
+          <Link className="plantilla-form__button" to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
           <PlantillaDelete plantillaId={plantilla._id} onUpdate={fetchPlantillas} />
         </li>
       ))}

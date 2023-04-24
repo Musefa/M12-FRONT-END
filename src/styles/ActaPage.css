@@ -102,6 +102,7 @@
     border-radius: 10px;
     font-size: 1em;
     cursor: pointer;
+    text-decoration: none;
   }
   
   .plantilla-form__button:hover {

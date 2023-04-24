@@ -32,10 +32,10 @@ function GrupCreatePage() {
   }
 
   return (
-    <div className="plantilla-form-container">
+    <div className="grup-form-container">
       <h1>Crear nuevo grupo</h1>
       <GrupForm onSubmit={handleCreate} usersList={usersList} />
-      <Link to="/grups">Volver a la lista de grupos</Link>
+      <Link className="grup-form__button" to="/grups">Volver a la lista de grupos</Link>
     </div>
   );
 }
