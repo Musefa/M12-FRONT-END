@@ -58,7 +58,7 @@ export default function ConvocatoriaList() {
           {convocatorias.map((convocatoria) => (
             <tr key={convocatoria._id}>
               <td>{convocatoria.nom}</td>
-              <td>{convocatoria.data}</td>
+              <td>{new Date(convocatoria.data).toLocaleDateString()}</td>
               <td>{convocatoria.horaInici}</td>
               <td>{convocatoria.durada}</td>
               <td>{convocatoria.lloc}</td>
