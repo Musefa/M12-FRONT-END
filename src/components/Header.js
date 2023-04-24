@@ -95,6 +95,11 @@ export default function Header() {
               </span>
               {isProfileDropdownOpen && (
                 <ul className="dropdown-menu">
+                  {(userRole === "administrador") && (
+                    <li>
+                      <Link to="/admin/panel">Admin Panel</Link>
+                    </li>
+                  )}
                   <li>
                     <Link to={`/user/edit/${userId}`}>Perfil</Link>
                   </li>

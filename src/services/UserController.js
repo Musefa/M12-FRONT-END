@@ -22,3 +22,21 @@ export async function updateUser(id, user) {
 
   return await response.json();
 }
+
+export async function deleteUser(id) {
+  const token = Cookies.get('token');
+  const response = await fetch(userURL + '/delete/' + id, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || 'Error al eliminar el usuario');
+  }
+
+  return await response.json();
+}

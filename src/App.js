@@ -22,6 +22,7 @@ import AcordPage from "./pages/AcordPage";
 import AcordEdit from "./components/Acords/AcordEdit";
 import AcordCreatePage from "./pages/AcordCreatePage";
 import UserEdit from "./components/Users/UserEdit";
+import UserList from "./components/Users/UserList";
 
 export default function App() {
   return (
@@ -49,6 +50,7 @@ export default function App() {
             <Route path="/acords/edit/:id" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><AcordEdit /></ProtectedRoute>} />
             <Route path="/acords/create" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><AcordCreatePage /></ProtectedRoute>} />
             <Route path="/user/edit/:id" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><UserEdit /></ProtectedRoute>} />
+            <Route path="/admin/panel" element={<ProtectedRoute roles={['administrador', 'directiu', 'professor']}><UserList /></ProtectedRoute>} />
           </Routes>
         </div>
       </Router>
