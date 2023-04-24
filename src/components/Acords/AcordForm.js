@@ -23,13 +23,19 @@ function AcordForm({
     const { userId } = useUserContext();
     const [acord, setAcord] = useState({
         ...initialAcord,
-        dataFinal: initialAcord.dataFinal? formatDate(initialAcord.dataFinal) : "",
-        dataInici: initialAcord.dataInici? formatDate(initialAcord.dataInici) : "",
+        dataFinal: initialAcord.dataFinal ? formatDate(initialAcord.dataFinal) : "",
+        dataInici: initialAcord.dataInici ? formatDate(initialAcord.dataInici) : "",
     });
 
     function handleChange(e) {
         const { name, value } = e.target;
         setAcord((prevState) => ({ ...prevState, [name]: value }));
+    }
+
+    function handleChangeAcord(e) {
+        const selectedActaId = e.target.value;
+        const updatedActa = actaList.find(acta => acta._id === selectedActaId);
+        setAcord({ ...acord, acta: updatedActa });
     }
 
     function handleSubmit(e) {
@@ -87,14 +93,14 @@ function AcordForm({
                 Acta:
                 <select
                     name="acta"
-                    defaultValue={acord.acta}
-                    onChange={handleChange}
+                    value={acord.acta._id || ""}
+                    onChange={handleChangeAcord}
                     required
                     className="acord-form__input"
                 >
                     <option value="">Selecciona una acta</option>
                     {actaList.map((acta) => (
-                        <option key={acta._id} value={acta._id} selected={acta._id}>
+                        <option key={acta._id} value={acta._id} >
                             {acta.nom}
                         </option>
                     ))}

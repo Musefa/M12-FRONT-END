@@ -1,43 +1,56 @@
 import React, { useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
+import ReactSelect from "react-select";
 
 function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", creador: null }, usersList = [] }) {
   const [grup, setGrup] = useState(initialGrup);
-  const [selectedMemberIds, setSelectedMemberIds] = useState(initialGrup.membres.map(membre => membre._id));
+  const [selectedMembers, setSelectedMembers] = useState(initialGrup.membres);
 
   const { userId, userRole } = useUserContext(); // Obtener userId desde el UserContext
 
-  function handleChangeNom(e) {
+  const options = usersList.map(user => ({
+    value: user._id,
+    label: user.nom
+  }));
+
+  const handleChangeNom = e => {
     setGrup({ ...grup, nom: e.target.value });
-  }
+  };
 
-  function handleChangeTipus(e) {
+  const handleChangeTipus = e => {
     setGrup({ ...grup, tipus: e.target.value });
-  }
+  };
 
-  function handleChangeMembres(e) {
-    const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
-    setSelectedMemberIds(selectedOptions);
-    const updatedMembres = selectedOptions.map(id => usersList.find(user => user._id === id));
-    setGrup({ ...grup, membres: updatedMembres });
-  }
+  const handleChangeMembers = selectedOptions => {
+    const updatedMembers = selectedOptions.map(option => ({
+      _id: option.value,
+      nom: option.label
+    }));
+    setSelectedMembers(updatedMembers);
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = e => {
     e.preventDefault();
-    onSubmit({ ...grup, creador: userId }); // Actualiza la propiedad creador antes de enviar
-  }
+    onSubmit({ ...grup, membres: selectedMembers, creador: userId }); // Actualiza la propiedad creador y membres antes de enviar
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <label className="grup-form__label">
         Nombre:
-        <input type="text" value={grup.nom} onChange={handleChangeNom} className="grup-form__input" required />
+        <input
+          type="text"
+          value={grup.nom}
+          onChange={handleChangeNom}
+          className="grup-form__input"
+          required
+        />
       </label>
       <label>
         Tipus:
         <div>
           <label>
-            Públic: 
+            Públic:
             <input
               type="radio"
               name="tipus"
@@ -64,15 +77,18 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
       <h3 className="grup-form__subtitle">Miembros</h3>
       <label className="grup-form__label">
         Seleccionar miembros:
-        <select multiple value={selectedMemberIds} onChange={handleChangeMembres} className="grup-form__input" required>
-          {usersList.map(user => (
-            <option key={user._id} value={user._id}>
-              {user.nom}
-            </option>
-          ))}
-        </select>
+        <ReactSelect
+          isMulti
+          options={options}
+          value={selectedMembers.map(member => ({ value: member._id, label: member.nom }))}
+          onChange={handleChangeMembers}
+          className="grup-form__input"
+          required
+        />
       </label>
-      <button type="submit" className="grup-form__button">Guardar</button>
+      <button type="submit" className="grup-form__button">
+        Guardar
+      </button>
     </form>
   );
 }
