@@ -54,10 +54,10 @@ export default function AcordList() {
           {acords.map((acord) => (
             <tr key={acord._id}>
               <td>{acord.nom}</td>
-              <td>{acord.dataInici}</td>
-              <td>{acord.dataFinal}</td>
+              <td>{new Date(acord.dataInici).toLocaleDateString()}</td>
+              <td>{new Date(acord.dataFinal).toLocaleDateString()}</td>
               <td>{acord.descripcio}</td>
-              <td>{acord.acta.convocatoria.lloc}</td>
+              <td>{acord.acta.nom}</td>
               <td>{acord.creador ? acord.creador.nom : "null"}</td>
               <td>
                 {(userRole === "administrador" || acord.creador._id === userId) && (
