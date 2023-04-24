@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
+import ReactSelect from "react-select";
 
 function ActaForm({
   onSubmit,
@@ -17,7 +18,7 @@ function ActaForm({
   const [acta, setActa] = useState(initialActa);
 
   const [selectedAcordIds, setSelectedAcordIds] = useState(initialActa.acords.map(acord => acord._id));
-
+  console.log(selectedAcordIds);
   function handleChange(e) {
     const { name, value } = e.target;
     setActa((prevState) => ({ ...prevState, [name]: value }));
@@ -41,9 +42,8 @@ function ActaForm({
   }
 
 
-  function handleChangeAcordsSelect(e) {
-    const newSelectedAcordIds = Array.from(e.target.selectedOptions, option => option.value);
-
+  function handleChangeAcordsSelect(selectedOptions) {
+    const newSelectedAcordIds = selectedOptions.map(option => option.value);
     setSelectedAcordIds(newSelectedAcordIds);
 
     const updatedAcords = newSelectedAcordIds.map(id => acordList.find(acord => acord._id === id));
@@ -151,18 +151,13 @@ function ActaForm({
       </label>
       <label>
         Acuerdos:
-        <select
-          multiple
-          value={selectedAcordIds}
+        <ReactSelect
+          isMulti
+          value={acta.acords.map(acord => ({ label: acord.nom, value: acord._id }))}
+          options={acordList.map(acord => ({ label: acord.nom, value: acord._id }))}
           onChange={handleChangeAcordsSelect}
           className="acta-form__input"
-        >
-          {acordList.map(acord => (
-            <option key={acord._id} value={acord._id}>
-              {acord.nom}
-            </option>
-          ))}
-        </select>
+        />
       </label>
       <button type="submit" className="acta-form__submit-button">
         Guardar
