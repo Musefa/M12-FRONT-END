@@ -8,7 +8,7 @@ function ActaForm({
     estat: "",
     descripcions: [""],
     convocatoria: "",
-    acords: [""],
+    acords: [],
     creador: null
   },
   convocatoriaList = [],
@@ -16,18 +16,46 @@ function ActaForm({
 }) {
   const { userId } = useUserContext();
   const [acta, setActa] = useState(initialActa);
+  const [errors, setErrors] = useState({ nom: "", descripcions: [] });
+
+  function validateNom(value) {
+    return value.length >= 3 ? "" : "La descripcion debe tener al menos 3 letras";
+  }
+
+  function validateDescripcions(value) {
+    return value.length >= 10 ? "" : "La descripcion debe tener al menos 10 letras";
+  }
 
   const [selectedAcordIds, setSelectedAcordIds] = useState(initialActa.acords.map(acord => acord._id));
   console.log(selectedAcordIds);
+
+  const isUpdateMode = initialActa._id !== undefined;
+
   function handleChange(e) {
     const { name, value } = e.target;
     setActa((prevState) => ({ ...prevState, [name]: value }));
   }
 
+  function handleChangeNom(e) {
+    const value = e.target.value;
+    setActa({ ...acta, nom: value });
+    setErrors({ ...errors, nom: validateNom(value) });
+  }
+
   function handleChangeDescripcions(e, index) {
+    const value = e.target.value;
     const newDescripcions = [...acta.descripcions];
-    newDescripcions[index] = e.target.value;
+    const newErrorsDescripcions = [...errors.descripcions];
+
+    newDescripcions[index] = value;
+    if (typeof newErrorsDescripcions[index] === "undefined") {
+      newErrorsDescripcions.push(validateDescripcions(value));
+    } else {
+      newErrorsDescripcions[index] = validateDescripcions(value);
+    }
+
     setActa({ ...acta, descripcions: newDescripcions });
+    setErrors({ ...errors, descripcions: newErrorsDescripcions });
   }
 
   function handleAddDescripcions() {
@@ -61,6 +89,14 @@ function ActaForm({
     onSubmit({ ...acta, creador: userId });
   }
 
+  function hasErrors() {
+    if (errors.nom || !acta.nom) return true;
+    for (let i = 0; i < acta.descripcions.length; i++) {
+      if (errors.descripcions[i] || !acta.descripcions[i]) return true;
+    }
+    return false;
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
@@ -69,10 +105,11 @@ function ActaForm({
           type="text"
           name="nom"
           value={acta.nom}
-          onChange={handleChange}
+          onChange={handleChangeNom}
           required
           className="acta-form__input"
         />
+        {errors.nom && <p className="error">{errors.nom}</p>}
       </label>
       <label>
         Estado:
@@ -88,17 +125,21 @@ function ActaForm({
               required
             />
           </label>
-          Tancada
-          <label>
-            <input
-              type="radio"
-              name="estat"
-              value="Tancada"
-              checked={acta.estat === "Tancada"}
-              onChange={handleChange}
-              required
-            />
-          </label>
+          {isUpdateMode && (
+            <>
+              Tancada
+              <label>
+                <input
+                  type="radio"
+                  name="estat"
+                  value="Tancada"
+                  checked={acta.estat === "Tancada"}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+            </>
+          )}
         </div>
       </label>
       <label>
@@ -112,6 +153,7 @@ function ActaForm({
               required
               className="acta-form__input"
             />
+            {errors.descripcions[index] && <p className="error">{errors.descripcions[index]}</p>}
             <button
               type="button"
               onClick={() => handleRemoveDescripcions(index)}
@@ -159,7 +201,7 @@ function ActaForm({
           className="acta-form__input"
         />
       </label>
-      <button type="submit" className="acta-form__button">
+      <button type="submit" className="acta-form__button" disabled={hasErrors()}>
         Guardar
       </button>
     </form>
