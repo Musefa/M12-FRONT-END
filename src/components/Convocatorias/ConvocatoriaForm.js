@@ -32,6 +32,31 @@ function ConvocatoriaForm({
     ...initialConvocatoria,
     data: initialConvocatoria.data ? formatDate(initialConvocatoria.data) : "",
   });
+  const [errors, setErrors] = useState({ nom: "", lloc: "", puntsOrdreDia: [] });
+
+  function validateNom(value) {
+    return value.length >= 3 ? "" : "El nombre debe tener al menos 3 letras";
+  }
+
+  function validateLloc(value) {
+    return value.length >= 3 ? "" : "El lugar debe tener al menos 3 letras";
+  }
+
+  function validatePuntsOrdreDia(value) {
+    return value.length >= 4 ? "" : "El punto debe tener al menos 4 letras";
+  }
+
+  function handleChangeNom(e) {
+    const value = e.target.value;
+    setConvocatoria({ ...convocatoria, nom: value });
+    setErrors({ ...errors, nom: validateNom(value) });
+  }
+
+  function handleChangeLloc(e) {
+    const value = e.target.value;
+    setConvocatoria({ ...convocatoria, lloc: value });
+    setErrors({ ...errors, lloc: validateLloc(value) });
+  }
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -39,9 +64,19 @@ function ConvocatoriaForm({
   }
 
   function handleChangePuntsOrdreDia(e, index) {
+    const value = e.target.value;
     const newPuntsOrdreDia = [...convocatoria.puntsOrdreDia];
-    newPuntsOrdreDia[index] = e.target.value;
+    const newErrorsPuntsOrdreDia = [...errors.puntsOrdreDia];
+    
+    newPuntsOrdreDia[index] = value;
+    if (typeof newErrorsPuntsOrdreDia[index] === "undefined") {
+      newErrorsPuntsOrdreDia.push(validatePuntsOrdreDia(value));
+    } else {
+      newErrorsPuntsOrdreDia[index] = validatePuntsOrdreDia(value);
+    }
+    
     setConvocatoria({ ...convocatoria, puntsOrdreDia: newPuntsOrdreDia });
+    setErrors({ ...errors, puntsOrdreDia: newErrorsPuntsOrdreDia });
   }
 
   function handleAddPuntOrdreDia() {
@@ -71,6 +106,14 @@ function ConvocatoriaForm({
     onSubmit({ ...convocatoria, creador: userId });
   }
 
+  function hasErrors() {
+    if (errors.nom || !convocatoria.nom || errors.lloc || !convocatoria.lloc) return true;
+    for (let i = 0; i < convocatoria.puntsOrdreDia.length; i++) {
+      if (errors.puntsOrdreDia[i] || !convocatoria.puntsOrdreDia[i]) return true;
+    }
+    return false;
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
@@ -79,10 +122,11 @@ function ConvocatoriaForm({
           type="text"
           name="nom"
           value={convocatoria.nom}
-          onChange={handleChange}
+          onChange={handleChangeNom}
           required
           className="plantilla-form__input"
         />
+        {errors.nom && <p className="error">{errors.nom}</p>}
       </label>
       <label>
         Fecha:
@@ -123,10 +167,11 @@ function ConvocatoriaForm({
           type="text"
           name="lloc"
           value={convocatoria.lloc}
-          onChange={handleChange}
+          onChange={handleChangeLloc}
           required
           className="plantilla-form__input"
         />
+        {errors.lloc && <p className="error">{errors.lloc}</p>}
       </label>
       <label>
         <h3 className="plantilla-form__subtitle">Puntos del orden del día</h3>
@@ -139,6 +184,7 @@ function ConvocatoriaForm({
               required
               className="plantilla-form__input"
             />
+            {errors.puntsOrdreDia[index] && <p className="error">{errors.puntsOrdreDia[index]}</p>}
             <button
               type="button"
               onClick={() => handleRemovePuntOrdreDia(index)}
@@ -168,6 +214,7 @@ function ConvocatoriaForm({
           }).filter(convocat => convocat)}
           onChange={handleChangeConvocats}
           className="plantilla-form__input"
+          required
         />
       </label>
       <label>
@@ -212,7 +259,7 @@ function ConvocatoriaForm({
           ))}
         </select>
       </label>
-      <button type="submit" className="plantilla-form__button">
+      <button type="submit" className="plantilla-form__button" disabled={hasErrors()}>
         Guardar
       </button>
     </form>
