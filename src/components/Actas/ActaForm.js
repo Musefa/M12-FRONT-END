@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
+import ReactSelect from "react-select";
 
 function ActaForm({
   onSubmit,
@@ -16,6 +17,8 @@ function ActaForm({
   const { userId } = useUserContext();
   const [acta, setActa] = useState(initialActa);
 
+  const [selectedAcordIds, setSelectedAcordIds] = useState(initialActa.acords.map(acord => acord._id));
+  console.log(selectedAcordIds);
   function handleChange(e) {
     const { name, value } = e.target;
     setActa((prevState) => ({ ...prevState, [name]: value }));
@@ -38,13 +41,28 @@ function ActaForm({
     });
   }
 
+
+  function handleChangeAcordsSelect(selectedOptions) {
+    const newSelectedAcordIds = selectedOptions.map(option => option.value);
+    setSelectedAcordIds(newSelectedAcordIds);
+
+    const updatedAcords = newSelectedAcordIds.map(id => acordList.find(acord => acord._id === id));
+    setActa({ ...acta, acords: updatedAcords });
+  }
+
+  function handleChangeConvocatoria(e) {
+    const selectedConvocatoriaId = e.target.value;
+    const updatedConvocatoria = convocatoriaList.find(convocatoria => convocatoria._id === selectedConvocatoriaId);
+    setActa({ ...acta, convocatoria: updatedConvocatoria });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     onSubmit({ ...acta, creador: userId });
   }
 
   return (
-    <form onSubmit={handleSubmit} className="acta-form-container">
+    <form onSubmit={handleSubmit}>
       <label>
         Nom:
         <input
@@ -60,7 +78,7 @@ function ActaForm({
         Estado:
         <div>
           <label>
-            Oberta: 
+            Oberta:
             <input
               type="radio"
               name="estat"
@@ -115,8 +133,8 @@ function ActaForm({
         Convocatoria:
         <select
           name="convocatoria"
-          value={acta.convocatoria}
-          onChange={handleChange}
+          value={acta.convocatoria._id || ""}
+          onChange={handleChangeConvocatoria}
           required
           className="acta-form__input"
         >
@@ -125,45 +143,23 @@ function ActaForm({
             <option
               key={convocatoria._id}
               value={convocatoria._id}
-              selected={acta.convocatoria === convocatoria._id}
             >
-              {convocatoria.lloc}
+              {convocatoria.nom}
             </option>
           ))}
         </select>
       </label>
       <label>
         Acuerdos:
-        <select
-          multiple
-          name="acords"
-          value={acta.acords}
-          onChange={(e) =>
-            setActa({
-              ...acta,
-              acords: Array.from(
-                e.target.selectedOptions,
-                (option) => option.value),
-            })
-          }
-          required
+        <ReactSelect
+          isMulti
+          value={acta.acords.map(acord => ({ label: acord.nom, value: acord._id }))}
+          options={acordList.map(acord => ({ label: acord.nom, value: acord._id }))}
+          onChange={handleChangeAcordsSelect}
           className="acta-form__input"
-        >
-          <option value="" disabled>
-            Selecciona acuerdos
-          </option>
-          {acordList.map((acord) => (
-            <option
-              key={acord._id}
-              value={acord._id}
-              selected={acta.acords.includes(acord._id)}
-            >
-              {acord.descripcio}
-            </option>
-          ))}
-        </select>
+        />
       </label>
-      <button type="submit" className="acta-form__submit-button">
+      <button type="submit" className="acta-form__button">
         Guardar
       </button>
     </form>
