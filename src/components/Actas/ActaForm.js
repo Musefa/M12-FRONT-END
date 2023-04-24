@@ -50,6 +50,12 @@ function ActaForm({
     setActa({ ...acta, acords: updatedAcords });
   }
 
+  function handleChangeConvocatoria(e) {
+    const selectedConvocatoriaId = e.target.value;
+    const updatedConvocatoria = convocatoriaList.find(convocatoria => convocatoria._id === selectedConvocatoriaId);
+    setActa({ ...acta, convocatoria: updatedConvocatoria });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     onSubmit({ ...acta, creador: userId });
@@ -127,8 +133,8 @@ function ActaForm({
         Convocatoria:
         <select
           name="convocatoria"
-          value={acta.convocatoria}
-          onChange={handleChange}
+          value={acta.convocatoria._id || ""}
+          onChange={handleChangeConvocatoria}
           required
           className="acta-form__input"
         >
@@ -137,14 +143,12 @@ function ActaForm({
             <option
               key={convocatoria._id}
               value={convocatoria._id}
-              selected={acta.convocatoria === convocatoria._id}
             >
-              {convocatoria.lloc}
+              {convocatoria.nom}
             </option>
           ))}
         </select>
       </label>
-
       <label>
         Acuerdos:
         <select
