@@ -16,6 +16,8 @@ function ActaForm({
   const { userId } = useUserContext();
   const [acta, setActa] = useState(initialActa);
 
+  const [selectedAcordIds, setSelectedAcordIds] = useState(initialActa.acords.map(acord => acord._id));
+
   function handleChange(e) {
     const { name, value } = e.target;
     setActa((prevState) => ({ ...prevState, [name]: value }));
@@ -36,6 +38,16 @@ function ActaForm({
       ...acta,
       descripcions: acta.descripcions.filter((_, i) => i !== index),
     });
+  }
+
+
+  function handleChangeAcordsSelect(e) {
+    const newSelectedAcordIds = Array.from(e.target.selectedOptions, option => option.value);
+
+    setSelectedAcordIds(newSelectedAcordIds);
+
+    const updatedAcords = newSelectedAcordIds.map(id => acordList.find(acord => acord._id === id));
+    setActa({ ...acta, acords: updatedAcords });
   }
 
   function handleSubmit(e) {
@@ -60,7 +72,7 @@ function ActaForm({
         Estado:
         <div>
           <label>
-            Oberta: 
+            Oberta:
             <input
               type="radio"
               name="estat"
@@ -132,33 +144,18 @@ function ActaForm({
           ))}
         </select>
       </label>
+
       <label>
         Acuerdos:
         <select
           multiple
-          name="acords"
-          value={acta.acords}
-          onChange={(e) =>
-            setActa({
-              ...acta,
-              acords: Array.from(
-                e.target.selectedOptions,
-                (option) => option.value),
-            })
-          }
-          required
+          value={selectedAcordIds}
+          onChange={handleChangeAcordsSelect}
           className="acta-form__input"
         >
-          <option value="" disabled>
-            Selecciona acuerdos
-          </option>
-          {acordList.map((acord) => (
-            <option
-              key={acord._id}
-              value={acord._id}
-              selected={acta.acords.includes(acord._id)}
-            >
-              {acord.descripcio}
+          {acordList.map(acord => (
+            <option key={acord._id} value={acord._id}>
+              {acord.nom}
             </option>
           ))}
         </select>
