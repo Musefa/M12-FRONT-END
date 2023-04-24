@@ -18,7 +18,11 @@ function GrupEdit() {
         const grups = await getGrups();
         const grupFound = grups.find((g) => g._id === id);
         if (grupFound) {
-          if (userRole !== "administrador" && grupFound.creador._id !== userId) {
+          if (
+            !(userRole === "directiu" ||
+              (userRole === "administrador" && grupFound.tipus !== "Públic") ||
+              grupFound.creador._id === userId)
+          ) {
             alert("No tienes permiso para editar este grupo.");
             navigate("/");
           } else {
