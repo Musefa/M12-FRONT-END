@@ -96,7 +96,7 @@ export default function Header() {
               {isProfileDropdownOpen && (
                 <ul className="dropdown-menu">
                   <li>
-                    <Link to="/edit-profile">Perfil</Link>
+                    <Link to={`/user/edit/${userId}`}>Perfil</Link>
                   </li>
                   <li>
                     <button onClick={handleLogout}>Salir</button>
