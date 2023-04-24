@@ -64,7 +64,7 @@ function GrupList() {
               <strong>Creador: </strong>
               {grup.creador.nom}
               <div className="plantilla-delete">
-                {(userRole === "directiu" || (userRole === "administrador" && grup.tipus !== "Públic") || grup.creador._id === userId) && (
+                {(userRole === "administrador" || userRole === "directiu" || (userRole === "administrador" && grup.tipus !== "Públic") || grup.creador._id === userId) && (
                   <>
                     <Link to={`/grups/edit/${grup._id}`} className="plantilla-form__button">
                       Editar

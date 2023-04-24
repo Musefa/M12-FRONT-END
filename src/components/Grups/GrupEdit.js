@@ -19,7 +19,7 @@ function GrupEdit() {
         const grupFound = grups.find((g) => g._id === id);
         if (grupFound) {
           if (
-            !(userRole === "directiu" ||
+            !(userRole === "directiu" || userRole === "administrador" ||
               (userRole === "administrador" && grupFound.tipus !== "Públic") ||
               grupFound.creador._id === userId)
           ) {
