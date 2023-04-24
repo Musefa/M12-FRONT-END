@@ -5,6 +5,11 @@ import ReactSelect from "react-select";
 function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", creador: null }, usersList = [] }) {
   const [grup, setGrup] = useState(initialGrup);
   const [selectedMembers, setSelectedMembers] = useState(initialGrup.membres);
+  const [errors, setErrors] = useState({ nom: "" });
+
+  function validateNom(value) {
+    return value.length >= 3 ? "" : "El nombre debe tener al menos 3 letras";
+  }
 
   const { userId, userRole } = useUserContext(); // Obtener userId desde el UserContext
 
@@ -14,7 +19,9 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
   }));
 
   const handleChangeNom = e => {
+    const value = e.target.value;
     setGrup({ ...grup, nom: e.target.value });
+    setErrors({ ...errors, nom: validateNom(value) });
   };
 
   const handleChangeTipus = e => {
@@ -34,6 +41,11 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
     onSubmit({ ...grup, membres: selectedMembers, creador: userId }); // Actualiza la propiedad creador y membres antes de enviar
   };
 
+  function hasErrors() {
+    if (errors.nom || !grup.nom) return true;
+    return false;
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <label className="grup-form__label">
@@ -45,6 +57,7 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
           className="grup-form__input"
           required
         />
+        {errors.nom && <p className="error">{errors.nom}</p>}
       </label>
       <label>
         Tipus:
@@ -86,7 +99,7 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
           required
         />
       </label>
-      <button type="submit" className="grup-form__button">
+      <button type="submit" className="grup-form__button" disabled={hasErrors()}>
         Guardar
       </button>
     </form>

@@ -112,11 +112,6 @@
   .plantilla-form__button:active {
     background-color: #081623;
   }
-
-  .plantilla-form__button:disabled {
-    background-color: grey;
-    opacity: .5;
-  }
   
   .plantilla-delete {
     display: flex;
