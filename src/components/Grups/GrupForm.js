@@ -5,7 +5,7 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
   const [grup, setGrup] = useState(initialGrup);
   const [selectedMemberIds, setSelectedMemberIds] = useState(initialGrup.membres.map(membre => membre._id));
 
-  const { userId } = useUserContext(); // Obtener userId desde el UserContext
+  const { userId, userRole } = useUserContext(); // Obtener userId desde el UserContext
 
   function handleChangeNom(e) {
     setGrup({ ...grup, nom: e.target.value });
@@ -70,6 +70,7 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
               value="Públic"
               checked={grup.tipus === "Públic"}
               onChange={handleChangeTipus}
+              disabled={userRole !== "administrador" && userRole !== "directiu"}
               required
             />
           </label>

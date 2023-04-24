@@ -61,10 +61,10 @@ export default function ActaList() {
                   <li key={descripcio}>{descripcio}</li>
                 ))}
               </td>
-              <td>{acta.convocatoria.lloc}</td>
+              <td>{acta.convocatoria.nom}</td>
               <td>
                 {acta.acords.map((acord) => (
-                  <li key={acord}>{acord.descripcio}</li>
+                  <li key={acord}>{acord.nom}</li>
                 ))}
               </td>
               <td>{acta.creador ? acta.creador.nom : "null"}</td>
