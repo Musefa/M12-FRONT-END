@@ -24,6 +24,12 @@ function PlantillaList() {
       {plantillas.map((plantilla) => (
         <li key={plantilla._id}>
           Nom: {plantilla.nom}<br />
+          Punts:<br /> {plantilla.puntsOrdreDia.map((punt) => (
+            <>
+            <span>{punt}</span> 
+            <br />
+            </>
+          ))}
           Creador: {plantilla.creador.nom}<br />
           <Link className="plantilla-form__button" to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
           <PlantillaDelete plantillaId={plantilla._id} onUpdate={fetchPlantillas} />
@@ -31,6 +37,7 @@ function PlantillaList() {
       ))}
     </ul>
   );
+  
 }
 
 export default PlantillaList;
