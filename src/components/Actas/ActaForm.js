@@ -62,7 +62,7 @@ function ActaForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="acta-form-container">
+    <form onSubmit={handleSubmit}>
       <label>
         Nom:
         <input
@@ -159,7 +159,7 @@ function ActaForm({
           className="acta-form__input"
         />
       </label>
-      <button type="submit" className="acta-form__submit-button">
+      <button type="submit" className="acta-form__button">
         Guardar
       </button>
     </form>

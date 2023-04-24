@@ -58,13 +58,13 @@ export default function ActaList() {
               <td>{acta.estat}</td>
               <td>
                 {acta.descripcions.map((descripcio) => (
-                  <li key={descripcio}>{descripcio}</li>
+                  <li className="acta-list-style" key={descripcio}>{descripcio}</li>
                 ))}
               </td>
               <td>{acta.convocatoria.nom}</td>
               <td>
                 {acta.acords.map((acord) => (
-                  <li key={acord}>{acord.nom}</li>
+                  <li className="acta-list-style" key={acord}>{acord.nom}</li>
                 ))}
               </td>
               <td>{acta.creador ? acta.creador.nom : "null"}</td>

@@ -64,21 +64,21 @@ export default function ConvocatoriaList() {
               <td>{convocatoria.lloc}</td>
               <td>
                 {convocatoria.puntsOrdreDia.map((punts) => (
-                  <li key={punts}>{punts}</li>
+                  <li className="plantilla-form__item" key={punts}>{punts}</li>
                 ))}
               </td>
               <td>
                 {convocatoria.convocats.map((grup) => (
                   <ul key={grup._id}>
                     {grup.membres.map((user) => (
-                      <li key={user._id}>{user.nom}</li>
+                      <li className="plantilla-form__item" key={user._id}>{user.nom}</li>
                     ))}
                   </ul>
                 ))}
               </td>
               <td>
                 {convocatoria.plantilla.puntsOrdreDia.map((punts) => (
-                  <li key={punts}>{punts}</li>
+                  <li className="plantilla-form__item" key={punts}>{punts}</li>
                 ))}
               </td>
               <td>{convocatoria.responsable.nom}</td>

@@ -41,7 +41,7 @@ function ActaCreatePage() {
     <div className="acta-form-container">
       <h1>Crear nueva acta</h1>
       <ActaForm onSubmit={handleCreate} convocatoriaList={convocatoriaList} acordList={acordList} />
-      <Link to="/actas">Volver a la lista de actas</Link>
+      <Link className="acta-form__button" to="/actas">Volver a la lista de actas</Link>
     </div>
   );
 }

@@ -32,17 +32,17 @@ function GrupDelete({ grupId, onUpdate }) {
   }
 
   return (
-    <div className="plantilla-delete">
+    <div className="grup-delete">
       {showConfirmation && (
         <input
           type="text"
           placeholder="Escribe 'borrar' para confirmar"
           value={confirmation}
           onChange={(e) => setConfirmation(e.target.value)}
-          className="plantilla-delete__confirmation"
+          className="grup-delete__confirmation"
         />
       )}
-      <button onClick={handleButtonClick} className="plantilla-delete__button">
+      <button onClick={handleButtonClick} className="grup-delete__button">
         {showConfirmation ? 'Eliminar definitivamente' : 'Eliminar grupo'}
       </button>
     </div>

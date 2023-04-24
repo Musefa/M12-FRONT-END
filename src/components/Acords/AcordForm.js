@@ -44,7 +44,7 @@ function AcordForm({
     }
 
     return (
-        <form onSubmit={handleSubmit} className="acord-form-container">
+        <form onSubmit={handleSubmit}>
             <label>
                 Nom:
                 <input

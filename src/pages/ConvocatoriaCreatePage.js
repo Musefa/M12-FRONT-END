@@ -46,7 +46,7 @@ function ConvocatoriaCreatePage() {
         <div className="convocatoria-form-container">
             <h1>Crear nueva convocatoria</h1>
             <ConvocatoriaForm onSubmit={handleCreate} usersList={usersList} grupsList={grupsList} plantillasList={plantillasList} />
-            <Link to="/convocatorias">Volver a la lista de convocatorias</Link>
+            <Link className="convocatoria-form__button" to="/convocatorias">Volver a la lista de convocatorias</Link>
         </div>
     );
 }

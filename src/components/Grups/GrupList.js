@@ -43,10 +43,10 @@ function GrupList() {
 
   return (
     <>
-      <ul className="plantilla-form__item">
+      <ul className="grup-form__item">
         {grups ? (
           grups.map((grup) => (
-            <li key={grup._id} className="plantilla-form__item">
+            <li key={grup._id} className="grup-form__item">
               <strong>{grup.nom}</strong>
               <br />
               Tipus: <small>{grup.tipus}</small>
@@ -56,17 +56,17 @@ function GrupList() {
                 {grup.membres.map((membre) => {
                   const user = getUserById(membre._id);
                   return (
-                    <li className="plantilla-form__item" key={membre._id}>{user ? user.nom : 'Usuario desconocido'}</li>
+                    <li className="grup-form__item" key={membre._id}>{user ? user.nom : 'Usuario desconocido'}</li>
                   );
                 })}
               </ul>
               <br />
               <strong>Creador: </strong>
               {grup.creador.nom}
-              <div className="plantilla-delete">
+              <div className="grup-delete">
                 {(userRole === "administrador" || userRole === "directiu" || (userRole === "administrador" && grup.tipus !== "Públic") || grup.creador._id === userId) && (
                   <>
-                    <Link to={`/grups/edit/${grup._id}`} className="plantilla-form__button">
+                    <Link to={`/grups/edit/${grup._id}`} className="grup-form__button">
                       Editar
                     </Link>
                     <GrupDelete grupId={grup._id} onUpdate={fetchGrups} />

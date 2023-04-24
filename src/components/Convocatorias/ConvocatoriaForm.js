@@ -71,7 +71,7 @@ function ConvocatoriaForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="plantilla-form-container">
+    <form onSubmit={handleSubmit}>
       <label>
         Nom:
         <input
