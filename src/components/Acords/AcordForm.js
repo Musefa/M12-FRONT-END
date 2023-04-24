@@ -26,13 +26,34 @@ function AcordForm({
         dataFinal: initialAcord.dataFinal ? formatDate(initialAcord.dataFinal) : "",
         dataInici: initialAcord.dataInici ? formatDate(initialAcord.dataInici) : "",
     });
+    const [errors, setErrors] = useState({ nom: "", descripcio: "" });
+
+    function validateNom(value) {
+        return value.length >= 3 ? "" : "El nombre debe tener al menos 3 letras";
+    }
+
+    function validateDescripcio(value) {
+        return value.length >= 10 ? "" : "La descripcion debe tener al menos 10 letras";
+    }
 
     function handleChange(e) {
         const { name, value } = e.target;
         setAcord((prevState) => ({ ...prevState, [name]: value }));
     }
 
-    function handleChangeAcord(e) {
+    function handleChangeNom(e) {
+        const value = e.target.value;
+        setAcord({ ...acord, nom: value });
+        setErrors({ ...errors, nom: validateNom(value) });
+    }
+
+    function handleChangeDescripcio(e) {
+        const value = e.target.value;
+        setAcord({ ...acord, descripcio: value });
+        setErrors({ ...errors, descripcio: validateDescripcio(value) });
+    }
+
+    function handleChangeActa(e) {
         const selectedActaId = e.target.value;
         const updatedActa = actaList.find(acta => acta._id === selectedActaId);
         setAcord({ ...acord, acta: updatedActa });
@@ -43,6 +64,11 @@ function AcordForm({
         onSubmit({ ...acord, creador: userId });
     }
 
+    function hasErrors() {
+        if (errors.nom || !acord.nom || errors.descripcio || !acord.descripcio) return true;
+        return false;
+    }
+
     return (
         <form onSubmit={handleSubmit}>
             <label>
@@ -51,10 +77,11 @@ function AcordForm({
                     type="text"
                     name="nom"
                     value={acord.nom}
-                    onChange={handleChange}
+                    onChange={handleChangeNom}
                     required
                     className="acord-form__input"
                 />
+                {errors.nom && <p className="error">{errors.nom}</p>}
             </label>
             <label>
                 Data Inici:
@@ -84,17 +111,18 @@ function AcordForm({
                     type="text"
                     name="descripcio"
                     value={acord.descripcio}
-                    onChange={handleChange}
+                    onChange={handleChangeDescripcio}
                     required
                     className="acord-form__input"
                 />
+                {errors.descripcio && <p className="error">{errors.descripcio}</p>}
             </label>
             <label>
                 Acta:
                 <select
                     name="acta"
                     value={acord.acta._id || ""}
-                    onChange={handleChangeAcord}
+                    onChange={handleChangeActa}
                     required
                     className="acord-form__input"
                 >
@@ -106,7 +134,7 @@ function AcordForm({
                     ))}
                 </select>
             </label>
-            <button type="submit" className="acord-form__button">
+            <button type="submit" className="acord-form__button" disabled={hasErrors()}>
                 Guardar
             </button>
         </form>
