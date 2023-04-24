@@ -16,6 +16,8 @@ function ActaForm({
   const { userId } = useUserContext();
   const [acta, setActa] = useState(initialActa);
 
+  const [selectedAcordIds, setSelectedAcordIds] = useState(initialActa.acords.map(acord => acord._id));
+
   function handleChange(e) {
     const { name, value } = e.target;
     setActa((prevState) => ({ ...prevState, [name]: value }));
@@ -37,6 +39,25 @@ function ActaForm({
       descripcions: acta.descripcions.filter((_, i) => i !== index),
     });
   }
+
+
+  function handleChangeAcordsCheckboxes(e) {
+    const acordId = e.target.value;
+    const isChecked = e.target.checked;
+
+    var newSelectedAcordIds;
+    if (isChecked) {
+      newSelectedAcordIds = [...selectedAcordIds, acordId];
+    } else {
+      newSelectedAcordIds = selectedAcordIds.filter(id => id !== acordId);
+    }
+
+    setSelectedAcordIds(newSelectedAcordIds);
+
+    const updatedAcords = newSelectedAcordIds.map(id => acordList.find(acord => acord._id === id));
+    setActa({ ...acta, acords: updatedAcords });
+  }
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -132,6 +153,25 @@ function ActaForm({
           ))}
         </select>
       </label>
+
+      <h3 className="plantilla-form__subtitle">Acords</h3>
+
+      <div className="plantilla-form__checkbox" style={{ maxHeight: "200px", overflowY: "auto" }}>
+        {acordList.map(acord => (
+          <div key={acord._id}>
+            <input
+              type="checkbox"
+              value={acord._id}
+              checked={selectedAcordIds.includes(acord._id)}
+              onChange={handleChangeAcordsCheckboxes}
+              id={`acord-${acord._id}`}
+            />
+            <label htmlFor={`acord-${acord._id}`} style={{ marginLeft: "10px" }}>{acord.nom}</label>
+          </div>
+        ))}
+      </div>
+
+      {/*
       <label>
         Acuerdos:
         <select
@@ -163,6 +203,8 @@ function ActaForm({
           ))}
         </select>
       </label>
+      */}
+      
       <button type="submit" className="acta-form__submit-button">
         Guardar
       </button>
