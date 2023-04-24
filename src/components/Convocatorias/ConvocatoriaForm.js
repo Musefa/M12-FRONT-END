@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useUserContext } from "../../contexts/UserContext"; // Importar useUserContext
+import { useUserContext } from "../../contexts/UserContext";
+import Select from "react-select";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -57,12 +58,12 @@ function ConvocatoriaForm({
     });
   }
 
-  function handleChangeConvocats(e) {
-    const selectedOptions = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setConvocatoria({ ...convocatoria, convocats: selectedOptions });
+  function handleChangeConvocats(selectedOptions) {
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setConvocatoria((prevState) => ({
+      ...prevState,
+      convocats: selectedValues,
+    }));
   }
 
   function handleSubmit(e) {
@@ -157,25 +158,17 @@ function ConvocatoriaForm({
       </label>
       <label>
         Grupos convocados:
-        <select
-          multiple
+        <Select
+          isMulti
           name="convocats"
-          value={convocatoria.convocats}
+          options={grupsList.map(grup => ({ value: grup._id, label: grup.nom }))}
+          value={convocatoria.convocats.map(convocat => {
+            const grup = grupsList.find(grup => grup._id === convocat);
+            return grup ? { value: convocat, label: grup.nom } : null;
+          }).filter(convocat => convocat)}
           onChange={handleChangeConvocats}
-          required
           className="plantilla-form__input"
-        >
-          {grupsList.map((grup) => (
-            <option
-              key={grup._id}
-              value={grup._id}
-              selected={convocatoria.convocats.includes(grup._id)}
-              className="plantilla-form__item"
-            >
-              {grup.nom}
-            </option>
-          ))}
-        </select>
+        />
       </label>
       <label>
         Plantilla:
