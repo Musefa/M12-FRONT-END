@@ -1,101 +1,73 @@
 import React, { useState } from "react";
 
-function UserForm({ onSubmit, initialUser }) {
-    const [user, setUser] = useState(initialUser);
-    const [currentPassword, setCurrentPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [newPasswordConfirmation, setNewPasswordConfirmation] = useState("");
+function UserInfoForm({ onSubmit, initialUser }) {
+  const [user, setUser] = useState(initialUser);
+  const [currentPassword, setCurrentPassword] = useState("");
 
-    function handleChange(event) {
-        const { name, value } = event.target;
-        setUser({ ...user, [name]: value });
+  function handleCurrentPasswordChange(event) {
+    setCurrentPassword(event.target.value);
+  }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!currentPassword) {
+      alert("Por favor, introduce tu contraseña actual.");
+      return;
     }
+    onSubmit({ ...user, currentPassword });
+  }
 
-    function handlePasswordChange(event) {
-        setCurrentPassword(event.target.value);
-    }
+  return (
+    <form onSubmit={handleSubmit}>
+      <h3>Actualizar información de usuario</h3>
+      <label>Nombre:</label>
+      <input
+        type="text"
+        name="nom"
+        value={user.nom}
+        onChange={handleChange}
+      />
 
-    function handleNewPasswordChange(event) {
-        setNewPassword(event.target.value);
-    }
+      <label>Apellido:</label>
+      <input
+        type="text"
+        name="cognom"
+        value={user.cognom}
+        onChange={handleChange}
+      />
 
-    function handleNewPasswordConfirmationChange(event) {
-        setNewPasswordConfirmation(event.target.value);
-    }
+      <label>DNI:</label>
+      <input
+        type="text"
+        name="dni"
+        value={user.dni || ""}
+        onChange={handleChange}
+      />
 
-    async function handleSubmit(event) {
-        event.preventDefault();
+      <label>Especialidad:</label>
+      <input
+        type="text"
+        name="especialitat"
+        value={user.especialitat || ""}
+        onChange={handleChange}
+      />
 
-        if (newPassword !== newPasswordConfirmation) {
-            alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
-            return;
-        }
+      <label>Contraseña actual:</label>
+      <input
+        type="password"
+        name="currentPassword"
+        value={currentPassword}
+        onChange={handleCurrentPasswordChange}
+      />
 
-        const updatedUser = { ...user, currentPassword, newPassword };
-        onSubmit(updatedUser);
-    }
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <label>Nombre:</label>
-            <input
-                type="text"
-                name="nom"
-                value={user.nom}
-                onChange={handleChange}
-            />
-
-            <label>Apellido:</label>
-            <input
-                type="text"
-                name="cognom"
-                value={user.cognom}
-                onChange={handleChange}
-            />
-
-            <label>DNI:</label>
-            <input
-                type="text"
-                name="dni"
-                value={user.dni || ""}
-                onChange={handleChange}
-            />
-
-            <label>Especialidad:</label>
-            <input
-                type="text"
-                name="especialitat"
-                value={user.especialitat || ""}
-                onChange={handleChange}
-            />
-
-            <label>Contraseña actual:</label>
-            <input
-                type="password"
-                name="currentPassword"
-                value={currentPassword}
-                onChange={handlePasswordChange}
-            />
-
-            <label>Nueva contraseña:</label>
-            <input
-                type="password"
-                name="newPassword"
-                value={newPassword}
-                onChange={handleNewPasswordChange}
-            />
-
-            <label>Confirmar nueva contraseña:</label>
-            <input
-                type="password"
-                name="newPasswordConfirmation"
-                value={newPasswordConfirmation}
-                onChange={handleNewPasswordConfirmationChange}
-            />
-
-            <button type="submit">Actualizar</button>
-        </form>
-    );
+      <button type="submit">Actualizar información</button>
+    </form>
+  );
 }
 
-export default UserForm;
+export default UserInfoForm;
