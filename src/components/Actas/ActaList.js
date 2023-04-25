@@ -7,37 +7,56 @@ import { useUserContext } from "../../contexts/UserContext";
 export default function ActaList() {
   const [actas, setActas] = useState([]);
   const { userId, userRole } = useUserContext();
+  const [filter, setFilter] = useState("sin_filtro");
 
-  const filterActas = useCallback(
-    (actas) => {
-      return actas.filter((acta) => {
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
+
+  const fetchActas = useCallback(async () => {
+    try {
+      const fetchedActas = await getActas();
+
+      const filteredActas = fetchedActas.filter((acta) => {
         const isResponsable = acta.convocatoria.responsable._id === userId;
         const isConvocado = acta.convocatoria.convocats.some((grup) =>
           grup.membres.some((user) => user._id === userId)
         );
         const isCreador = acta.creador && acta.creador._id === userId;
-        return isResponsable || isConvocado || isCreador;
-      });
-    },
-    [userId]
-  );
 
-  const fetchActas = useCallback(async () => {
-    try {
-      const actas = await getActas();
-      const filteredActas = userRole === "administrador" ? actas : filterActas(actas);
+        const userRelated = isResponsable || isConvocado || isCreador;
+        if (filter === "sin_filtro") {
+          return userRole === "administrador" || userRelated;
+        }
+
+        if (filter === "Oberta" || filter === "Tancada") {
+          return (
+            (userRole === "administrador" || userRelated) &&
+            acta.estat.toLowerCase() === filter.toLowerCase()
+          );
+        }
+
+        return false;
+      });
+
       setActas(filteredActas);
     } catch (error) {
       console.error("Error cercant actas:", error);
     }
-  }, [filterActas, userRole]);
+  }, [userId, userRole, filter]);
 
   useEffect(() => {
     fetchActas();
   }, [fetchActas]);
 
+
   return (
     <div>
+      <select value={filter} onChange={handleFilterChange}>
+        <option value="sin_filtro">Sin filtro</option>
+        <option value="Oberta">Oberta</option>
+        <option value="Tancada">Tancada</option>
+      </select>
       <table>
         <thead>
           <tr>
