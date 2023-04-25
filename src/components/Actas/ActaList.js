@@ -3,11 +3,63 @@ import { getActas } from "../../services/ActaController";
 import { Link } from "react-router-dom";
 import ActaDelete from "./ActaDelete";
 import { useUserContext } from "../../contexts/UserContext";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 export default function ActaList() {
   const [actas, setActas] = useState([]);
   const { userId, userRole } = useUserContext();
   const [filter, setFilter] = useState("sin_filtro");
+
+  async function handleDownloadPDF(acta) {
+    const pdf = new jsPDF();
+    const filename = `Acta_${acta.nom}.pdf`;
+
+    const table = document.createElement("table");
+    table.innerHTML = `
+      <tr style="background-color: #f2f2f2;">
+        <th>Nom</th>
+        <th>Estat</th>
+        <th>Descripcions</th>
+        <th>Convocatòria</th>
+        <th>Acords</th>
+        <th>Creador</th>
+      </tr>
+      <tr>
+        <td>${acta.nom}</td>
+        <td>${acta.estat}</td>
+        <td>${acta.descripcions.join(", ")}</td>
+        <td>${acta.convocatoria.nom}</td>
+        <td>${acta.acords.map((acord) => acord.nom).join(", ")}</td>
+        <td>${acta.creador ? acta.creador.nom : "null"}</td>
+      </tr>
+    `;
+    table.setAttribute(
+      "style",
+      "display: inline-table; width: auto; height: auto; background-color: white; border-collapse: collapse; font-family: Arial, sans-serif;"
+    );
+    table.querySelectorAll("th, td").forEach((cell) => {
+      cell.style.border = "1px solid #dddddd";
+      cell.style.padding = "8px";
+      cell.style.textAlign = "left";
+    });
+
+    const tableWrapper = document.createElement("div");
+    tableWrapper.setAttribute(
+      "style",
+      "position: absolute; top: -9999px; left: -9999px;"
+    );
+    tableWrapper.appendChild(table);
+    document.body.appendChild(tableWrapper);
+
+    const canvas = await html2canvas(table);
+    const imgData = canvas.toDataURL("image/png");
+
+    pdf.addImage(imgData, "PNG", 10, 10);
+    pdf.save(filename);
+
+    document.body.removeChild(tableWrapper);
+  }
 
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
@@ -73,7 +125,6 @@ export default function ActaList() {
           {actas.map((acta) => (
             <tr key={acta._id}>
               <td>{acta.nom}</td>
-
               <td>{acta.estat}</td>
               <td>
                 {acta.descripcions.map((descripcio) => (
@@ -101,6 +152,12 @@ export default function ActaList() {
                       actaId={acta._id}
                       onUpdate={fetchActas}
                     />
+                    <button
+                      className="plantilla-page-link"
+                      onClick={() => handleDownloadPDF(acta)}
+                    >
+                      Descargar PDF
+                    </button>
                   </>
                 )}
               </td>
