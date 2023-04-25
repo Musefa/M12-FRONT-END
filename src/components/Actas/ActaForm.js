@@ -9,7 +9,8 @@ function ActaForm({
     descripcions: [""],
     convocatoria: "",
     acords: [],
-    creador: null
+    creador: null,
+    assistents: [],
   },
   convocatoriaList = [],
   acordList = [],
@@ -40,6 +41,16 @@ function ActaForm({
     const value = e.target.value;
     setActa({ ...acta, nom: value });
     setErrors({ ...errors, nom: validateNom(value) });
+  }
+
+  function handleChangeAssistentsSelect(selectedOptions) {
+    const updatedAssistents = selectedOptions.map(option => {
+      const user = acta.convocatoria.convocats
+        .flatMap(grup => grup.membres)
+        .find(user => user._id === option.value);
+      return user;
+    });
+    setActa({ ...acta, assistents: updatedAssistents });
   }
 
   function handleChangeDescripcions(e, index) {
@@ -201,6 +212,30 @@ function ActaForm({
           className="acta-form__input"
         />
       </label>
+      {isUpdateMode && (
+        <label>
+          Assistents:
+          <ReactSelect
+            isMulti
+            value={acta.assistents.map(assistent => ({
+              label: assistent.nom,
+              value: assistent._id,
+            }))}
+            options={
+              acta.convocatoria
+                ? acta.convocatoria.convocats.flatMap(grup =>
+                  grup.membres.map(user => ({
+                    label: user.nom,
+                    value: user._id,
+                  }))
+                )
+                : []
+            }
+            onChange={handleChangeAssistentsSelect}
+            className="acta-form__input"
+          />
+        </label>
+      )}
       <button type="submit" className="acta-form__button" disabled={hasErrors()}>
         Guardar
       </button>

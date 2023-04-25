@@ -123,6 +123,7 @@ export default function ActaList() {
             <th>Descripcions</th>
             <th>Convocatòria</th>
             <th>Acords</th>
+            <th>Assistents</th>
             <th>Creador</th>
             <th>Accions</th>
           </tr>
@@ -141,6 +142,11 @@ export default function ActaList() {
               <td>
                 {acta.acords.map((acord) => (
                   <li className="acta-list-style" key={acord}>{acord.nom}</li>
+                ))}
+              </td>
+              <td>
+                {acta.assistents.map((assistent) => (
+                  <li className="acta-list-style" key={assistent}>{assistent.nom}</li>
                 ))}
               </td>
               <td>{acta.creador ? acta.creador.nom : "null"}</td>
