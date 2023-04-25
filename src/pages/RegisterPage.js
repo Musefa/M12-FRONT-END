@@ -67,7 +67,7 @@ export default function RegisterPage() {
     const handleRegister = async (e) => {
         e.preventDefault();
         if (password !== confirmPassword) {
-            setError("Las contraseñas no coinciden");
+            setError("Les contrasenyes no coincideixen.");
             return;
         }
         try {
@@ -77,7 +77,7 @@ export default function RegisterPage() {
                 setUserRole(response.userData.role);
                 navigate("/");
             } else {
-                setError("Registration failed");
+                setError("Registre fallit.");
             }
         } catch (error) {
             setError(error.message);
@@ -87,9 +87,9 @@ export default function RegisterPage() {
     return (
         <div className="register-page">
             <div className="register-div">
-                <h1>REGISTRO</h1>
+                <h1>REGISTRE</h1>
                 <form onSubmit={handleRegister}>
-                    <label>Nombre</label>
+                    <label>Nom</label>
                     <input
                         type="text"
                         value={nom}
@@ -99,7 +99,7 @@ export default function RegisterPage() {
                             validateNom(e.target.value);
                         }}
                     />
-                    <label>Apellido</label>
+                    <label>Cognom</label>
                     <input
                         type="text"
                         value={cognom}
@@ -109,7 +109,7 @@ export default function RegisterPage() {
                             validateCognom(e.target.value);
                         }}
                     />
-                    <label>Correo electrónico</label>
+                    <label>Correu electrònic</label>
                     <input
                         type="email"
                         value={email}
@@ -119,7 +119,7 @@ export default function RegisterPage() {
                             validateEmail(e.target.value);
                         }}
                     />
-                    <label>Contraseña</label>
+                    <label>Contrasenya</label>
                     <input
                         type="password"
                         value={password}
@@ -129,7 +129,7 @@ export default function RegisterPage() {
                             validatePassword(e.target.value);
                         }}
                     />
-                    <label>Confirmar contraseña</label>
+                    <label>Confirmar contrasenya</label>
                     <input
                         type="password"
                         value={confirmPassword}
@@ -153,9 +153,9 @@ export default function RegisterPage() {
                             !recaptchaPassed
                         }
                     >
-                        Registrarse
+                        Registrar-se
                     </button>
-                    <p>¿Ya tienes cuenta? <Link to="/auth/login">Iniciar sesión</Link></p>
+                    <p>Ja tens compte? <Link to="/auth/login">Iniciar sessió</Link></p>
                 </form>
                 {error && <p className="error-message">{error}</p>}
             </div>

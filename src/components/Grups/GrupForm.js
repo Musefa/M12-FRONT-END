@@ -8,10 +8,10 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
   const [errors, setErrors] = useState({ nom: "" });
 
   function validateNom(value) {
-    return value.length >= 3 ? "" : "El nombre debe tener al menos 3 letras";
+    return value.length >= 3 ? "" : "El nom ha de tenir almenys 3 lletres";
   }
 
-  const { userId, userRole } = useUserContext(); // Obtener userId desde el UserContext
+  const { userId, userRole } = useUserContext();
 
   const options = usersList.map(user => ({
     value: user._id,
@@ -38,7 +38,7 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit({ ...grup, membres: selectedMembers, creador: userId }); // Actualiza la propiedad creador y membres antes de enviar
+    onSubmit({ ...grup, membres: selectedMembers, creador: userId });
   };
 
   function hasErrors() {
@@ -49,7 +49,7 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
   return (
     <form onSubmit={handleSubmit}>
       <label className="grup-form__label">
-        Nombre:
+        Nom:
         <input
           type="text"
           value={grup.nom}
@@ -89,7 +89,7 @@ function GrupForm({ onSubmit, initialGrup = { nom: "", membres: [], tipus: "", c
       </label>
       <h3 className="grup-form__subtitle">Miembros</h3>
       <label className="grup-form__label">
-        Seleccionar miembros:
+        Seleccionar membres:
         <ReactSelect
           isMulti
           options={options}

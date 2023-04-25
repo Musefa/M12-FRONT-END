@@ -5,7 +5,7 @@ import { getGrups, getUsersList } from "../../services/GrupController";
 import { getPlantillas } from "../../services/PlantillaController";
 import ConvocatoriaForm from "./ConvocatoriaForm";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../../contexts/UserContext"; // Importar useUserContext
+import { useUserContext } from "../../contexts/UserContext";
 
 function ConvocatoriaEdit() {
   const [convocatoria, setConvoctoria] = useState(null);
@@ -14,7 +14,7 @@ function ConvocatoriaEdit() {
   const [plantillasList, setPlantillasList] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
-  const { userId, userRole } = useUserContext(); // Utilizar useUserContext para obtener el userId y userRole
+  const { userId, userRole } = useUserContext();
 
   useEffect(() => {
     async function fetchConvocatoria() {
@@ -22,7 +22,6 @@ function ConvocatoriaEdit() {
         const convocatorias = await getConvocatorias();
         const convocatoriaFound = convocatorias.find((c) => c._id === id);
 
-        // Comprobar si el usuario actual es el creador o un administrador
         if (convocatoriaFound && (userRole === "administrador" || convocatoriaFound.creador._id === userId)) {
           setConvoctoria({
             ...convocatoriaFound,
@@ -31,8 +30,7 @@ function ConvocatoriaEdit() {
             responsable: convocatoriaFound.responsable._id,
           });
         } else {
-          // Enviar al usuario al inicio si no tiene permiso para editar
-          alert("No tienes permiso para editar esta convocatoria.");
+          console.error("No tens permís per a editar aquesta convocatòria.");
           navigate("/");
         }
 
@@ -45,7 +43,7 @@ function ConvocatoriaEdit() {
         const users = await getUsersList();
         setUsersList(users);
       } catch (error) {
-        console.error("Error fetching convocatoria:", error);
+        console.error("Error cercant convocatòria:", error);
       }
     }
 
@@ -55,25 +53,21 @@ function ConvocatoriaEdit() {
   async function handleSubmit(updatedConvocatoria) {
     try {
       await updateConvocatoria(id, updatedConvocatoria);
-      alert("Convocatoria actualizada correctamente.");
       navigate("/convocatorias");
     } catch (error) {
-      console.error("Error updating convocatoria:", error);
-      alert("Error al actualizar la convocatoria.");
+      console.error("Error actualitzant convocatòria:", error);
     }
   }
 
   return (
     <div className="plantilla-page-container">
-      <h2 className="plantilla-form-title">Editar convocatoria</h2>
+      <h2 className="plantilla-form-title">EDITAR CONVOCATÒRIA</h2>
       {convocatoria ? (
         <ConvocatoriaForm onSubmit={handleSubmit} initialConvocatoria={convocatoria} usersList={usersList} plantillasList={plantillasList} grupsList={grupsList} />
       ) : (
-        <p>Cargando convocatoria...</p>
+        <p>Carregant convocatòria...</p>
       )}
     </div>
- 
-
   );
 }
 

@@ -19,11 +19,11 @@ function ActaForm({
   const [errors, setErrors] = useState({ nom: "", descripcions: [] });
 
   function validateNom(value) {
-    return value.length >= 3 ? "" : "La descripcion debe tener al menos 3 letras";
+    return value.length >= 3 ? "" : "El nom ha de tenir com a mínim 3 lletres";
   }
 
   function validateDescripcions(value) {
-    return value.length >= 10 ? "" : "La descripcion debe tener al menos 10 letras";
+    return value.length >= 10 ? "" : "La descripció ha de tenir com a mínim 10 lletres";
   }
 
   const [selectedAcordIds, setSelectedAcordIds] = useState(initialActa.acords.map(acord => acord._id));
@@ -112,7 +112,7 @@ function ActaForm({
         {errors.nom && <p className="error">{errors.nom}</p>}
       </label>
       <label>
-        Estado:
+        Estat:
         <div>
           <label>
             Oberta:
@@ -168,7 +168,7 @@ function ActaForm({
           onClick={handleAddDescripcions}
           className="acta-form__button"
         >
-          Añadir descripción
+          Afegir descripció
         </button>
       </label>
       <label>
@@ -180,7 +180,7 @@ function ActaForm({
           required
           className="acta-form__input"
         >
-          <option value="">Selecciona una convocatoria</option>
+          <option value="">Selecciona una convocatòria</option>
           {convocatoriaList.map((convocatoria) => (
             <option
               key={convocatoria._id}
@@ -192,7 +192,7 @@ function ActaForm({
         </select>
       </label>
       <label>
-        Acuerdos:
+        Acords:
         <ReactSelect
           isMulti
           value={acta.acords.map(acord => ({ label: acord.nom, value: acord._id }))}

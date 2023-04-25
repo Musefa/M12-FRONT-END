@@ -44,7 +44,7 @@ export default function LoginPage() {
       setEmailErrorMessage("");
     } else {
       setEmailIsValid(false);
-      setEmailErrorMessage("Correo electrónico no válido");
+      setEmailErrorMessage("Correu electrònic no vàlid.");
     }
   };
 
@@ -56,7 +56,7 @@ export default function LoginPage() {
     } else {
       setPasswordIsValid(false);
       setPasswordErrorMessage(
-        "La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial como @, $, !, %, *, ?, o &."
+        "La contrasenya ha de tenir almenys 8 caràcters, incloent almenys una majúscula, una minúscula, un número i un caràcter especial com @, $, !, %, *, ?, o &."
       );
     }
   };
@@ -70,7 +70,7 @@ export default function LoginPage() {
         setUserRole(response.userData.role);
         navigate("/");
       } else {
-        setError("Login failed");
+        setError("Inici de sessió fallit.");
       }
     } catch (error) {
       setError(error.message);
@@ -80,9 +80,9 @@ export default function LoginPage() {
   return (
     <div className="login-page">
       <div className="login-div">
-        <h1>INICIO DE SESIÓN</h1>
+        <h1>INICI DE SESSIÓ</h1>
         <form onSubmit={handleLogin}>
-          <label>Correo electrónico</label>
+          <label>Correu electrònic</label>
           <div className="input-container">
             <input
               type="email"
@@ -106,7 +106,7 @@ export default function LoginPage() {
               </span>
             </div>
           )}
-          <label>Contraseña</label>
+          <label>Contrasenya</label>
           <div className="input-container">
             <input
               type="password"
@@ -137,9 +137,9 @@ export default function LoginPage() {
             <div id="g-recaptcha" ref={recaptchaRef}></div>
           </div>
           <button type="submit" disabled={!emailIsValid || !passwordIsValid || !recaptchaPassed}>
-            Iniciar sesión
+            Iniciar sessió
           </button>
-          <p>No tienes cuenta? <Link to="/auth/register">Registrate</Link></p>
+          <p>No tens compte? <Link to="/auth/register">Registra't</Link></p>
         </form>
         {error && <p className="error-message">{error}</p>}
       </div>

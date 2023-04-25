@@ -6,9 +6,9 @@ import "../styles/GrupPage.css";
 function GrupPage() {
   return (
     <div className="grup-page-container">
-      <h1 className="grup-page-title">Página de grupos</h1>
+      <h1 className="grup-page-title">GRUPS</h1>
       <Link to="/grups/create" className="grup-page-link">
-        Crear nuevo grupo
+        Nou grup
       </Link>
       <GrupList />
     </div>

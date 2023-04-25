@@ -20,7 +20,7 @@ function UserEdit() {
           setUser(userFound);
         }
       } catch (error) {
-        console.error("Error fetching user:", error);
+        console.error("Error cercant usuari:", error);
       }
     }
 
@@ -30,35 +30,31 @@ function UserEdit() {
   async function handleUserInfoSubmit(updatedUserInfo) {
     try {
       await updateUser(id, updatedUserInfo);
-      alert("Información de usuario actualizada correctamente.");
       navigate("/");
     } catch (error) {
       console.error("Error updating user info:", error);
-      alert("Error al actualizar la información del usuario.");
     }
-  }  
+  }
 
   async function handlePasswordChangeSubmit(passwordInfo) {
     try {
       await updateUser(id, passwordInfo);
-      alert("Contraseña actualizada correctamente.");
       navigate("/");
     } catch (error) {
-      console.error("Error updating password:", error);
-      alert("Error al actualizar la contraseña.");
+      console.error("Error actualitzant contrasenya:", error);
     }
   }
 
   return (
     <div className="user-form-container">
-      <h2>Editar información de usuario</h2>
+      <h2>Editar l'informació de l'usuari</h2>
       {user ? (
         <>
           <UserInfoForm onSubmit={handleUserInfoSubmit} initialUser={user} />
           <PasswordChangeForm onSubmit={handlePasswordChangeSubmit} />
         </>
       ) : (
-        <p>Cargando usuario...</p>
+        <p>Carregant usuari...</p>
       )}
     </div>
   );

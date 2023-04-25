@@ -28,7 +28,7 @@ export default function ConvocatoriaList() {
       const filteredConvocatorias = userRole === "administrador" ? convocatorias : filterConvocatorias(convocatorias);
       setConvocatorias(filteredConvocatorias);
     } catch (error) {
-      console.error("Error fetching convocatorias:", error);
+      console.error("Error cercant convocatòries:", error);
     }
   }, [filterConvocatorias, userRole]);
 
@@ -51,7 +51,7 @@ export default function ConvocatoriaList() {
             <th>Plantilla Punts</th>
             <th>Responsable</th>
             <th>Creador</th>
-            <th>Acciones</th>
+            <th>Accions</th>
           </tr>
         </thead>
         <tbody>

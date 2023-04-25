@@ -23,7 +23,7 @@ function GrupEdit() {
               (userRole === "administrador" && grupFound.tipus !== "Públic") ||
               grupFound.creador._id === userId)
           ) {
-            alert("No tienes permiso para editar este grupo.");
+            console.error("No tens permís per a editar aquest grup.");
             navigate("/");
           } else {
             setGrup(grupFound);
@@ -32,7 +32,7 @@ function GrupEdit() {
         const users = await getUsersList();
         setUsersList(users);
       } catch (error) {
-        console.error("Error fetching grup:", error);
+        console.error("Error cercant grup:", error);
       }
     }
 
@@ -42,21 +42,19 @@ function GrupEdit() {
   async function handleSubmit(updatedGrup) {
     try {
       await updateGrup(id, updatedGrup);
-      alert("Grupo actualizado correctamente.");
       navigate("/grups");
     } catch (error) {
-      console.error("Error updating grup:", error);
-      alert("Error al actualizar el grupo.");
+      console.error("Error actualitzant grup:", error);
     }
   }
 
   return (
     <div className="grup-page-container">
-      <h2 className="grup-form-title">Editar grupo</h2>
+      <h2 className="grup-form-title">EDITAR GRUPO</h2>
       {grup ? (
         <GrupForm onSubmit={handleSubmit} initialGrup={grup} usersList={usersList} />
       ) : (
-        <p>Cargando grupo...</p>
+        <p>Carregant grup...</p>
       )}
     </div>
   );

@@ -8,19 +8,17 @@ function ActaDelete({ actaId, onUpdate, className }) {
   const navigate = useNavigate();
 
   async function handleDelete() {
-    if (confirmation === "borrar") {
+    if (confirmation === "esborrar") {
       try {
         await deleteActa(actaId);
-        alert("Acta eliminada correctamente.");
         onUpdate();
         navigate("/actas");
       } catch (error) {
-        console.error("Error al eliminar el acta:", error);
-        alert("Error al eliminar el acta.");
+        console.error("Error al eliminar l'acta:", error);
       }
     } else {
-      alert(
-        'Por favor, introduce la palabra "borrar" para confirmar la eliminación.'
+      console.error(
+        "Si us plau, introdueix la paraula 'esborrar' per a confirmar l'eliminació."
       );
     }
   }
@@ -38,7 +36,7 @@ function ActaDelete({ actaId, onUpdate, className }) {
       {showConfirmation && (
         <input
           type="text"
-          placeholder="Escribe 'borrar' para confirmar"
+          placeholder="Escriu 'esborrar' per a confirmar"
           value={confirmation}
           onChange={(e) => setConfirmation(e.target.value)}
           className={`${className}__confirmation`}
@@ -46,7 +44,7 @@ function ActaDelete({ actaId, onUpdate, className }) {
       )}
       <button onClick={handleButtonClick} className={`${className}__button`}>
         {showConfirmation
-          ? "Eliminar definitivamente"
+          ? "Eliminar definitivament"
           : "Eliminar acta"}
       </button>
     </div>

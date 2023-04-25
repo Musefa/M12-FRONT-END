@@ -5,11 +5,11 @@ function PlantillaForm({ onSubmit, initialPlantilla = { nom: "", puntsOrdreDia: 
   const [errors, setErrors] = useState({ nom: "", puntsOrdreDia: [] });
 
   function validateNom(value) {
-    return value.length >= 3 ? "" : "El nombre debe tener al menos 3 letras";
+    return value.length >= 3 ? "" : "El nom ha de tenir almenys 3 lletres";
   }
 
   function validatePuntsOrdreDia(value) {
-    return value.length >= 4 ? "" : "El punto debe tener al menos 4 letras";
+    return value.length >= 4 ? "" : "El punt del dia ha de tenir almenys 4 lletres";
   }
 
   function handleChangeNom(e) {
@@ -61,12 +61,13 @@ function PlantillaForm({ onSubmit, initialPlantilla = { nom: "", puntsOrdreDia: 
   return (
     <form onSubmit={handleSubmit}>
       <label className="plantilla-form__label">
-        Nombre:
+        Nom:
         <input type="text" value={plantilla.nom} onChange={handleChangeNom} className="plantilla-form__input" required />
         {errors.nom && <p className="error">{errors.nom}</p>}
       </label>
       <input type="hidden" name="creador" value={userId} />
-      <h3 className="plantilla-form__subtitle">Puntos del orden del día</h3>
+      <label className="plantilla-form__label">
+      Punts del dia:
       {plantilla.puntsOrdreDia.map((punt, index) => (
         <div key={index}>
           <input
@@ -82,8 +83,9 @@ function PlantillaForm({ onSubmit, initialPlantilla = { nom: "", puntsOrdreDia: 
         </div>
       ))}
       <button type="button" onClick={handleAddPuntOrdreDia} className="plantilla-form__button">
-        Añadir punto del orden del día
+        Afegir punt del dia
       </button>
+      </label>
       <button type="submit" className="plantilla-form__button" disabled={hasErrors()}>Guardar</button>
     </form>
   );

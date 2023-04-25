@@ -19,7 +19,7 @@ function GrupList() {
       );
       setGrups(userGrups);
     } catch (error) {
-      console.error("Error fetching grups:", error);
+      console.error("Error cercant grups:", error);
     }
   }, [userId, userRole]);
 
@@ -28,7 +28,7 @@ function GrupList() {
       const users = await getUsersList();
       setUsersList(users);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      console.error("Error cercant usuaris:", error);
     }
   }, []);
 
@@ -56,7 +56,7 @@ function GrupList() {
                 {grup.membres.map((membre) => {
                   const user = getUserById(membre._id);
                   return (
-                    <li className="grup-form__item" key={membre._id}>{user ? user.nom : 'Usuario desconocido'}</li>
+                    <li className="grup-form__item" key={membre._id}>{user ? user.nom : 'Usuari desconegut'}</li>
                   );
                 })}
               </ul>
@@ -77,7 +77,7 @@ function GrupList() {
             </li>
           ))
         ) : (
-          <li>No se encontraron grupos</li>
+          <li>No s'han trobat grups</li>
         )}
       </ul>
     </>

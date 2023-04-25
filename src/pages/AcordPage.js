@@ -6,9 +6,9 @@ import "../styles/AcordPage.css";
 function AcordPage() {
   return (
     <div className="acord-page-container">
-      <h1 className="acord-page-title">Página d' acords</h1>
+      <h1 className="acord-page-title">ACORDS</h1>
       <Link to="/acords/create" className="acord-page-link">
-        Crear nuevo acuerdo
+        Nou acord
       </Link>
       <AcordList />
     </div>

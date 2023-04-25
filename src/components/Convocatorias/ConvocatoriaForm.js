@@ -35,15 +35,15 @@ function ConvocatoriaForm({
   const [errors, setErrors] = useState({ nom: "", lloc: "", puntsOrdreDia: [] });
 
   function validateNom(value) {
-    return value.length >= 3 ? "" : "El nombre debe tener al menos 3 letras";
+    return value.length >= 3 ? "" : "El nom ha de tenir com a mínim 3 lletres";
   }
 
   function validateLloc(value) {
-    return value.length >= 3 ? "" : "El lugar debe tener al menos 3 letras";
+    return value.length >= 3 ? "" : "El lloc ha de tenir com a mínim 3 lletres";
   }
 
   function validatePuntsOrdreDia(value) {
-    return value.length >= 4 ? "" : "El punto debe tener al menos 4 letras";
+    return value.length >= 4 ? "" : "El punt ha de tenir com a mínim 4 lletres";
   }
 
   function handleChangeNom(e) {
@@ -67,14 +67,14 @@ function ConvocatoriaForm({
     const value = e.target.value;
     const newPuntsOrdreDia = [...convocatoria.puntsOrdreDia];
     const newErrorsPuntsOrdreDia = [...errors.puntsOrdreDia];
-    
+
     newPuntsOrdreDia[index] = value;
     if (typeof newErrorsPuntsOrdreDia[index] === "undefined") {
       newErrorsPuntsOrdreDia.push(validatePuntsOrdreDia(value));
     } else {
       newErrorsPuntsOrdreDia[index] = validatePuntsOrdreDia(value);
     }
-    
+
     setConvocatoria({ ...convocatoria, puntsOrdreDia: newPuntsOrdreDia });
     setErrors({ ...errors, puntsOrdreDia: newErrorsPuntsOrdreDia });
   }
@@ -129,7 +129,7 @@ function ConvocatoriaForm({
         {errors.nom && <p className="error">{errors.nom}</p>}
       </label>
       <label>
-        Fecha:
+        Data:
         <input
           type="date"
           name="data"
@@ -140,7 +140,7 @@ function ConvocatoriaForm({
         />
       </label>
       <label>
-        Hora de inicio:
+        Hora d'inici:
         <input
           type="time"
           name="horaInici"
@@ -151,7 +151,7 @@ function ConvocatoriaForm({
         />
       </label>
       <label>
-        Duración:
+        Duració:
         <input
           type="number"
           name="durada"
@@ -162,7 +162,7 @@ function ConvocatoriaForm({
         />
       </label>
       <label>
-        Lugar:
+        Lloc:
         <input
           type="text"
           name="lloc"
@@ -174,7 +174,7 @@ function ConvocatoriaForm({
         {errors.lloc && <p className="error">{errors.lloc}</p>}
       </label>
       <label>
-        <h3 className="plantilla-form__subtitle">Puntos del orden del día</h3>
+        <h3 className="plantilla-form__subtitle">Punts del dia</h3>
         {convocatoria.puntsOrdreDia.map((punt, index) => (
           <div key={index}>
             <input
@@ -199,11 +199,11 @@ function ConvocatoriaForm({
           onClick={handleAddPuntOrdreDia}
           className="plantilla-form__button"
         >
-          Añadir punto del orden del día
+          Afegir punt d'ordre del día
         </button>
       </label>
       <label>
-        Grupos convocados:
+        Grups convocats:
         <Select
           isMulti
           name="convocats"

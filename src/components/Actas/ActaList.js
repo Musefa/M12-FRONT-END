@@ -28,7 +28,7 @@ export default function ActaList() {
       const filteredActas = userRole === "administrador" ? actas : filterActas(actas);
       setActas(filteredActas);
     } catch (error) {
-      console.error("Error fetching actas:", error);
+      console.error("Error cercant actas:", error);
     }
   }, [filterActas, userRole]);
 
@@ -44,10 +44,10 @@ export default function ActaList() {
             <th>Nom </th>
             <th>Estat</th>
             <th>Descripcions</th>
-            <th>Convocatoria</th>
+            <th>Convocatòria</th>
             <th>Acords</th>
             <th>Creador</th>
-            <th>Acciones</th>
+            <th>Accions</th>
           </tr>
         </thead>
         <tbody>

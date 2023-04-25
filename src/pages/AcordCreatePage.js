@@ -14,7 +14,7 @@ function AcordCreatePage() {
                 const actas = await getActas();
                 setActaList(actas);
             } catch (error) {
-                console.error("Error fetching actas:", error);
+                console.error("Error cercant actas:", error);
             }
         }
 
@@ -24,17 +24,15 @@ function AcordCreatePage() {
     async function handleSubmit(acord) {
         try {
             await createAcord(acord);
-            alert("Acuerdo creado correctamente.");
             navigate("/acords");
         } catch (error) {
-            console.error("Error creating acord:", error);
-            alert("Error al crear el acuerdo.");
+            console.error("Error creant acord:", error);
         }
     }
 
     return (
         <div className="acord-page-container">
-            <h2 className="acord-page-title">Crear Acuerdo</h2>
+            <h2 className="acord-page-title">NOU ACORD</h2>
             <AcordForm
                 actaList={actaList}
                 onSubmit={handleSubmit}

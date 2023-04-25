@@ -13,7 +13,7 @@ function GrupCreatePage() {
         const users = await getUsersList();
         setUsersList(users);
       } catch (error) {
-        console.error("Error fetching users:", error);
+        console.error("Error cercant usuaris:", error);
       }
     }
 
@@ -23,19 +23,17 @@ function GrupCreatePage() {
   async function handleCreate(grup) {
     try {
       await createGrup(grup);
-      alert("Grupo creado correctamente.");
       navigate("/grups");
     } catch (error) {
       console.error("Error creating grup:", error);
-      alert("Error al crear el grupo.");
     }
   }
 
   return (
     <div className="grup-form-container">
-      <h1>Crear nuevo grupo</h1>
+      <h1>NOU GRUP</h1>
       <GrupForm onSubmit={handleCreate} usersList={usersList} />
-      <Link className="grup-form__button" to="/grups">Volver a la lista de grupos</Link>
+      <Link className="grup-form__button" to="/grups">Tornar a la llista de grups</Link>
     </div>
   );
 }

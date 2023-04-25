@@ -19,7 +19,7 @@ function ActaCreatePage() {
         const acords = await getAcords();
         setAcordList(acords);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error cercant dades:", error);
       }
     }
 
@@ -29,19 +29,17 @@ function ActaCreatePage() {
   async function handleCreate(acta) {
     try {
       await createActa(acta);
-      alert("Acta creada correctamente.");
       navigate("/actas");
     } catch (error) {
       console.error("Error creating acta:", error);
-      alert("Error al crear el acta.");
     }
   }
 
   return (
     <div className="acta-form-container">
-      <h1>Crear nueva acta</h1>
+      <h1>NOU ACTA</h1>
       <ActaForm onSubmit={handleCreate} convocatoriaList={convocatoriaList} acordList={acordList} />
-      <Link className="acta-form__button" to="/actas">Volver a la lista de actas</Link>
+      <Link className="acta-form__button" to="/actas">Tornar a la llista de actes</Link>
     </div>
   );
 }

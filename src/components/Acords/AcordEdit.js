@@ -4,7 +4,7 @@ import { getActas } from "../../services/ActaController";
 import { getAcords, updateAcord } from "../../services/AcordController";
 import AcordForm from "./AcordForm";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../../contexts/UserContext"; 
+import { useUserContext } from "../../contexts/UserContext";
 
 function AcordEdit() {
   const [acord, setAcord] = useState(null);
@@ -20,16 +20,14 @@ function AcordEdit() {
         const acordFound = acords.find((a) => a._id === id);
         if (acordFound && (userRole === "administrador" || acordFound.creador._id === userId)) {
           setAcord(acordFound);
-        }else {
-          // Enviar al usuario al inicio si no tiene permiso para editar
-          alert("No tienes permiso para editar esta convocatoria.");
+        } else {
           navigate("/");
         }
 
         const actas = await getActas();
         setActaList(actas);
       } catch (error) {
-        console.error("Error fetching acord:", error);
+        console.error("Error cercant acord:", error);
       }
     }
 
@@ -39,21 +37,19 @@ function AcordEdit() {
   async function handleSubmit(updatedAcord) {
     try {
       await updateAcord(id, updatedAcord);
-      alert("Acuerdo actualizado correctamente.");
       navigate("/acords");
     } catch (error) {
-      console.error("Error updating acord:", error);
-      alert("Error al actualizar el acuerdo.");
+      console.error("Error actualitzant acord:", error);
     }
   }
 
   return (
     <div className="acord-page-container">
-      <h2 className="acord-page-title">Editar Acuerdo</h2>
+      <h2 className="acord-page-title">EDITAR ACORD</h2>
       {acord ? (
         <AcordForm onSubmit={handleSubmit} initialAcord={acord} actaList={actaList} />
       ) : (
-        <p>Cargando acuerdo...</p>
+        <p>Carregant acord...</p>
       )}
     </div>
   );

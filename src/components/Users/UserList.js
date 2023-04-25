@@ -12,7 +12,7 @@ function UserList() {
         const userList = await getUsersList();
         setUsers(userList);
       } catch (error) {
-        console.error("Error fetching users:", error);
+        console.error("Error cercant usuaris:", error);
       }
     }
 
@@ -26,8 +26,7 @@ function UserList() {
         setUsers(users.filter((user) => user._id !== userId));
         setUserToDelete(null);
       } catch (error) {
-        console.error("Error deleting user:", error);
-        alert("Error al eliminar el usuario.");
+        console.error("Error esborrant usuaris:", error);
       }
     } else {
       setUserToDelete(userId);
@@ -36,15 +35,15 @@ function UserList() {
 
   return (
     <div>
-      <h2>Lista de usuarios</h2>
+      <h2>Llista d'usuaris</h2>
       <table>
         <thead>
           <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
+            <th>Nom</th>
+            <th>Cognoms</th>
             <th>DNI</th>
-            <th>Especialidad</th>
-            <th>Acciones</th>
+            <th>Especialitat</th>
+            <th>Accions</th>
           </tr>
         </thead>
         <tbody>
@@ -56,7 +55,7 @@ function UserList() {
               <td>{user.especialitat}</td>
               <td>
                 <button onClick={() => handleDeleteUser(user._id)}>
-                  {userToDelete === user._id ? "Confirmar borrado" : "Eliminar"}
+                  {userToDelete === user._id ? "Confirmar esborrat" : "Eliminar"}
                 </button>
               </td>
             </tr>

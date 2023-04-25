@@ -21,7 +21,7 @@ function PasswordChangeForm({ onSubmit }) {
     event.preventDefault();
 
     if (newPassword !== newPasswordConfirmation) {
-      alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
+      console.error("Les contrasenyes no coincideixen. Si us plau, intenta-ho de nou.");
       return;
     }
 
@@ -30,8 +30,8 @@ function PasswordChangeForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>Cambiar contraseña</h3>
-      <label>Contraseña actual:</label>
+      <h3>Canviar contrasenya</h3>
+      <label>Contrasenya actual:</label>
       <input
         type="password"
         name="currentPassword"
@@ -39,7 +39,7 @@ function PasswordChangeForm({ onSubmit }) {
         onChange={handleCurrentPasswordChange}
       />
 
-      <label>Nueva contraseña:</label>
+      <label>Nova contrasenya:</label>
       <input
         type="password"
         name="newPassword"
@@ -47,7 +47,7 @@ function PasswordChangeForm({ onSubmit }) {
         onChange={handleNewPasswordChange}
       />
 
-      <label>Confirmar nueva contraseña:</label>
+      <label>Confirmar nova contrasenya:</label>
       <input
         type="password"
         name="newPasswordConfirmation"
@@ -55,7 +55,7 @@ function PasswordChangeForm({ onSubmit }) {
         onChange={handleNewPasswordConfirmationChange}
       />
 
-      <button type="submit">Cambiar contraseña</button>
+      <button type="submit">Canviar contrasenya</button>
     </form>
   );
 }

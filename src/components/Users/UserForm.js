@@ -16,7 +16,7 @@ function UserInfoForm({ onSubmit, initialUser }) {
   function handleSubmit(event) {
     event.preventDefault();
     if (!currentPassword) {
-      alert("Por favor, introduce tu contraseña actual.");
+      console.error("Si us plau, afegeix la contrasenya actual");
       return;
     }
     onSubmit({ ...user, currentPassword });
@@ -24,8 +24,8 @@ function UserInfoForm({ onSubmit, initialUser }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>Actualizar información de usuario</h3>
-      <label>Nombre:</label>
+      <h3>Actualitzar informació de l'usuari</h3>
+      <label>Nom:</label>
       <input
         type="text"
         name="nom"
@@ -33,7 +33,7 @@ function UserInfoForm({ onSubmit, initialUser }) {
         onChange={handleChange}
       />
 
-      <label>Apellido:</label>
+      <label>Cognoms:</label>
       <input
         type="text"
         name="cognom"
@@ -49,7 +49,7 @@ function UserInfoForm({ onSubmit, initialUser }) {
         onChange={handleChange}
       />
 
-      <label>Especialidad:</label>
+      <label>Especialitat:</label>
       <input
         type="text"
         name="especialitat"
@@ -57,7 +57,7 @@ function UserInfoForm({ onSubmit, initialUser }) {
         onChange={handleChange}
       />
 
-      <label>Contraseña actual:</label>
+      <label>Contrasenya actual:</label>
       <input
         type="password"
         name="currentPassword"
@@ -65,7 +65,7 @@ function UserInfoForm({ onSubmit, initialUser }) {
         onChange={handleCurrentPasswordChange}
       />
 
-      <button type="submit">Actualizar información</button>
+      <button type="submit">Actualitzar informació</button>
     </form>
   );
 }

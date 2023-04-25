@@ -24,7 +24,7 @@ function ConvocatoriaCreatePage() {
                 setPlantillasList(plantillas);
 
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.error("Error cercant dades:", error);
             }
         }
 
@@ -34,19 +34,17 @@ function ConvocatoriaCreatePage() {
     async function handleCreate(convocatoria) {
         try {
             await createConvocatoria(convocatoria);
-            alert("Convocatoria creada correctamente.");
             navigate("/convocatorias");
         } catch (error) {
-            console.error("Error creating convocatoria:", error);
-            alert("Error al crear la convocatoria.");
+            console.error("Error creant convocatòria:", error);
         }
     }
 
     return (
         <div className="convocatoria-form-container">
-            <h1>Crear nueva convocatoria</h1>
+            <h1>NOVA CONVOCATÒRIA</h1>
             <ConvocatoriaForm onSubmit={handleCreate} usersList={usersList} grupsList={grupsList} plantillasList={plantillasList} />
-            <Link className="convocatoria-form__button" to="/convocatorias">Volver a la lista de convocatorias</Link>
+            <Link className="convocatoria-form__button" to="/convocatorias">Tornar a la llista de convocatòries</Link>
         </div>
     );
 }

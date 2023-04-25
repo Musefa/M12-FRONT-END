@@ -24,7 +24,6 @@ function ActaEdit() {
           setActa(actaFound);
         }else {
           // Enviar al usuario al inicio si no tiene permiso para editar
-          alert("No tienes permiso para editar esta convocatoria.");
           navigate("/");
         }
 
@@ -44,21 +43,19 @@ function ActaEdit() {
   async function handleSubmit(updatedActa) {
     try {
       await updateActa(id, updatedActa);
-      alert("Acta actualizada correctamente.");
       navigate("/actas");
     } catch (error) {
       console.error("Error updating acta:", error);
-      alert("Error al actualizar el acta.");
     }
   }
 
   return (
     <div className="acta-page-container">
-      <h2 className="acta-form-title">Editar acta</h2>
+      <h2 className="acta-form-title">EDITAR ACTA</h2>
       {acta ? (
         <ActaForm onSubmit={handleSubmit} initialActa={acta} convocatoriaList={convocatoriaList} acordList={acordList} />
       ) : (
-        <p>Cargando acta...</p>
+        <p>Carregant acta...</p>
       )}
     </div>
   );

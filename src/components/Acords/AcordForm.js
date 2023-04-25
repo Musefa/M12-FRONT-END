@@ -29,11 +29,11 @@ function AcordForm({
     const [errors, setErrors] = useState({ nom: "", descripcio: "" });
 
     function validateNom(value) {
-        return value.length >= 3 ? "" : "El nombre debe tener al menos 3 letras";
+        return value.length >= 3 ? "" : "El nom ha de tenir com a mínim 3 lletres";
     }
 
     function validateDescripcio(value) {
-        return value.length >= 10 ? "" : "La descripcion debe tener al menos 10 letras";
+        return value.length >= 10 ? "" : "La descripció ha de tenir com a mínim 10 lletres";
     }
 
     function handleChange(e) {
@@ -106,7 +106,7 @@ function AcordForm({
                 />
             </label>
             <label>
-                Descripcio:
+                Descripció:
                 <input
                     type="text"
                     name="descripcio"
