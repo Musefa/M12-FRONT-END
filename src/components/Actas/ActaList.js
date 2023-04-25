@@ -8,10 +8,10 @@ import html2canvas from "html2canvas";
 
 export default function ActaList() {
   const [actas, setActas] = useState([]);
-  const { userId, userRole } = useUserContext();
+  const { userId, userRole, userName } = useUserContext();
   const [filter, setFilter] = useState("sin_filtro");
 
-  async function handleDownloadPDF(acta) {
+  async function handleDownloadPDF(acta, user) {
     const pdf = new jsPDF();
     const filename = `Acta_${acta.nom}.pdf`;
 
@@ -32,6 +32,12 @@ export default function ActaList() {
         <td>${acta.convocatoria.nom}</td>
         <td>${acta.acords.map((acord) => acord.nom).join(", ")}</td>
         <td>${acta.creador ? acta.creador.nom : "null"}</td>
+      </tr>
+      <tr>
+        <th>Remitente</th>
+      </tr>
+      <tr>
+        <td>${user}</td>
       </tr>
     `;
     table.setAttribute(
@@ -154,7 +160,7 @@ export default function ActaList() {
                     />
                     <button
                       className="plantilla-page-link"
-                      onClick={() => handleDownloadPDF(acta)}
+                      onClick={() => handleDownloadPDF(acta, userName)}
                     >
                       Descargar PDF
                     </button>
