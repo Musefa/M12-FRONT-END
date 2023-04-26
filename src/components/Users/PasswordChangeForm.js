@@ -31,31 +31,34 @@ function PasswordChangeForm({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
       <h3>Canviar contrasenya</h3>
-      <label>Contrasenya actual:</label>
+      <label className="useredit-form__label">Contrasenya actual:</label>
       <input
         type="password"
         name="currentPassword"
         value={currentPassword}
         onChange={handleCurrentPasswordChange}
+        className="useredit-form__input"
       />
 
-      <label>Nova contrasenya:</label>
+      <label className="useredit-form__label">Nova contrasenya:</label>
       <input
         type="password"
         name="newPassword"
         value={newPassword}
         onChange={handleNewPasswordChange}
+        className="useredit-form__input"
       />
 
-      <label>Confirmar nova contrasenya:</label>
+      <label className="useredit-form__label">Confirmar nova contrasenya:</label>
       <input
         type="password"
         name="newPasswordConfirmation"
         value={newPasswordConfirmation}
         onChange={handleNewPasswordConfirmationChange}
+        className="useredit-form__input"
       />
 
-      <button type="submit">Canviar contrasenya</button>
+      <button type="submit" className="useredit-form__button">Canviar contrasenya</button>
     </form>
   );
 }
