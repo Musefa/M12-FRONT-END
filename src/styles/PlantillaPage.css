@@ -95,6 +95,7 @@
   .plantilla-form__button {
     display: inline-block;
     margin: 5px;
+    text-decoration: none;
     padding: 10px 20px;
     background-color: #10223e;
     color: #fff;

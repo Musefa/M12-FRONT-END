@@ -1,6 +1,8 @@
 import Cookies from "js-cookie";
 
-const plantillasURL = "http://localhost:5000/plantillas";
+const API_URL = process.env.REACT_APP_API_URL;
+
+const plantillasURL = `${API_URL}/plantillas`;
 
 export async function getPlantillas() {
   const token = Cookies.get('token');
@@ -14,7 +16,7 @@ export async function getPlantillas() {
 
   if (response.ok) {
     const data = await response.json();
-    return data.docs;
+    return data.list;
   } else {
     let error;
     try {

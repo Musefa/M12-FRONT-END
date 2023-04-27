@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import { getGrups, updateGrup, getUsersList } from "../../services/GrupController";
 import GrupForm from "./GrupForm";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../contexts/UserContext";
 
 function GrupEdit() {
   const [grup, setGrup] = useState(null);
   const [usersList, setUsersList] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+  const { userId, userRole } = useUserContext();
 
   useEffect(() => {
     async function fetchGrup() {
@@ -16,37 +18,43 @@ function GrupEdit() {
         const grups = await getGrups();
         const grupFound = grups.find((g) => g._id === id);
         if (grupFound) {
-          setGrup(grupFound);
+          if (
+            !(userRole === "directiu" || userRole === "administrador" ||
+              (userRole === "administrador" && grupFound.tipus !== "Públic") ||
+              grupFound.creador._id === userId)
+          ) {
+            console.error("No tens permís per a editar aquest grup.");
+            navigate("/");
+          } else {
+            setGrup(grupFound);
+          }
         }
-
         const users = await getUsersList();
         setUsersList(users);
       } catch (error) {
-        console.error("Error fetching grup:", error);
+        console.error("Error cercant grup:", error);
       }
     }
 
     fetchGrup();
-  }, [id]);
+  }, [id, userId, userRole, navigate]);
 
   async function handleSubmit(updatedGrup) {
     try {
       await updateGrup(id, updatedGrup);
-      alert("Grupo actualizado correctamente.");
       navigate("/grups");
     } catch (error) {
-      console.error("Error updating grup:", error);
-      alert("Error al actualizar el grupo.");
+      console.error("Error actualitzant grup:", error);
     }
   }
 
   return (
-    <div>
-      <h2>Editar grupo</h2>
+    <div className="grup-page-container">
+      <h2 className="grup-form-title">EDITAR GRUPO</h2>
       {grup ? (
         <GrupForm onSubmit={handleSubmit} initialGrup={grup} usersList={usersList} />
       ) : (
-        <p>Cargando grupo...</p>
+        <p>Carregant grup...</p>
       )}
     </div>
   );

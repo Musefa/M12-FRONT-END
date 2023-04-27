@@ -8,18 +8,16 @@ function PlantillaDelete({ plantillaId, onUpdate }) {
   const navigate = useNavigate();
 
   async function handleDelete() {
-    if (confirmation === 'borrar') {
+    if (confirmation === 'esborrar') {
       try {
         await deletePlantilla(plantillaId);
-        alert('Plantilla eliminada correctamente.');
-        onUpdate(); // Llama a la función de actualización
+        onUpdate();
         navigate('/plantillas');
       } catch (error) {
-        console.error('Error al eliminar la plantilla:', error);
-        alert('Error al eliminar la plantilla.');
+        console.error('Error en eliminar la plantilla:', error);
       }
     } else {
-      alert('Por favor, introduce la palabra "borrar" para confirmar la eliminación.');
+      console.error('Por favor, introduce la palabra "borrar" para confirmar la eliminación.');
     }
   }
 
@@ -36,14 +34,14 @@ function PlantillaDelete({ plantillaId, onUpdate }) {
       {showConfirmation && (
         <input
           type="text"
-          placeholder="Escribe 'borrar' para confirmar"
+          placeholder="Escriu 'esborrar' per confirmar"
           value={confirmation}
           onChange={(e) => setConfirmation(e.target.value)}
           className="plantilla-delete__confirmation"
         />
       )}
       <button onClick={handleButtonClick} className="plantilla-delete__button">
-        {showConfirmation ? 'Eliminar definitivamente' : 'Eliminar plantilla'}
+        {showConfirmation ? 'Eliminar definitivament' : 'Eliminar plantilla'}
       </button>
     </div>
   );

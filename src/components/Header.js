@@ -12,7 +12,7 @@ import { ReactComponent as ConvocatoriaIcon } from "../resources/icons/convocato
 import { ReactComponent as PlantillaIcon } from "../resources/icons/plantilla.svg";
 
 export default function Header() {
-  const { userName, setUserName, userRole, setUserRole } = useUserContext();
+  const { userName, setUserName, userRole, setUserRole, userId, setUserId } = useUserContext();
   const navigate = useNavigate();
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
@@ -24,8 +24,10 @@ export default function Header() {
     Cookies.remove("token");
     Cookies.remove("userRole");
     Cookies.remove("userName");
+    Cookies.remove("userId");
     setUserName("");
     setUserRole("");
+    setUserId("");
     navigate("/");
   };
 
@@ -40,44 +42,46 @@ export default function Header() {
               </span>
             </Link>
           </li>
-          {userName && userRole === "administrador" && (
+          {userId && (userRole === "administrador" || userRole === "professor" || userRole === "directiu") && (
             <>
-              <li className="admin-link">
-                <span className="icon">
-                  <PlantillaIcon />
-                </span>
-                <Link to="/plantillas">Plantillas</Link>
-              </li>
+              {(userRole === "administrador" || userRole === "directiu") && (
+                <li className="admin-link">
+                  <span className="icon">
+                    <PlantillaIcon />
+                  </span>
+                  <Link to="/plantillas">Plantilles</Link>
+                </li>
+              )}
               <li className="admin-link">
                 <span className="icon">
                   <GrupIcon />
                 </span>
-                <Link to="/grups">Grupos</Link>
+                <Link to="/grups">Grups</Link>
               </li>
               <li className="admin-link">
                 <span className="icon">
                   <ConvocatoriaIcon />
                 </span>
-                <Link to="/convocatorias">Convocatorias</Link>
+                <Link to="/convocatorias">Convocatòries</Link>
               </li>
               <li className="admin-link">
                 <span className="icon">
                   <ActaIcon />
                 </span>
-                <Link to="/actas">Actas</Link>
+                <Link to="/actas">Actes</Link>
               </li>
               <li className="admin-link">
                 <span className="icon">
                   <AcordIcon />
                 </span>
-                <Link to="/acuerdos">Acuerdos</Link>
+                <Link to="/acords">Acords</Link>
               </li>
             </>
           )}
           {!userName && (
             <li>
               <Link to="/auth/login">
-                Iniciar sesión
+                Iniciar sessió
               </Link>
             </li>
           )}
@@ -91,11 +95,16 @@ export default function Header() {
               </span>
               {isProfileDropdownOpen && (
                 <ul className="dropdown-menu">
+                  {(userRole === "administrador") && (
+                    <li>
+                      <Link to="/admin/panel">Panell d'administrador</Link>
+                    </li>
+                  )}
                   <li>
-                    <Link to="/edit-profile">Perfil</Link>
+                    <Link to={`/user/edit/${userId}`}>Perfil</Link>
                   </li>
                   <li>
-                    <button onClick={handleLogout}>Salir</button>
+                    <button onClick={handleLogout}>Sortir</button>
                   </li>
                 </ul>
               )}
@@ -105,4 +114,4 @@ export default function Header() {
       </nav>
     </header>
   );
-}
+}              

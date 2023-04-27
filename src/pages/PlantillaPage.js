@@ -3,28 +3,29 @@ import PlantillaList from "../components/Plantilles/PlantillaList";
 import PlantillaForm from "../components/Plantilles/PlantillaForm";
 import { createPlantilla } from "../services/PlantillaController";
 import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "../contexts/UserContext";
 import "../styles/PlantillaPage.css";
 
 function PlantillaCreate() {
+  const { userId } = useUserContext();
+
   const navigate = useNavigate();
 
   async function handleCreate(plantilla) {
     try {
       await createPlantilla(plantilla);
-      alert("Plantilla creada correctamente.");
       navigate("/plantillas");
     } catch (error) {
-      console.error("Error creating plantilla:", error);
-      alert("Error al crear la plantilla.");
+      console.error("Error creant la plantilla:", error);
     }
   }
 
   return (
     <div className="plantilla-form-container">
-      <h1 className="plantilla-form-title">Crear nueva plantilla</h1>
-      <PlantillaForm onSubmit={handleCreate} />
+      <h1 className="plantilla-form-title">NOVA PLANTILLA</h1>
+      <PlantillaForm onSubmit={handleCreate} userId={userId} />
       <Link to="/plantillas" className="plantilla-form-link">
-        Volver a la lista de plantillas
+        Tornar a la llista de plantilles
       </Link>
     </div>
   );
@@ -33,9 +34,9 @@ function PlantillaCreate() {
 function PlantillaPage() {
   return (
     <div className="plantilla-page-container">
-      <h1 className="plantilla-page-title">Página de plantillas</h1>
+      <h1 className="plantilla-page-title">PLANTILLES</h1>
       <Link to="/plantillas/create" className="plantilla-page-link">
-        Crear nueva plantilla
+        Nova plantilla
       </Link>
       <PlantillaList />
     </div>
