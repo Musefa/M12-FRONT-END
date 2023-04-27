@@ -5,6 +5,7 @@ import { getUsersList } from "../../services/GrupController";
 import UserInfoForm from "./UserForm";
 import PasswordChangeForm from "./PasswordChangeForm";
 import { useNavigate } from "react-router-dom";
+import "../../styles/UserEditPage.css";
 
 function UserEdit() {
   const [user, setUser] = useState(null);
@@ -46,8 +47,8 @@ function UserEdit() {
   }
 
   return (
-    <div className="user-form-container">
-      <h2>Editar l'informació de l'usuari</h2>
+    <div className="useredit-page-container">
+      <h2 className="useredit-page-title">Editar l'informació de l'usuari</h2>
       {user ? (
         <>
           <UserInfoForm onSubmit={handleUserInfoSubmit} initialUser={user} />
