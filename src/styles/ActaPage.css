@@ -1,153 +1,219 @@
 .acta-page-container {
-    max-width: 650px;
-    margin: 20px auto 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .acta-page-title {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  .acta-page-link {
-    display: block;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #10223e;
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 1.2em;
-  }
+  max-width: 900px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
 
-  .acta-list-style {
-    list-style:none;
-  }
-  
-  .acta-page-link:hover {
-    background-color: #0b182d;
-  }
-  
-  .acta-page-link:active {
-    background-color: #081623;
-  }
-  
-  .acta-form-container {
-    max-width: 600px;
-    margin: 20px auto 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .acta-form-title {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  .acta-form-link {
-    display: block;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #10223e;
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 1.2em;
-  }
-  
-  .acta-form-link:hover {
-    background-color: #0b182d;
-  }
-  
-  .acta-form-link:active {
-    background-color: #081623;
-  }
-  
-  .acta-form__label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .acta-form__subtitle {
-    margin-top: 20px;
-    font-size: 1.2em;
-  }
-  
-  .acta-form__item {
-    margin-bottom: 10px;
-    list-style: none;
-  }
-  
-  .acta-form__input {
-    display: block;
-    width: 95%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius:10px;
-    font-size: 1em;
-    margin-bottom: 10px;
-  }
-  
-  .acta-form__button {
-    display: inline-block;
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #10223e;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  .acta-form__button:hover {
-    background-color: #0b182d;
-  }
-  
-  .acta-form__button:active {
-    background-color: #081623;
-  }
-  
-  .acta-delete {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .acta-delete__confirmation {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1em;
-  }
-  
-  .acta-delete__button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .acta-delete__button:hover {
-    background-color: #e53935;
-  }
-  
-  .acta-delete__button:active {
-    background-color: #c62828;
-  }
+.acta-page-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.acta-page-link {
+  display: block;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.acta-list-style {
+  list-style: none;
+}
+
+.acta-page-link:hover {
+  background-color: #0b182d;
+}
+
+.acta-page-link:active {
+  background-color: #081623;
+}
+
+.acta-form-container {
+  max-width: 600px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.acta-form-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.acta-form-link {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.acta-form-link:hover {
+  background-color: #0b182d;
+}
+
+.acta-form-link:active {
+  background-color: #081623;
+}
+
+.acta-form__label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.acta-form__subtitle {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.acta-form__item {
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+.acta-form__input {
+  display: block;
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.acta-form__button {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #10223e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.acta-form__button:hover {
+  background-color: #0b182d;
+}
+
+.acta-form__button:active {
+  background-color: #081623;
+}
+
+.acta-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.acta-delete__confirmation {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+.acta-delete__button {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.acta-delete__button:hover {
+  background-color: #e53935;
+}
+
+.acta-delete__button:active {
+  background-color: #c62828;
+}
+
+.acta-select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  margin-bottom: 10px;
+  background-color: #fff;
+  color: #555;
+  cursor: pointer;
+}
+
+.acta-select option {
+  background-color: #fff;
+  color: #555;
+}
+
+.acta-select:hover,
+.acta-select:focus {
+  border-color: #10223e;
+}
+
+.acta-select:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px #10223e;
+}
+
+.acta-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.acta-table th,
+.acta-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.acta-table th {
+  background-color: #362f4b;
+  color: white;
+  font-weight: bold;
+}
+
+.acta-table td li {
+  margin: 0;
+  padding: 0;
+}
+
+.acta-table td ul {
+  margin: 0;
+  padding: 0;
+}
+
+.acta-table tr:nth-child(even) {
+  background-color: #f6f6f6;
+}
+
+.acta-table tr:nth-child(odd) {
+  background-color: white;
+}

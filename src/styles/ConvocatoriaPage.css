@@ -1,151 +1,187 @@
 .convocatoria-page-container {
-    max-width: 1000px;
-    margin: 20px auto 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .convocatoria-page-title {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  .convocatoria-page-link {
-    display: block;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #10223e;
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 1.2em;
-  }
-  
-  .convocatoria-page-link:hover {
-    background-color: #0b182d;
-  }
-  
-  .convocatoria-page-link:active {
-    background-color: #081623;
-  }
-  
-  .convocatoria-form-container {
-    max-width: 600px;
-    margin: 20px auto 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  
-  .convocatoria-form-title {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  .convocatoria-form-link {
-    display: block;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #10223e;
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 1.2em;
-  }
-  
-  .convocatoria-form-link:hover {
-    background-color: #0b182d;
-  }
-  
-  .convocatoria-form-link:active {
-    background-color: #081623;
-  }
-  
-  .convocatoria-form__label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .convocatoria-form__subtitle {
-    margin-top: 20px;
-    font-size: 1.2em;
-  }
-  
-  .convocatoria-form__item {
-    list-style: none;
-  }
-  
-  .convocatoria-form__input {
-    display: block;
-    width: 95%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius:10px;
-    font-size: 1em;
-    margin-bottom: 10px;
-  }
-  
-  .convocatoria-form__button {
-    display: inline-block;
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #10223e;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  .convocatoria-form__button:hover {
-    background-color: #0b182d;
-  }
-  
-  .convocatoria-form__button:active {
-    background-color: #081623;
-  }
-  
-  .convocatoria-delete {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .convocatoria-delete__confirmation {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1em;
-  }
-  
-  .convocatoria-delete__button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .convocatoria-delete__button:hover {
-    background-color: #e53935;
-  }
-  
-  .convocatoria-delete__button:active {
-    background-color: #c62828;
-  }
-  
+  max-width: 1200px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.convocatoria-page-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.convocatoria-page-link {
+  display: block;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.convocatoria-page-link:hover {
+  background-color: #0b182d;
+}
+
+.convocatoria-page-link:active {
+  background-color: #081623;
+}
+
+.convocatoria-form-container {
+  max-width: 600px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.convocatoria-form-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.convocatoria-form-link {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.convocatoria-form-link:hover {
+  background-color: #0b182d;
+}
+
+.convocatoria-form-link:active {
+  background-color: #081623;
+}
+
+.convocatoria-form__label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.convocatoria-form__subtitle {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.convocatoria-form__item {
+  list-style: none;
+}
+
+.convocatoria-form__input {
+  display: block;
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.convocatoria-form__button {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #10223e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.convocatoria-form__button:hover {
+  background-color: #0b182d;
+}
+
+.convocatoria-form__button:active {
+  background-color: #081623;
+}
+
+.convocatoria-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.convocatoria-delete__confirmation {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+.convocatoria-delete__button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.convocatoria-delete__button:hover {
+  background-color: #e53935;
+}
+
+.convocatoria-delete__button:active {
+  background-color: #c62828;
+}
+
+.convocatoria-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.convocatoria-table th,
+.convocatoria-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.convocatoria-table th {
+  background-color: #362f4b;
+  color: white;
+  font-weight: bold;
+}
+
+.convocatoria-table td li {
+  margin: 0;
+  padding: 0;
+}
+
+.convocatoria-table td ul {
+  margin: 0;
+  padding: 0;
+}
+
+.convocatoria-table tr:nth-child(even) {
+  background-color: #f6f6f6;
+}
+
+.convocatoria-table tr:nth-child(odd) {
+  background-color: white;
+}

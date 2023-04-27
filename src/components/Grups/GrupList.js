@@ -52,11 +52,11 @@ function GrupList() {
               Tipus: <small>{grup.tipus}</small>
               <br />
               <small>Membres:</small>
-              <ul>
+              <ul className="grup-form___item">
                 {grup.membres.map((membre) => {
                   const user = getUserById(membre._id);
                   return (
-                    <li className="grup-form__item" key={membre._id}>{user ? user.nom : 'Usuari desconegut'}</li>
+                    <li key={membre._id}>{user ? user.nom : 'Usuari desconegut'}</li>
                   );
                 })}
               </ul>

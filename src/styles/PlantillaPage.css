@@ -1,5 +1,5 @@
 .plantilla-page-container {
-    max-width: 800px;
+    max-width: 500px;
     margin: 20px auto 0;
     padding: 20px;
     background-color: #fff;
@@ -80,6 +80,7 @@
   .plantilla-form__item {
     margin-bottom: 10px;
     list-style: none;
+    padding: 0;
   }
   
   .plantilla-form__input {
