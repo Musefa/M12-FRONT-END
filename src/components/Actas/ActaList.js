@@ -110,12 +110,12 @@ export default function ActaList() {
 
   return (
     <div>
-      <select value={filter} onChange={handleFilterChange}>
+      <select value={filter} onChange={handleFilterChange} className="acta-select">
         <option value="sin_filtro">Sin filtro</option>
         <option value="Oberta">Oberta</option>
         <option value="Tancada">Tancada</option>
       </select>
-      <table>
+      <table className="acta-table">
         <thead>
           <tr>
             <th>Nom </th>
@@ -154,18 +154,18 @@ export default function ActaList() {
                 {(userRole === "administrador" || acta.creador._id === userId) && (
                   <>
                     <Link
-                      className="plantilla-page-link"
+                      className="acta-page-link"
                       to={`/actas/edit/${acta._id}`}
                     >
                       Editar
                     </Link>{" "}
                     <ActaDelete
-                      className="plantilla-delete"
+                      className="acta-delete"
                       actaId={acta._id}
                       onUpdate={fetchActas}
                     />
                     <button
-                      className="plantilla-page-link"
+                      className="acta-page-link"
                       onClick={() => handleDownloadPDF(acta, userName)}
                     >
                       Descargar PDF

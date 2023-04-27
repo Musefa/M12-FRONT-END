@@ -22,7 +22,7 @@ function PlantillaList() {
   return (
     <ul className="plantilla-form__item">
       {plantillas.map((plantilla) => (
-        <li key={plantilla._id}>
+        <li className="plantilla-form__item" key={plantilla._id}>
           Nom: {plantilla.nom}<br />
           Punts del dia:<br /> {plantilla.puntsOrdreDia.map((punt) => (
             <>

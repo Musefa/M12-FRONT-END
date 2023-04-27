@@ -38,7 +38,7 @@ export default function AcordList() {
 
   return (
     <div>
-      <table>
+      <table className="acord-table">
         <thead>
           <tr>
             <th>Nom</th>
