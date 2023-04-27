@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useUserContext } from "../../contexts/UserContext"; // Importar useUserContext
+import { useUserContext } from "../../contexts/UserContext";
+import Select from "react-select";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -31,6 +32,31 @@ function ConvocatoriaForm({
     ...initialConvocatoria,
     data: initialConvocatoria.data ? formatDate(initialConvocatoria.data) : "",
   });
+  const [errors, setErrors] = useState({ nom: "", lloc: "", puntsOrdreDia: [] });
+
+  function validateNom(value) {
+    return value.length >= 3 ? "" : "El nom ha de tenir com a mínim 3 lletres";
+  }
+
+  function validateLloc(value) {
+    return value.length >= 3 ? "" : "El lloc ha de tenir com a mínim 3 lletres";
+  }
+
+  function validatePuntsOrdreDia(value) {
+    return value.length >= 4 ? "" : "El punt ha de tenir com a mínim 4 lletres";
+  }
+
+  function handleChangeNom(e) {
+    const value = e.target.value;
+    setConvocatoria({ ...convocatoria, nom: value });
+    setErrors({ ...errors, nom: validateNom(value) });
+  }
+
+  function handleChangeLloc(e) {
+    const value = e.target.value;
+    setConvocatoria({ ...convocatoria, lloc: value });
+    setErrors({ ...errors, lloc: validateLloc(value) });
+  }
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -38,9 +64,19 @@ function ConvocatoriaForm({
   }
 
   function handleChangePuntsOrdreDia(e, index) {
+    const value = e.target.value;
     const newPuntsOrdreDia = [...convocatoria.puntsOrdreDia];
-    newPuntsOrdreDia[index] = e.target.value;
+    const newErrorsPuntsOrdreDia = [...errors.puntsOrdreDia];
+
+    newPuntsOrdreDia[index] = value;
+    if (typeof newErrorsPuntsOrdreDia[index] === "undefined") {
+      newErrorsPuntsOrdreDia.push(validatePuntsOrdreDia(value));
+    } else {
+      newErrorsPuntsOrdreDia[index] = validatePuntsOrdreDia(value);
+    }
+
     setConvocatoria({ ...convocatoria, puntsOrdreDia: newPuntsOrdreDia });
+    setErrors({ ...errors, puntsOrdreDia: newErrorsPuntsOrdreDia });
   }
 
   function handleAddPuntOrdreDia() {
@@ -57,12 +93,12 @@ function ConvocatoriaForm({
     });
   }
 
-  function handleChangeConvocats(e) {
-    const selectedOptions = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setConvocatoria({ ...convocatoria, convocats: selectedOptions });
+  function handleChangeConvocats(selectedOptions) {
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setConvocatoria((prevState) => ({
+      ...prevState,
+      convocats: selectedValues,
+    }));
   }
 
   function handleSubmit(e) {
@@ -70,21 +106,30 @@ function ConvocatoriaForm({
     onSubmit({ ...convocatoria, creador: userId });
   }
 
+  function hasErrors() {
+    if (errors.nom || !convocatoria.nom || errors.lloc || !convocatoria.lloc) return true;
+    for (let i = 0; i < convocatoria.puntsOrdreDia.length; i++) {
+      if (errors.puntsOrdreDia[i] || !convocatoria.puntsOrdreDia[i]) return true;
+    }
+    return false;
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="plantilla-form-container">
+    <form onSubmit={handleSubmit}>
       <label>
         Nom:
         <input
           type="text"
           name="nom"
           value={convocatoria.nom}
-          onChange={handleChange}
+          onChange={handleChangeNom}
           required
           className="plantilla-form__input"
         />
+        {errors.nom && <p className="error">{errors.nom}</p>}
       </label>
       <label>
-        Fecha:
+        Data:
         <input
           type="date"
           name="data"
@@ -95,7 +140,7 @@ function ConvocatoriaForm({
         />
       </label>
       <label>
-        Hora de inicio:
+        Hora d'inici:
         <input
           type="time"
           name="horaInici"
@@ -106,7 +151,7 @@ function ConvocatoriaForm({
         />
       </label>
       <label>
-        Duración:
+        Duració:
         <input
           type="number"
           name="durada"
@@ -117,18 +162,19 @@ function ConvocatoriaForm({
         />
       </label>
       <label>
-        Lugar:
+        Lloc:
         <input
           type="text"
           name="lloc"
           value={convocatoria.lloc}
-          onChange={handleChange}
+          onChange={handleChangeLloc}
           required
           className="plantilla-form__input"
         />
+        {errors.lloc && <p className="error">{errors.lloc}</p>}
       </label>
       <label>
-        <h3 className="plantilla-form__subtitle">Puntos del orden del día</h3>
+        <h3 className="plantilla-form__subtitle">Punts del dia</h3>
         {convocatoria.puntsOrdreDia.map((punt, index) => (
           <div key={index}>
             <input
@@ -138,6 +184,7 @@ function ConvocatoriaForm({
               required
               className="plantilla-form__input"
             />
+            {errors.puntsOrdreDia[index] && <p className="error">{errors.puntsOrdreDia[index]}</p>}
             <button
               type="button"
               onClick={() => handleRemovePuntOrdreDia(index)}
@@ -152,30 +199,23 @@ function ConvocatoriaForm({
           onClick={handleAddPuntOrdreDia}
           className="plantilla-form__button"
         >
-          Añadir punto del orden del día
+          Afegir punt d'ordre del día
         </button>
       </label>
       <label>
-        Grupos convocados:
-        <select
-          multiple
+        Grups convocats:
+        <Select
+          isMulti
           name="convocats"
-          value={convocatoria.convocats}
+          options={grupsList.map(grup => ({ value: grup._id, label: grup.nom }))}
+          value={convocatoria.convocats.map(convocat => {
+            const grup = grupsList.find(grup => grup._id === convocat);
+            return grup ? { value: convocat, label: grup.nom } : null;
+          }).filter(convocat => convocat)}
           onChange={handleChangeConvocats}
-          required
           className="plantilla-form__input"
-        >
-          {grupsList.map((grup) => (
-            <option
-              key={grup._id}
-              value={grup._id}
-              selected={convocatoria.convocats.includes(grup._id)}
-              className="plantilla-form__item"
-            >
-              {grup.nom}
-            </option>
-          ))}
-        </select>
+          required
+        />
       </label>
       <label>
         Plantilla:
@@ -219,7 +259,7 @@ function ConvocatoriaForm({
           ))}
         </select>
       </label>
-      <button type="submit" className="plantilla-form__button">
+      <button type="submit" className="plantilla-form__button" disabled={hasErrors()}>
         Guardar
       </button>
     </form>

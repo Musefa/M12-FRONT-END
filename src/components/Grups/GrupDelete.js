@@ -8,18 +8,16 @@ function GrupDelete({ grupId, onUpdate }) {
   const navigate = useNavigate();
 
   async function handleDelete() {
-    if (confirmation === 'borrar') {
+    if (confirmation === 'esborrar') {
       try {
         await deleteGrup(grupId);
-        alert('Grupo eliminado correctamente.');
         onUpdate();
         navigate('/grups');
       } catch (error) {
         console.error('Error al eliminar el grupo:', error);
-        alert('Error al eliminar el grupo.');
       }
     } else {
-      alert('Por favor, introduce la palabra "borrar" para confirmar la eliminación.');
+      console.error("Si us plau, introdueix la paraula 'esborrar' per a confirmar l'eliminació.");
     }
   }
 
@@ -32,18 +30,18 @@ function GrupDelete({ grupId, onUpdate }) {
   }
 
   return (
-    <div className="plantilla-delete">
+    <div className="grup-delete">
       {showConfirmation && (
         <input
           type="text"
-          placeholder="Escribe 'borrar' para confirmar"
+          placeholder="Escriu 'esborrar' per a confirmar"
           value={confirmation}
           onChange={(e) => setConfirmation(e.target.value)}
-          className="plantilla-delete__confirmation"
+          className="grup-delete__confirmation"
         />
       )}
-      <button onClick={handleButtonClick} className="plantilla-delete__button">
-        {showConfirmation ? 'Eliminar definitivamente' : 'Eliminar grupo'}
+      <button onClick={handleButtonClick} className="grup-delete__button">
+        {showConfirmation ? 'Eliminar definitivament' : 'Eliminar grup'}
       </button>
     </div>
   );

@@ -15,7 +15,7 @@ function PlantillaList() {
       const plantillas = await getPlantillas();
       setPlantillas(plantillas);
     } catch (error) {
-      console.error('Error fetching plantillas:', error);
+      console.error('Error cercant plantilles:', error);
     }
   }
 
@@ -24,13 +24,20 @@ function PlantillaList() {
       {plantillas.map((plantilla) => (
         <li key={plantilla._id}>
           Nom: {plantilla.nom}<br />
+          Punts del dia:<br /> {plantilla.puntsOrdreDia.map((punt) => (
+            <>
+              <span>{punt}</span>
+              <br />
+            </>
+          ))}
           Creador: {plantilla.creador.nom}<br />
-          <Link className="plantilla-form-editar" to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
+          <Link className="plantilla-form__button" to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
           <PlantillaDelete plantillaId={plantilla._id} onUpdate={fetchPlantillas} />
         </li>
       ))}
     </ul>
   );
+
 }
 
 export default PlantillaList;

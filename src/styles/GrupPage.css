@@ -1,5 +1,5 @@
-.plantilla-page-container {
-    max-width: 800px;
+.grup-page-container {
+    max-width: 500px;
     margin: 20px auto 0;
     padding: 20px;
     background-color: #fff;
@@ -7,12 +7,12 @@
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   }
   
-  .plantilla-page-title {
+  .grup-page-title {
     margin-bottom: 20px;
     font-size: 2em;
   }
   
-  .plantilla-page-link {
+  .grup-page-link {
     display: block;
     margin-bottom: 20px;
     padding: 10px;
@@ -24,16 +24,16 @@
     font-size: 1.2em;
   }
   
-  .plantilla-page-link:hover {
+  .grup-page-link:hover {
     background-color: #0b182d;
   }
   
-  .plantilla-page-link:active {
+  .grup-page-link:active {
     background-color: #081623;
   }
   
-  .plantilla-form-container {
-    max-width: 600px;
+  .grup-form-container {
+    max-width: 500px;
     margin: 20px auto 0;
     padding: 20px;
     background-color: #fff;
@@ -43,12 +43,12 @@
   }
   
   
-  .plantilla-form-title {
+  .grup-form-title {
     margin-bottom: 20px;
     font-size: 2em;
   }
   
-  .plantilla-form-link {
+  .grup-form-link {
     display: block;
     margin-top: 20px;
     padding: 10px;
@@ -60,30 +60,30 @@
     font-size: 1.2em;
   }
   
-  .plantilla-form-link:hover {
+  .grup-form-link:hover {
     background-color: #0b182d;
   }
   
-  .plantilla-form-link:active {
+  .grup-form-link:active {
     background-color: #081623;
   }
   
-  .plantilla-form__label {
+  .grup-form__label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
   }
   
-  .plantilla-form__subtitle {
+  .grup-form__subtitle {
     margin-top: 20px;
     font-size: 1.2em;
   }
   
-  .plantilla-form__item {
+  .grup-form__item {
     list-style: none;
   }
   
-  .plantilla-form__input {
+  .grup-form__input {
     display: block;
     width: 95%;
     padding: 10px;
@@ -93,7 +93,7 @@
     margin-bottom: 10px;
   }
   
-  .plantilla-form__button {
+  .grup-form__button {
     display: inline-block;
     margin: 5px;
     padding: 10px 20px;
@@ -106,22 +106,22 @@
     text-decoration: none;
   }
   
-  .plantilla-form__button:hover {
+  .grup-form__button:hover {
     background-color: #0b182d;
   }
   
-  .plantilla-form__button:active {
+  .grup-form__button:active {
     background-color: #081623;
   }
   
-  .plantilla-delete {
+  .grup-delete {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
   
-  .plantilla-delete__confirmation {
+  .grup-delete__confirmation {
     margin-top: 10px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -129,7 +129,7 @@
     font-size: 1em;
   }
   
-  .plantilla-delete__button {
+  .grup-delete__button {
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #f44336;
@@ -141,11 +141,11 @@
     transition: background-color 0.3s ease-in-out;
   }
   
-  .plantilla-delete__button:hover {
+  .grup-delete__button:hover {
     background-color: #e53935;
   }
   
-  .plantilla-delete__button:active {
+  .grup-delete__button:active {
     background-color: #c62828;
   }
   

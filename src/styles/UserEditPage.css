@@ -1,0 +1,149 @@
+.useredit-page-container {
+  max-width: 500px;
+  margin: 20px auto 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.useredit-page-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.useredit-page-link {
+  display: block;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.useredit-page-link:hover {
+  background-color: #0b182d;
+}
+
+.useredit-page-link:active {
+  background-color: #081623;
+}
+
+.useredit-form-container {
+  max-width: 600px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.useredit-form-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.useredit-form-link {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.useredit-form-link:hover {
+  background-color: #0b182d;
+}
+
+.useredit-form-link:active {
+  background-color: #081623;
+}
+
+.useredit-form__label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.useredit-form__subtitle {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.useredit-form__item {
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+.useredit-form__input {
+  display: block;
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius:10px;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.useredit-form__button {
+  display: inline-block;
+  margin: 5px;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #10223e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.useredit-form__button:hover {
+  background-color: #0b182d;
+}
+
+.useredit-form__button:active {
+  background-color: #081623;
+}
+
+.useredit-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.useredit-delete__confirmation {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+.useredit-delete__button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.useredit-delete__button:hover {
+  background-color: #e53935;
+}
+
+.useredit-delete__button:active {
+  background-color: #c62828;
+}

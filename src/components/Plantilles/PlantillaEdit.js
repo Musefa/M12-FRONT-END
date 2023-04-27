@@ -19,7 +19,7 @@ function PlantillaEdit() {
           setPlantilla(plantillaFound);
         }
       } catch (error) {
-        console.error("Error fetching plantilla:", error);
+        console.error("Error cercant plantilla:", error);
       }
     }
 
@@ -29,21 +29,19 @@ function PlantillaEdit() {
   async function handleSubmit(updatedPlantilla) {
     try {
       await updatePlantilla(id, updatedPlantilla);
-      alert("Plantilla actualizada correctamente.");
       navigate("/plantillas");
     } catch (error) {
-      console.error("Error updating plantilla:", error);
-      alert("Error al actualizar la plantilla.");
+      console.error("Error actualitzant plantilla:", error);
     }
   }
 
   return (
     <div className="plantilla-form-container">
-      <h2>Editar plantilla</h2>
+      <h2>EDITAR PLANTILLA</h2>
       {plantilla ? (
         <PlantillaForm onSubmit={handleSubmit} initialPlantilla={plantilla} />
       ) : (
-        <p>Cargando plantilla...</p>
+        <p>Carregant plantilla...</p>
       )}
     </div>
   );

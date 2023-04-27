@@ -5,10 +5,10 @@ import "../styles/GrupPage.css";
 
 function GrupPage() {
   return (
-    <div className="plantilla-page-container">
-      <h1 className="plantilla-page-title">Página de grupos</h1>
-      <Link to="/grups/create" className="plantilla-page-link">
-        Crear nuevo grupo
+    <div className="grup-page-container">
+      <h1 className="grup-page-title">GRUPS</h1>
+      <Link to="/grups/create" className="grup-page-link">
+        Nou grup
       </Link>
       <GrupList />
     </div>

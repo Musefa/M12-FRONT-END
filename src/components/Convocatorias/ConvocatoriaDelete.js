@@ -8,19 +8,17 @@ function ConvocatoriaDelete({ convocatoriaId, onUpdate, className }) {
   const navigate = useNavigate();
 
   async function handleDelete() {
-    if (confirmation === "borrar") {
+    if (confirmation === "esborrar") {
       try {
         await deleteConvocatoria(convocatoriaId);
-        alert("Convocatoria eliminada correctamente.");
         onUpdate();
         navigate("/convocatorias");
       } catch (error) {
-        console.error("Error al eliminar la convocatoria:", error);
-        alert("Error al eliminar la convocatoria.");
+        console.error("Error al eliminar la convocatòria:", error);
       }
     } else {
-      alert(
-        'Por favor, introduce la palabra "borrar" para confirmar la eliminación.'
+      console.error(
+        "Si us plau, introdueix la paraula 'esborrar' per a confirmar l'eliminació."
       );
     }
   }
@@ -38,7 +36,7 @@ function ConvocatoriaDelete({ convocatoriaId, onUpdate, className }) {
       {showConfirmation && (
         <input
           type="text"
-          placeholder="Escribe 'borrar' para confirmar"
+          placeholder="Escriu 'esborrar' per a confirmar"
           value={confirmation}
           onChange={(e) => setConfirmation(e.target.value)}
           className={`${className}__confirmation`}
@@ -46,8 +44,8 @@ function ConvocatoriaDelete({ convocatoriaId, onUpdate, className }) {
       )}
       <button onClick={handleButtonClick} className={`${className}__button`}>
         {showConfirmation
-          ? "Eliminar definitivamente"
-          : "Eliminar convocatoria"}
+          ? "Eliminar definitivament"
+          : "Eliminar convocatòria"}
       </button>
     </div>
   );

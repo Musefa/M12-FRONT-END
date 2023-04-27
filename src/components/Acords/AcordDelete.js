@@ -8,19 +8,17 @@ function AcordDelete({ acordId, onUpdate, className }) {
   const navigate = useNavigate();
 
   async function handleDelete() {
-    if (confirmation === "borrar") {
+    if (confirmation === "esborrar") {
       try {
         await deleteAcord(acordId);
-        alert("Acord eliminadaocorrectamente.");
         onUpdate();
         navigate("/acords");
       } catch (error) {
-        console.error("Error al eliminar el acuerdo:", error);
-        alert("Error al eliminar el acuerdo.");
+        console.error("Error al eliminar l'acord:", error);
       }
     } else {
-      alert(
-        'Por favor, introduce la palabra "borrar" para confirmar la eliminación.'
+      console.error(
+        "Si us plau, introdueix la paraula 'esborrar' per a confirmar l'eliminació."
       );
     }
   }
@@ -38,7 +36,7 @@ function AcordDelete({ acordId, onUpdate, className }) {
       {showConfirmation && (
         <input
           type="text"
-          placeholder="Escribe 'borrar' para confirmar"
+          placeholder="Escriu 'esborrar' per a confirmar"
           value={confirmation}
           onChange={(e) => setConfirmation(e.target.value)}
           className={`${className}__confirmation`}
@@ -46,8 +44,8 @@ function AcordDelete({ acordId, onUpdate, className }) {
       )}
       <button onClick={handleButtonClick} className={`${className}__button`}>
         {showConfirmation
-          ? "Eliminar definitivamente"
-          : "Eliminar acuerdo"}
+          ? "Eliminar definitivament"
+          : "Eliminar acord"}
       </button>
     </div>
   );

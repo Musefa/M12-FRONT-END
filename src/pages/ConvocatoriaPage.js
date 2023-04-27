@@ -5,10 +5,10 @@ import "../styles/ConvocatoriaPage.css";
 
 function ConvocatoriaPage() {
   return (
-    <div className="plantilla-page-container">
-      <h1 className="plantilla-page-title">Página de convocatorias</h1>
-      <Link to="/convocatorias/create" className="plantilla-page-link">
-        Crear nueva convocatoria
+    <div className="convocatoria-page-container">
+      <h1 className="convocatoria-page-title">CONVOCATÒRIES</h1>
+      <Link to="/convocatorias/create" className="convocatoria-page-link">
+        Nova convocatòria
       </Link>
       <ConvocatoriaList />
     </div>

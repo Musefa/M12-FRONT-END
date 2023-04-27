@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useUserContext } from "../../contexts/UserContext";
+import ReactSelect from "react-select";
 
 function ActaForm({
   onSubmit,
@@ -7,24 +8,65 @@ function ActaForm({
     estat: "",
     descripcions: [""],
     convocatoria: "",
-    acords: [""],
-    creador: null
+    acords: [],
+    creador: null,
+    assistents: [],
   },
   convocatoriaList = [],
   acordList = [],
 }) {
   const { userId } = useUserContext();
   const [acta, setActa] = useState(initialActa);
+  const [errors, setErrors] = useState({ nom: "", descripcions: [] });
+
+  function validateNom(value) {
+    return value.length >= 3 ? "" : "El nom ha de tenir com a mínim 3 lletres";
+  }
+
+  function validateDescripcions(value) {
+    return value.length >= 10 ? "" : "La descripció ha de tenir com a mínim 10 lletres";
+  }
+
+  const [selectedAcordIds, setSelectedAcordIds] = useState(initialActa.acords.map(acord => acord._id));
+  console.log(selectedAcordIds);
+
+  const isUpdateMode = initialActa._id !== undefined;
 
   function handleChange(e) {
     const { name, value } = e.target;
     setActa((prevState) => ({ ...prevState, [name]: value }));
   }
 
+  function handleChangeNom(e) {
+    const value = e.target.value;
+    setActa({ ...acta, nom: value });
+    setErrors({ ...errors, nom: validateNom(value) });
+  }
+
+  function handleChangeAssistentsSelect(selectedOptions) {
+    const updatedAssistents = selectedOptions.map(option => {
+      const user = acta.convocatoria.convocats
+        .flatMap(grup => grup.membres)
+        .find(user => user._id === option.value);
+      return user;
+    });
+    setActa({ ...acta, assistents: updatedAssistents });
+  }
+
   function handleChangeDescripcions(e, index) {
+    const value = e.target.value;
     const newDescripcions = [...acta.descripcions];
-    newDescripcions[index] = e.target.value;
+    const newErrorsDescripcions = [...errors.descripcions];
+
+    newDescripcions[index] = value;
+    if (typeof newErrorsDescripcions[index] === "undefined") {
+      newErrorsDescripcions.push(validateDescripcions(value));
+    } else {
+      newErrorsDescripcions[index] = validateDescripcions(value);
+    }
+
     setActa({ ...acta, descripcions: newDescripcions });
+    setErrors({ ...errors, descripcions: newErrorsDescripcions });
   }
 
   function handleAddDescripcions() {
@@ -38,29 +80,53 @@ function ActaForm({
     });
   }
 
+
+  function handleChangeAcordsSelect(selectedOptions) {
+    const newSelectedAcordIds = selectedOptions.map(option => option.value);
+    setSelectedAcordIds(newSelectedAcordIds);
+
+    const updatedAcords = newSelectedAcordIds.map(id => acordList.find(acord => acord._id === id));
+    setActa({ ...acta, acords: updatedAcords });
+  }
+
+  function handleChangeConvocatoria(e) {
+    const selectedConvocatoriaId = e.target.value;
+    const updatedConvocatoria = convocatoriaList.find(convocatoria => convocatoria._id === selectedConvocatoriaId);
+    setActa({ ...acta, convocatoria: updatedConvocatoria });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     onSubmit({ ...acta, creador: userId });
   }
 
+  function hasErrors() {
+    if (errors.nom || !acta.nom) return true;
+    for (let i = 0; i < acta.descripcions.length; i++) {
+      if (errors.descripcions[i] || !acta.descripcions[i]) return true;
+    }
+    return false;
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="acta-form-container">
+    <form onSubmit={handleSubmit}>
       <label>
         Nom:
         <input
           type="text"
           name="nom"
           value={acta.nom}
-          onChange={handleChange}
+          onChange={handleChangeNom}
           required
           className="acta-form__input"
         />
+        {errors.nom && <p className="error">{errors.nom}</p>}
       </label>
       <label>
-        Estado:
+        Estat:
         <div>
           <label>
-            Oberta: 
+            Oberta:
             <input
               type="radio"
               name="estat"
@@ -70,17 +136,21 @@ function ActaForm({
               required
             />
           </label>
-          Tancada
-          <label>
-            <input
-              type="radio"
-              name="estat"
-              value="Tancada"
-              checked={acta.estat === "Tancada"}
-              onChange={handleChange}
-              required
-            />
-          </label>
+          {isUpdateMode && (
+            <>
+              Tancada
+              <label>
+                <input
+                  type="radio"
+                  name="estat"
+                  value="Tancada"
+                  checked={acta.estat === "Tancada"}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+            </>
+          )}
         </div>
       </label>
       <label>
@@ -94,6 +164,7 @@ function ActaForm({
               required
               className="acta-form__input"
             />
+            {errors.descripcions[index] && <p className="error">{errors.descripcions[index]}</p>}
             <button
               type="button"
               onClick={() => handleRemoveDescripcions(index)}
@@ -108,62 +179,64 @@ function ActaForm({
           onClick={handleAddDescripcions}
           className="acta-form__button"
         >
-          Añadir descripción
+          Afegir descripció
         </button>
       </label>
       <label>
         Convocatoria:
         <select
           name="convocatoria"
-          value={acta.convocatoria}
-          onChange={handleChange}
+          value={acta.convocatoria._id || ""}
+          onChange={handleChangeConvocatoria}
           required
           className="acta-form__input"
         >
-          <option value="">Selecciona una convocatoria</option>
+          <option value="">Selecciona una convocatòria</option>
           {convocatoriaList.map((convocatoria) => (
             <option
               key={convocatoria._id}
               value={convocatoria._id}
-              selected={acta.convocatoria === convocatoria._id}
             >
-              {convocatoria.lloc}
+              {convocatoria.nom}
             </option>
           ))}
         </select>
       </label>
       <label>
-        Acuerdos:
-        <select
-          multiple
-          name="acords"
-          value={acta.acords}
-          onChange={(e) =>
-            setActa({
-              ...acta,
-              acords: Array.from(
-                e.target.selectedOptions,
-                (option) => option.value),
-            })
-          }
-          required
+        Acords:
+        <ReactSelect
+          isMulti
+          value={acta.acords.map(acord => ({ label: acord.nom, value: acord._id }))}
+          options={acordList.map(acord => ({ label: acord.nom, value: acord._id }))}
+          onChange={handleChangeAcordsSelect}
           className="acta-form__input"
-        >
-          <option value="" disabled>
-            Selecciona acuerdos
-          </option>
-          {acordList.map((acord) => (
-            <option
-              key={acord._id}
-              value={acord._id}
-              selected={acta.acords.includes(acord._id)}
-            >
-              {acord.descripcio}
-            </option>
-          ))}
-        </select>
+        />
       </label>
-      <button type="submit" className="acta-form__submit-button">
+      {isUpdateMode && (
+        <label>
+          Assistents:
+          <ReactSelect
+            isMulti
+            value={acta.assistents.map(assistent => ({
+              label: assistent.nom,
+              value: assistent._id,
+            }))}
+            options={
+              acta.convocatoria
+                ? acta.convocatoria.convocats.flatMap(grup =>
+                  grup.membres.map(user => ({
+                    label: user.nom,
+                    value: user._id,
+                  }))
+                )
+                : []
+            }
+            onChange={handleChangeAssistentsSelect}
+            className="acta-form__input"
+          />
+        </label>
+      )}
+      <button type="submit" className="acta-form__button" disabled={hasErrors()}>
         Guardar
       </button>
     </form>

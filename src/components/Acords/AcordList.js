@@ -28,7 +28,7 @@ export default function AcordList() {
       const filteredAcords = userRole === "administrador" ? acords : filterAcords(acords);
       setAcords(filteredAcords);
     } catch (error) {
-      console.error("Error fetching acords:", error);
+      console.error("Error cercant acords:", error);
     }
   }, [filterAcords, userRole]);
 
@@ -44,10 +44,10 @@ export default function AcordList() {
             <th>Nom</th>
             <th>Data Inici</th>
             <th>Data Final</th>
-            <th>Descripcio</th>
+            <th>Descripció</th>
             <th>Acta</th>
             <th>Creador</th>
-            <th>Acciones</th>
+            <th>Accions</th>
           </tr>
         </thead>
         <tbody>

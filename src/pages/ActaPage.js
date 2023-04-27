@@ -5,10 +5,10 @@ import "../styles/ActaPage.css";
 
 function ActaPage() {
   return (
-    <div className="plantilla-page-container">
-      <h1 className="plantilla-page-title">Página de actas</h1>
-      <Link to="/actas/create" className="plantilla-page-link">
-        Crear nuevo acta
+    <div className="acta-page-container">
+      <h1 className="acta-page-title">ACTES</h1>
+      <Link to="/actas/create" className="acta-page-link">
+        Nou acta
       </Link>
       <ActaList />
     </div>

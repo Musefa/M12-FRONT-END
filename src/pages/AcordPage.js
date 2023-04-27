@@ -5,10 +5,10 @@ import "../styles/AcordPage.css";
 
 function AcordPage() {
   return (
-    <div className="plantilla-page-container">
-      <h1 className="plantilla-page-title">Página d' acords</h1>
-      <Link to="/acords/create" className="plantilla-page-link">
-        Crear nuevo acuerdo
+    <div className="acord-page-container">
+      <h1 className="acord-page-title">ACORDS</h1>
+      <Link to="/acords/create" className="acord-page-link">
+        Nou acord
       </Link>
       <AcordList />
     </div>
