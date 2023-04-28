@@ -1,149 +1,187 @@
 .acord-page-container {
-    max-width: 600px;
-    margin: 20px auto 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .acord-page-title {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  .acord-page-link {
-    display: block;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #10223e;
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 1.2em;
-  }
-  
-  .acord-page-link:hover {
-    background-color: #0b182d;
-  }
-  
-  .acord-page-link:active {
-    background-color: #081623;
-  }
-  
-  .acord-form-container {
-    max-width: 600px;
-    margin: 20px auto 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .acord-form-title {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  .acord-form-link {
-    display: block;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #10223e;
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 1.2em;
-  }
-  
-  .acord-form-link:hover {
-    background-color: #0b182d;
-  }
-  
-  .acord-form-link:active {
-    background-color: #081623;
-  }
-  
-  .acord-form__label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .acord-form__subtitle {
-    margin-top: 20px;
-    font-size: 1.2em;
-  }
-  
-  .acord-form__item {
-    margin-bottom: 10px;
-    list-style: none;
-  }
-  
-  .acord-form__input {
-    display: block;
-    width: 95%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius:10px;
-    font-size: 1em;
-    margin-bottom: 10px;
-  }
-  
-  .acord-form__button {
-    display: inline-block;
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #10223e;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  .acord-form__button:hover {
-    background-color: #0b182d;
-  }
-  
-  .acord-form__button:active {
-    background-color: #081623;
-  }
-  
-  .acord-delete {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .acord-delete__confirmation {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1em;
-  }
-  
-  .acord-delete__button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .acord-delete__button:hover {
-    background-color: #e53935;
-  }
-  
-  .acord-delete__button:active {
-    background-color: #c62828;
-  }
+  max-width: 750px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.acord-page-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.acord-page-link {
+  display: block;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.acord-page-link:hover {
+  background-color: #0b182d;
+}
+
+.acord-page-link:active {
+  background-color: #081623;
+}
+
+.acord-form-container {
+  max-width: 600px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.acord-form-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.acord-form-link {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.acord-form-link:hover {
+  background-color: #0b182d;
+}
+
+.acord-form-link:active {
+  background-color: #081623;
+}
+
+.acord-form__label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.acord-form__subtitle {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.acord-form__item {
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+.acord-form__input {
+  display: block;
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.acord-form__button {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #10223e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.acord-form__button:hover {
+  background-color: #0b182d;
+}
+
+.acord-form__button:active {
+  background-color: #081623;
+}
+
+.acord-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.acord-delete__confirmation {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+.acord-delete__button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.acord-delete__button:hover {
+  background-color: #e53935;
+}
+
+.acord-delete__button:active {
+  background-color: #c62828;
+}
+
+.acord-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.acord-table th,
+.acord-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.acord-table th {
+  background-color: #362f4b;
+  color: white;
+  font-weight: bold;
+}
+
+.acord-table td li {
+  margin: 0;
+  padding: 0;
+}
+
+.acord-table td ul {
+  margin: 0;
+  padding: 0;
+}
+
+.acord-table tr:nth-child(even) {
+  background-color: #f6f6f6;
+}
+
+.acord-table tr:nth-child(odd) {
+  background-color: white;
+}

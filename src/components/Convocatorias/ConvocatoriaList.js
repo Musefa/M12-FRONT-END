@@ -15,7 +15,8 @@ export default function ConvocatoriaList() {
         const isConvocado = convocatoria.convocats.some((grup) =>
           grup.membres.some((user) => user._id === userId)
         );
-        const isCreador = convocatoria.creador && convocatoria.creador._id === userId;
+        const isCreador =
+          convocatoria.creador && convocatoria.creador._id === userId;
         return isResponsable || isConvocado || isCreador;
       });
     },
@@ -25,7 +26,10 @@ export default function ConvocatoriaList() {
   const fetchConvocatorias = useCallback(async () => {
     try {
       const convocatorias = await getConvocatorias();
-      const filteredConvocatorias = userRole === "administrador" ? convocatorias : filterConvocatorias(convocatorias);
+      const filteredConvocatorias =
+        userRole === "administrador"
+          ? convocatorias
+          : filterConvocatorias(convocatorias);
       setConvocatorias(filteredConvocatorias);
     } catch (error) {
       console.error("Error cercant convocatòries:", error);
@@ -38,7 +42,7 @@ export default function ConvocatoriaList() {
 
   return (
     <div>
-      <table>
+      <table className="convocatoria-table">
         <thead>
           <tr>
             <th>Nom</th>
@@ -64,27 +68,36 @@ export default function ConvocatoriaList() {
               <td>{convocatoria.lloc}</td>
               <td>
                 {convocatoria.puntsOrdreDia.map((punts) => (
-                  <li className="plantilla-form__item" key={punts}>{punts}</li>
+                  <li className="plantilla-form__item" key={punts}>
+                    {punts}
+                  </li>
                 ))}
               </td>
               <td>
                 {convocatoria.convocats.map((grup) => (
                   <ul key={grup._id}>
                     {grup.membres.map((user) => (
-                      <li className="plantilla-form__item" key={user._id}>{user.nom}</li>
+                      <li className="plantilla-form__item" key={user._id}>
+                        {user.nom}
+                      </li>
                     ))}
                   </ul>
                 ))}
               </td>
               <td>
                 {convocatoria.plantilla.puntsOrdreDia.map((punts) => (
-                  <li className="plantilla-form__item" key={punts}>{punts}</li>
+                  <li className="plantilla-form__item" key={punts}>
+                    {punts}
+                  </li>
                 ))}
               </td>
               <td>{convocatoria.responsable.nom}</td>
-              <td>{convocatoria.creador ? convocatoria.creador.nom : "null"}</td>
               <td>
-                {(userRole === "administrador" || convocatoria.creador._id === userId) && (
+                {convocatoria.creador ? convocatoria.creador.nom : "null"}
+              </td>
+              <td>
+                {(userRole === "administrador" ||
+                  convocatoria.creador._id === userId) && (
                   <>
                     <Link
                       className="plantilla-page-link"

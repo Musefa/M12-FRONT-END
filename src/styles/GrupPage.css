@@ -80,7 +80,14 @@
   }
   
   .grup-form__item {
+    margin-bottom: 10px;
     list-style: none;
+    padding: 0;
+  }
+
+  .grup-form___item {
+    list-style: none;
+    padding: 0;
   }
   
   .grup-form__input {
