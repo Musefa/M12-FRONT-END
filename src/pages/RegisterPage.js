@@ -155,7 +155,7 @@ export default function RegisterPage() {
                     >
                         Registrar-se
                     </button>
-                    <p>Ja tens compte? <Link to="/auth/login">Iniciar sessió</Link></p>
+                    <p>Ja tens compte? <Link className="login-btn" to="/auth/login">Iniciar sessió</Link></p>
                 </form>
                 {error && <p className="error-message">{error}</p>}
             </div>

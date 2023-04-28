@@ -8,7 +8,7 @@ function ActaPage() {
     <div className="acta-page-container">
       <h1 className="acta-page-title">ACTES</h1>
       <Link to="/actas/create" className="acta-page-link">
-        Nou acta
+        Nova acta
       </Link>
       <ActaList />
     </div>

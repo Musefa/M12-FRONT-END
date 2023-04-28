@@ -37,7 +37,7 @@ function UserList() {
   return (
     <div className="userlist-page-container">
       <h2 className="userlist-page-title">Llista d'usuaris</h2>
-      <table>
+      <table className="userlist-table">
         <thead>
           <tr>
             <th>Nom</th>
