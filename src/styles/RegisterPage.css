@@ -1,215 +1,220 @@
 body {
-    background-color: #eeeeee;
-    margin: 0;
+  background-color: #eeeeee;
+  margin: 0;
 }
 
 p {
-    margin-top: 2rem;
-    margin-bottom: 0;
+  margin-top: 2rem;
+  margin-bottom: 0;
 }
 
 .register-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1rem;
-    padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  padding: 2rem;
 }
 
 .register-div {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    padding: 2rem;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
 }
 
 .register-page h1 {
-    margin-bottom: 0;
-    text-align: center;
+  margin-bottom: 0;
+  text-align: center;
 }
 
 .register-page form {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .register-page label {
-    margin: 1rem 0;
-    display: block;
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-align: left;
+  margin: 1rem 0;
+  display: block;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: left;
 }
 
 .input-container {
-    position: relative;
+  position: relative;
 }
 
 .register-page input {
-    height: 2rem;
-    padding: 0.3rem;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 100%;
+  height: 2rem;
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
 }
 
 .register-page span.valid,
 .register-page span.invalid {
-    font-size: 1.2rem;
-    font-weight: bold;
-    position: absolute;
-    right: 10%;
-    top: 50%;
-    transform: translateY(-50%);
+  font-size: 1.2rem;
+  font-weight: bold;
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .register-page span.valid {
-    color: green;
+  color: green;
 }
 
 .register-page span.invalid {
-    color: red;
+  color: red;
 }
 
 .register-page button {
-    background-color: #10223e;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-top: 2rem;
-    cursor: pointer;
-    font-size: 1.2rem;
+  background-color: #10223e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  font-size: 1.2rem;
 }
 
 .register-page button:disabled {
-    background-color: #5a7182;
-    cursor: not-allowed;
+  background-color: #5a7182;
+  cursor: not-allowed;
+}
+
+.login-btn {
+  color: #016bf8;
+  text-decoration: none;
 }
 
 .error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    margin-left: 8%;
-    width: 80%;
-    font-size: 0.8rem;
-    padding: 0.5rem 1rem;
-    margin-top: 1rem;
-    border-radius: 10px;
-    font-weight: bold;
+  background-color: #f8d7da;
+  color: #721c24;
+  margin-left: 8%;
+  width: 80%;
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
 .captcha-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 .error-popup2 {
-    position: fixed;
-    top: 40%;
-    right: 2rem;
-    width: 300px;
-    height: 100px;
-    text-align: left;
-    background-color: #f8d7da;
-    color: #721c24;
-    font-size: 0.8rem;
-    padding: 1rem;
-    border-radius: 10px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    z-index: 100;
+  position: fixed;
+  top: 40%;
+  right: 2rem;
+  width: 300px;
+  height: 100px;
+  text-align: left;
+  background-color: #f8d7da;
+  color: #721c24;
+  font-size: 0.8rem;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  z-index: 100;
 }
 
 .error-popup1 {
-    position: fixed;
-    top: 35%;
-    right: 2rem;
-    text-align: left;
-    background-color: #f8d7da;
-    color: #721c24;
-    font-size: 0.8rem;
-    padding: 1rem;
-    border-radius: 10px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    z-index: 100;
+  position: fixed;
+  top: 35%;
+  right: 2rem;
+  text-align: left;
+  background-color: #f8d7da;
+  color: #721c24;
+  font-size: 0.8rem;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  z-index: 100;
 }
 
 .close-btn {
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 1rem;
 }
 
 @media only screen and (max-width: 768px) {
-    .register-page {
-        padding: 1rem;
-    }
+  .register-page {
+    padding: 1rem;
+  }
 
-    .register-div {
-        padding: 1rem;
-        margin: 1rem auto;
-    }
+  .register-div {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
 
-    .register-page h1 {
-        font-size: 1.5rem;
-    }
+  .register-page h1 {
+    font-size: 1.5rem;
+  }
 
-    .register-page label {
-        font-size: 1rem;
-    }
+  .register-page label {
+    font-size: 1rem;
+  }
 
-    .register-page input {
-        height: 1.5rem;
-        font-size: 1rem;
-    }
+  .register-page input {
+    height: 1.5rem;
+    font-size: 1rem;
+  }
 
-    .register-page button {
-        padding: 0.5rem;
-        margin-top: 1rem;
-        font-size: 1rem;
-    }
+  .register-page button {
+    padding: 0.5rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
 
-    .error-message {
-        margin-left: 5%;
-        width: 90%;
-        font-size: 0.8rem;
-        padding: 0.5rem;
-        margin-top: 1rem;
-    }
+  .error-message {
+    margin-left: 5%;
+    width: 90%;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    margin-top: 1rem;
+  }
 
-    .captcha-container {
-        margin-top: 1rem;
-    }
+  .captcha-container {
+    margin-top: 1rem;
+  }
 
-    .error-popup2 {
-        top: 50%;
-        right: 1rem;
-        width: 90%;
-        height: auto;
-        font-size: 0.8rem;
-        padding: 0.5rem;
-    }
+  .error-popup2 {
+    top: 50%;
+    right: 1rem;
+    width: 90%;
+    height: auto;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
 
-    .error-popup1 {
-        top: 45%;
-        right: 1rem;
-        font-size: 0.8rem;
-        padding: 0.5rem;
-    }
+  .error-popup1 {
+    top: 45%;
+    right: 1rem;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
 
-    .close-btn {
-        font-size: 1rem;
-        margin-left: 0.5rem;
-    }
+  .close-btn {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
 }

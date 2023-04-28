@@ -139,7 +139,7 @@ export default function LoginPage() {
           <button type="submit" disabled={!emailIsValid || !passwordIsValid || !recaptchaPassed}>
             Iniciar sessió
           </button>
-          <p>No tens compte? <Link to="/auth/register">Registra't</Link></p>
+          <p>No tens compte? <Link className="register-btn" to="/auth/register">Registra't</Link></p>
         </form>
         {error && <p className="error-message">{error}</p>}
       </div>

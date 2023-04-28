@@ -1,158 +1,156 @@
 .grup-page-container {
-    max-width: 500px;
-    margin: 20px auto 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .grup-page-title {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  .grup-page-link {
-    display: block;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #10223e;
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 1.2em;
-  }
-  
-  .grup-page-link:hover {
-    background-color: #0b182d;
-  }
-  
-  .grup-page-link:active {
-    background-color: #081623;
-  }
-  
-  .grup-form-container {
-    max-width: 500px;
-    margin: 20px auto 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  
-  .grup-form-title {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  .grup-form-link {
-    display: block;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #10223e;
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 1.2em;
-  }
-  
-  .grup-form-link:hover {
-    background-color: #0b182d;
-  }
-  
-  .grup-form-link:active {
-    background-color: #081623;
-  }
-  
-  .grup-form__label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .grup-form__subtitle {
-    margin-top: 20px;
-    font-size: 1.2em;
-  }
-  
-  .grup-form__item {
-    margin-bottom: 10px;
-    list-style: none;
-    padding: 0;
-  }
+  max-width: 500px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
 
-  .grup-form___item {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .grup-form__input {
-    display: block;
-    width: 95%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius:10px;
-    font-size: 1em;
-    margin-bottom: 10px;
-  }
-  
-  .grup-form__button {
-    display: inline-block;
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #10223e;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  .grup-form__button:hover {
-    background-color: #0b182d;
-  }
-  
-  .grup-form__button:active {
-    background-color: #081623;
-  }
-  
-  .grup-delete {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .grup-delete__confirmation {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1em;
-  }
-  
-  .grup-delete__button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .grup-delete__button:hover {
-    background-color: #e53935;
-  }
-  
-  .grup-delete__button:active {
-    background-color: #c62828;
-  }
-  
+.grup-page-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.grup-page-link {
+  display: block;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.grup-page-link:hover {
+  background-color: #0b182d;
+}
+
+.grup-page-link:active {
+  background-color: #081623;
+}
+
+.grup-form-container {
+  max-width: 500px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.grup-form-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.grup-form-link {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.grup-form-link:hover {
+  background-color: #0b182d;
+}
+
+.grup-form-link:active {
+  background-color: #081623;
+}
+
+.grup-form__label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.grup-form__subtitle {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.grup-form__item {
+  margin-bottom: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.grup-form___item {
+  list-style: none;
+  padding: 0;
+}
+
+.grup-form__input {
+  display: block;
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.grup-form__button {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #10223e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.grup-form__button:hover {
+  background-color: #0b182d;
+}
+
+.grup-form__button:active {
+  background-color: #081623;
+}
+
+.grup-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.grup-delete__confirmation {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+.grup-delete__button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.grup-delete__button:hover {
+  background-color: #e53935;
+}
+
+.grup-delete__button:active {
+  background-color: #c62828;
+}

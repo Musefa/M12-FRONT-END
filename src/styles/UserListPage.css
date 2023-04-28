@@ -1,150 +1,187 @@
 .userlist-page-container {
-    max-width: 500px;
-    margin: 20px auto 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .userlist-page-title {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  .userlist-page-link {
-    display: block;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #10223e;
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 1.2em;
-  }
-  
-  .userlist-page-link:hover {
-    background-color: #0b182d;
-  }
-  
-  .userlist-page-link:active {
-    background-color: #081623;
-  }
-  
-  .userlist-form-container {
-    max-width: 600px;
-    margin: 20px auto 0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .userlist-form-title {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  .userlist-form-link {
-    display: block;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #10223e;
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 1.2em;
-  }
-  
-  .userlist-form-link:hover {
-    background-color: #0b182d;
-  }
-  
-  .userlist-form-link:active {
-    background-color: #081623;
-  }
-  
-  .userlist-form__label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .userlist-form__subtitle {
-    margin-top: 20px;
-    font-size: 1.2em;
-  }
-  
-  .userlist-form__item {
-    margin-bottom: 10px;
-    list-style: none;
-  }
-  
-  .userlist-form__input {
-    display: block;
-    width: 95%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius:10px;
-    font-size: 1em;
-    margin-bottom: 10px;
-  }
-  
-  .userlist-form__button {
-    display: inline-block;
-    margin: 5px;
-    text-decoration: none;
-    padding: 10px 20px;
-    background-color: #10223e;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    cursor: pointer;
-  }
-  
-  .userlist-form__button:hover {
-    background-color: #0b182d;
-  }
-  
-  .userlist-form__button:active {
-    background-color: #081623;
-  }
-  
-  .userlist-delete {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .userlist-delete__confirmation {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1em;
-  }
-  
-  .userlist-delete__button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .userlist-delete__button:hover {
-    background-color: #e53935;
-  }
-  
-  .userlist-delete__button:active {
-    background-color: #c62828;
-  }
-  
+  max-width: 500px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.userlist-page-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.userlist-page-link {
+  display: block;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.userlist-page-link:hover {
+  background-color: #0b182d;
+}
+
+.userlist-page-link:active {
+  background-color: #081623;
+}
+
+.userlist-form-container {
+  max-width: 600px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.userlist-form-title {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.userlist-form-link {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #10223e;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.userlist-form-link:hover {
+  background-color: #0b182d;
+}
+
+.userlist-form-link:active {
+  background-color: #081623;
+}
+
+.userlist-form__label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.userlist-form__subtitle {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.userlist-form__item {
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+.userlist-form__input {
+  display: block;
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.userlist-form__button {
+  display: inline-block;
+  margin: 5px;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #10223e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.userlist-form__button:hover {
+  background-color: #0b182d;
+}
+
+.userlist-form__button:active {
+  background-color: #081623;
+}
+
+.userlist-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.userlist-delete__confirmation {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+.userlist-delete__button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.userlist-delete__button:hover {
+  background-color: #e53935;
+}
+
+.userlist-delete__button:active {
+  background-color: #c62828;
+}
+
+.userlist-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.userlist-table th,
+.userlist-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.userlist-table th {
+  background-color: #362f4b;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.userlist-table td li {
+  margin: 0;
+  padding: 0;
+}
+
+.userlist-table td ul {
+  margin: 0;
+  padding: 0;
+}
+
+.userlist-table tr:nth-child(even) {
+  background-color: #dcdcdc;
+}
+
+.userlist-table tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}
