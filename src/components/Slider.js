@@ -6,13 +6,13 @@ import "slick-carousel/slick/slick-theme.css";
 const ImageSlider = () => {
   const images = [
     {
-      url: "https://c8.alamy.com/comp/W4AR12/woman-in-conference-room-stands-to-discuss-while-women-sit-at-table-W4AR12.jpg",
+      url: "https://i.imgur.com/aZlear3.jpg",
     },
     {
-      url: "https://www.brainbalancecenters.com/hubfs/blog_meeting-childs-teacher-first-time.jpg",
+      url: "https://i.imgur.com/Wwm5bw6.jpg",
     },
     {
-      url: "https://www.studentachievementsolutions.com/wp-content/uploads/2021/11/School-Faculty-Meeting-Agenda.png",
+      url: "https://i.imgur.com/3swuefv.jpeg",
     },
   ];
 
@@ -22,20 +22,21 @@ const ImageSlider = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
   };
 
-  const imgStyle = {
-    maxWidth: "500px",
-    maxHeight: "500px",
-    objectFit: "contain",
+  const styles = {
+    maxWidth: "60%",
     margin: "0 auto",
+    marginTop: "2rem",
   };
 
   return (
     <Slider {...settings}>
       {images.map((image) => (
         <div key={image.url}>
-          <img src={image.url} alt="Slider" style={imgStyle} />
+          <img src={image.url} alt="Slider" style={styles} />
         </div>
       ))}
     </Slider>
