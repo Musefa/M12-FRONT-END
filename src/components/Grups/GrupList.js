@@ -43,7 +43,7 @@ function GrupList() {
 
   return (
     <>
-      <table className="grup-form__table">
+      <table className="grup-table">
         <thead>
           <tr>
             <th>Nom</th>
@@ -80,7 +80,7 @@ function GrupList() {
                     (userRole === "administrador" && grup.tipus !== "Públic") ||
                     grup.creador._id === userId) && (
                       <>
-                        <Link to={`/grups/edit/${grup._id}`} className="grup-form__button">
+                        <Link to={`/grups/edit/${grup._id}`} className="grup-page-link">
                           Editar
                         </Link>
                         <GrupDelete grupId={grup._id} onUpdate={fetchGrups} />

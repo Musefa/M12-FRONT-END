@@ -154,3 +154,45 @@
 .grup-delete__button:active {
   background-color: #c62828;
 }
+
+.grup-form__membres-list {
+  list-style: none;
+}
+
+.grup-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.grup-table th,
+.grup-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.grup-table th {
+  background-color: #362f4b;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.grup-table td li {
+  margin: 0;
+  padding: 0;
+}
+
+.grup-table td ul {
+  margin: 0;
+  padding: 0;
+}
+
+.grup-table tr:nth-child(even) {
+  background-color: #dcdcdc;
+}
+
+.grup-table tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}
