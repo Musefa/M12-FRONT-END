@@ -19,24 +19,39 @@ function PlantillaList() {
     }
   }
 
-  return (
-    <ul className="plantilla-form__item">
+return (
+  <table className="plantilla-form__table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Punts del dia</th>
+        <th>Creador</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
       {plantillas.map((plantilla) => (
-        <li className="plantilla-form__item" key={plantilla._id}>
-          Nom: {plantilla.nom}<br />
-          Punts del dia:<br /> {plantilla.puntsOrdreDia.map((punt) => (
-            <>
-              <span>{punt}</span>
-              <br />
-            </>
-          ))}
-          Creador: {plantilla.creador.nom}<br />
-          <Link className="plantilla-form__button" to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
-          <PlantillaDelete plantillaId={plantilla._id} onUpdate={fetchPlantillas} />
-        </li>
+        <tr className="plantilla-form__row" key={plantilla._id}>
+          <td>{plantilla.nom}</td>
+          <td>
+            {plantilla.puntsOrdreDia.map((punt, index) => (
+              <React.Fragment key={index}>
+                <span>{punt}</span>
+                <br />
+              </React.Fragment>
+            ))}
+          </td>
+          <td>{plantilla.creador.nom}</td>
+          <td>
+            <Link className="plantilla-form__button" to={`/plantillas/edit/${plantilla._id}`}>Editar</Link>
+            <PlantillaDelete plantillaId={plantilla._id} onUpdate={fetchPlantillas} />
+          </td>
+        </tr>
       ))}
-    </ul>
-  );
+    </tbody>
+  </table>
+);
+
 
 }
 
