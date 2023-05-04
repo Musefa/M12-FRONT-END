@@ -9,10 +9,10 @@ const ImageSlider = () => {
       url: "https://i.imgur.com/aZlear3.jpg",
     },
     {
-      url: "https://i.imgur.com/Wwm5bw6.jpg",
+      url: "https://cdn.pixabay.com/photo/2015/01/09/11/11/seminar-594118_1280.jpg",
     },
     {
-      url: "https://i.imgur.com/3swuefv.jpeg",
+      url: "https://cdn.pixabay.com/photo/2018/03/21/21/19/conference-3248255_1280.jpg",
     },
   ];
 
@@ -27,16 +27,21 @@ const ImageSlider = () => {
   };
 
   const styles = {
-    maxWidth: "60%",
+    maxWidth: "65%",
     margin: "0 auto",
-    marginTop: "2rem",
+  };
+
+  const imageStyles = {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
   };
 
   return (
-    <Slider {...settings}>
+    <Slider {...settings} style={styles}>
       {images.map((image) => (
         <div key={image.url}>
-          <img src={image.url} alt="Slider" style={styles} />
+          <img src={image.url} alt="Slider" style={imageStyles} />
         </div>
       ))}
     </Slider>

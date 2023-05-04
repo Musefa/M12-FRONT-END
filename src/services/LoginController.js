@@ -18,25 +18,25 @@ export default async function LoginUser(credentials) {
       const data = await response.json();
       // Guardar el token y el rol del usuario como cookies
       Cookies.set('token', data.token, { 
-        expires: 1, 
+        expires: 23, 
         sameSite: 'none', 
         secure: true 
       });
       
       Cookies.set('userRole', data.userData.role, { 
-        expires: 1, 
+        expires: 23, 
         sameSite: 'none', 
         secure: true 
       });
   
       Cookies.set('userName', data.userData.nom, { 
-        expires: 1, 
+        expires: 23, 
         sameSite: 'none', 
         secure: true 
       });
 
       Cookies.set('userId', data.userData.userId, { 
-        expires: 1, 
+        expires: 23, 
         sameSite: 'none', 
         secure: true 
       });

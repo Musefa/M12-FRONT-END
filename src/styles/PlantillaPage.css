@@ -148,3 +148,41 @@
 .plantilla-delete__button:active {
   background-color: #c62828;
 }
+
+.plantilla-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.plantilla-table th,
+.plantilla-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.plantilla-table th {
+  background-color: #362f4b;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.plantilla-table td li {
+  margin: 0;
+  padding: 0;
+}
+
+.plantilla-table td ul {
+  margin: 0;
+  padding: 0;
+}
+
+.plantilla-table tr:nth-child(even) {
+  background-color: #dcdcdc;
+}
+
+.plantilla-table tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}

@@ -20,25 +20,25 @@ export default async function RegisterUser(userData) {
       const { token, userData } = data;
 
       Cookies.set('token', data.token, { 
-        expires: 1, 
+        expires: 23, 
         sameSite: 'none', 
         secure: true 
       });
       
       Cookies.set('userRole', data.userData.role, { 
-        expires: 1, 
+        expires: 23, 
         sameSite: 'none', 
         secure: true 
       });
   
       Cookies.set('userName', data.userData.nom, { 
-        expires: 1, 
+        expires: 23, 
         sameSite: 'none', 
         secure: true 
       });
 
       Cookies.set('userId', data.userData.userId, { 
-        expires: 1, 
+        expires: 23, 
         sameSite: 'none', 
         secure: true 
       });
