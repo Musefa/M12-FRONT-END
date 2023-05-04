@@ -9,10 +9,10 @@ const ImageSlider = () => {
       url: "https://i.imgur.com/aZlear3.jpg",
     },
     {
-      url: "https://i.imgur.com/aZlear3.jpg",
+      url: "https://cdn.pixabay.com/photo/2015/01/09/11/11/seminar-594118_1280.jpg",
     },
     {
-      url: "https://i.imgur.com/aZlear3.jpg",
+      url: "https://cdn.pixabay.com/photo/2018/03/21/21/19/conference-3248255_1280.jpg",
     },
   ];
 
