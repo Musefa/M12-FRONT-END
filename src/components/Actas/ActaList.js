@@ -5,6 +5,7 @@ import ActaDelete from "./ActaDelete";
 import { useUserContext } from "../../contexts/UserContext";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import deptEdu from "../../resources/images/dept_edu.jpg";
 
 export default function ActaList() {
   const [actas, setActas] = useState([]);
@@ -15,8 +16,46 @@ export default function ActaList() {
     const pdf = new jsPDF();
     const filename = `Acta_${acta.nom}.pdf`;
 
-    const table = document.createElement("table");
-    table.innerHTML = `
+    const div = document.createElement("div");
+    div.innerHTML = `
+  
+    <div style="display: flex; align-items: center;">
+      <img src="${deptEdu}" style="width: 250px; height: auto; margin-right: 10px;">
+      <h3 style="text-align: right; flex: 1;">ACTA REUNIÓ DE CARÀCTER GENERAL</h3>
+    </div>
+
+    <div style="display: flex; width: 100%;">
+      <div style="flex: 1; border: 2px solid #000; padding: 10px;">
+        <h4>CONVOCATORIA:</h4>
+        <span>${acta.convocatoria.nom}</span>
+        <h4>DATA:</h4>
+        <span>${acta.convocatoria.data}</span>
+        <h4>LLOC:</h4>
+        <span>${acta.convocatoria.lloc}</span>
+      </div>
+      <div style="flex: 1; border: 2px solid #000; padding: 10px; margin-left: -2px;">
+        <h4>HORA INICI:</h4>
+        <span>${acta.convocatoria.horaInici}</span>
+        <h4>DURADA:</h4>
+        <span>${acta.convocatoria.durada + "min"}</span>
+        <h4>ASSISTENTS:</h4>
+        <span>${acta.assistents.map((assistent) => assistent.nom + " " + assistent.cognom).join(", ")}</span>
+      </div>
+    </div>
+
+    <br></br>
+
+    <h4 style="font-size: 14px; margin-bottom: 10px;">PUNTS PRINCIPALS DE DELIBERACIÓ:</h4>
+    <pre style="font-size: 12px; margin-bottom: 5px;">1. Aprovació l’acta de la sessió anterior (data:x/x/x)</pre>
+    <pre style="font-size: 12px; margin-bottom: 5px;">2. Comprovació de que els membres de l’òrgan que no van assistir a la sessió anterior han rebut
+la informació corresponent als temes tractats en la sessió o han llegit l’acta de la sessió anterior.</pre>
+    <pre style="font-size: 12px; margin-bottom: 5px;">3. Anàlisi de l’estat d’execució dels acords presos en la darrera reunió (o darreres reunions).</pre>
+    <pre style="font-size: 12px; margin-bottom: 5px;">4. Assumptes de tràmit i informacions diverses.</pre>
+    <pre style="font-size: 12px; margin-bottom: 5px;">5. Torn obert de paraules.</pre>
+    
+    <br></br>
+
+    <table>
       <tr style="background-color: #f2f2f2;">
         <th>Nom</th>
         <th>Estat</th>
@@ -39,32 +78,34 @@ export default function ActaList() {
       <tr>
         <td>${user}</td>
       </tr>
+    </table>
     `;
-    table.setAttribute(
+
+    div.setAttribute(
       "style",
       "display: inline-table; width: auto; height: auto; background-color: white; border-collapse: collapse; font-family: Arial, sans-serif;"
     );
-    table.querySelectorAll("th, td").forEach((cell) => {
+    div.querySelectorAll("th, td").forEach((cell) => {
       cell.style.border = "1px solid #dddddd";
       cell.style.padding = "8px";
       cell.style.textAlign = "left";
     });
 
-    const tableWrapper = document.createElement("div");
-    tableWrapper.setAttribute(
+    const divWrapper = document.createElement("div");
+    divWrapper.setAttribute(
       "style",
       "position: absolute; top: -9999px; left: -9999px;"
     );
-    tableWrapper.appendChild(table);
-    document.body.appendChild(tableWrapper);
+    divWrapper.appendChild(div);
+    document.body.appendChild(divWrapper);
 
-    const canvas = await html2canvas(table);
+    const canvas = await html2canvas(div);
     const imgData = canvas.toDataURL("image/png");
 
     pdf.addImage(imgData, "PNG", 10, 10);
     pdf.save(filename);
 
-    document.body.removeChild(tableWrapper);
+    document.body.removeChild(divWrapper);
   }
 
   const handleFilterChange = (event) => {
@@ -107,10 +148,13 @@ export default function ActaList() {
     fetchActas();
   }, [fetchActas]);
 
-
   return (
     <div>
-      <select value={filter} onChange={handleFilterChange} className="acta-select">
+      <select
+        value={filter}
+        onChange={handleFilterChange}
+        className="acta-select"
+      >
         <option value="sin_filtro">Sin filtro</option>
         <option value="Oberta">Oberta</option>
         <option value="Tancada">Tancada</option>
@@ -135,23 +179,30 @@ export default function ActaList() {
               <td>{acta.estat}</td>
               <td>
                 {acta.descripcions.map((descripcio) => (
-                  <li className="acta-list-style" key={descripcio}>{descripcio}</li>
+                  <li className="acta-list-style" key={descripcio}>
+                    {descripcio}
+                  </li>
                 ))}
               </td>
               <td>{acta.convocatoria.nom}</td>
               <td>
                 {acta.acords.map((acord) => (
-                  <li className="acta-list-style" key={acord}>{acord.nom}</li>
+                  <li className="acta-list-style" key={acord}>
+                    {acord.nom}
+                  </li>
                 ))}
               </td>
               <td>
                 {acta.assistents.map((assistent) => (
-                  <li className="acta-list-style" key={assistent}>{assistent.nom}</li>
+                  <li className="acta-list-style" key={assistent}>
+                    {assistent.nom}
+                  </li>
                 ))}
               </td>
               <td>{acta.creador ? acta.creador.nom : "null"}</td>
               <td>
-                {(userRole === "administrador" || acta.creador._id === userId) && (
+                {(userRole === "administrador" ||
+                  acta.creador._id === userId) && (
                   <>
                     <Link
                       className="acta-page-link"
@@ -168,7 +219,7 @@ export default function ActaList() {
                       className="acta-page-link"
                       onClick={() => handleDownloadPDF(acta, userName)}
                     >
-                      Descargar PDF
+                      Descarregar PDF
                     </button>
                   </>
                 )}

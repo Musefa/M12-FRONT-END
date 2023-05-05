@@ -87,7 +87,7 @@ export default function RegisterPage() {
     return (
         <div className="register-page">
             <div className="register-div">
-                <h1>REGISTRE</h1>
+                <h1>Registre</h1>
                 <form onSubmit={handleRegister}>
                     <label>Nom</label>
                     <input

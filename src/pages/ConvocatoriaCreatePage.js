@@ -42,7 +42,7 @@ function ConvocatoriaCreatePage() {
 
     return (
         <div className="convocatoria-form-container">
-            <h1>NOVA CONVOCATÒRIA</h1>
+            <h1>Nova convocatòria</h1>
             <ConvocatoriaForm onSubmit={handleCreate} usersList={usersList} grupsList={grupsList} plantillasList={plantillasList} />
             <Link className="convocatoria-form__button" to="/convocatorias">Tornar a la llista de convocatòries</Link>
         </div>

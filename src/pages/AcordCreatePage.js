@@ -32,7 +32,7 @@ function AcordCreatePage() {
 
     return (
         <div className="acord-page-container">
-            <h2 className="acord-page-title">NOU ACORD</h2>
+            <h2 className="acord-page-title">Nou acord</h2>
             <AcordForm
                 actaList={actaList}
                 onSubmit={handleSubmit}
