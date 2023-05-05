@@ -18,32 +18,56 @@ export default function ActaList() {
 
     const div = document.createElement("div");
     div.innerHTML = `
+
+    <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-left: none;
+      border-right: none;
+    }
+    tr {
+      border-bottom: 2px solid #dddddd;
+    }
+    tr:first-child th {
+      border-top: 2px solid #dddddd;
+    }
+    tr:last-child {
+      border-bottom: none;
+    }
+  </style>
   
     <div style="display: flex; align-items: center;">
       <img src="${deptEdu}" style="width: 250px; height: auto; margin-right: 10px;">
-      <h3 style="text-align: right; flex: 1;">ACTA REUNIÓ DE CARÀCTER GENERAL</h3>
+      <h3 style="text-align: right; flex: 1;">Acta reunió de caràcter general</h3>
     </div>
+
+    <br>
 
     <div style="display: flex; width: 100%;">
       <div style="flex: 1; border: 2px solid #000; padding: 10px;">
-        <h4>CONVOCATORIA:</h4>
-        <span>${acta.convocatoria.nom}</span>
         <h4>DATA:</h4>
-        <span>${acta.convocatoria.data}</span>
+        <span>${new Date(acta.convocatoria.data).toLocaleDateString()}</span>
         <h4>LLOC:</h4>
         <span>${acta.convocatoria.lloc}</span>
-      </div>
-      <div style="flex: 1; border: 2px solid #000; padding: 10px; margin-left: -2px;">
         <h4>HORA INICI:</h4>
         <span>${acta.convocatoria.horaInici}</span>
+      </div>
+      <div style="flex: 1; border: 2px solid #000; padding: 10px; margin-left: -2px;">
+        <h4>CONVOCATORIA:</h4>
+        <span>${acta.convocatoria.nom}</span>
         <h4>DURADA:</h4>
         <span>${acta.convocatoria.durada + "min"}</span>
         <h4>ASSISTENTS:</h4>
         <span>${acta.assistents.map((assistent) => assistent.nom + " " + assistent.cognom).join(", ")}</span>
       </div>
     </div>
-
-    <br></br>
+    
+    <br>
 
     <h4 style="font-size: 14px; margin-bottom: 10px;">PUNTS PRINCIPALS DE DELIBERACIÓ:</h4>
     <pre style="font-size: 12px; margin-bottom: 5px;">1. Aprovació l’acta de la sessió anterior (data:x/x/x)</pre>
@@ -56,7 +80,7 @@ la informació corresponent als temes tractats en la sessió o han llegit l’ac
     <br></br>
 
     <table>
-      <tr style="background-color: #f2f2f2;">
+      <tr>
         <th>Nom</th>
         <th>Estat</th>
         <th>Descripcions</th>
@@ -72,24 +96,19 @@ la informació corresponent als temes tractats en la sessió o han llegit l’ac
         <td>${acta.acords.map((acord) => acord.nom).join(", ")}</td>
         <td>${acta.creador ? acta.creador.nom : "null"}</td>
       </tr>
+    </table>
+
+    <br></br>
+
+    <table>
       <tr>
-        <th>Remitente</th>
+        <th>Remitent</th>
       </tr>
       <tr>
         <td>${user}</td>
       </tr>
     </table>
     `;
-
-    div.setAttribute(
-      "style",
-      "display: inline-table; width: auto; height: auto; background-color: white; border-collapse: collapse; font-family: Arial, sans-serif;"
-    );
-    div.querySelectorAll("th, td").forEach((cell) => {
-      cell.style.border = "1px solid #dddddd";
-      cell.style.padding = "8px";
-      cell.style.textAlign = "left";
-    });
 
     const divWrapper = document.createElement("div");
     divWrapper.setAttribute(
