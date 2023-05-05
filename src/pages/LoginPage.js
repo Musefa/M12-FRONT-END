@@ -80,7 +80,7 @@ export default function LoginPage() {
   return (
     <div className="login-page">
       <div className="login-div">
-        <h1>INICI DE SESSIÓ</h1>
+        <h1>Inici de sessió</h1>
         <form onSubmit={handleLogin}>
           <label>Correu electrònic</label>
           <div className="input-container">

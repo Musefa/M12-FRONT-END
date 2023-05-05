@@ -31,7 +31,7 @@ function GrupCreatePage() {
 
   return (
     <div className="grup-form-container">
-      <h1>NOU GRUP</h1>
+      <h1>Nou grup</h1>
       <GrupForm onSubmit={handleCreate} usersList={usersList} />
       <Link className="grup-form__button" to="/grups">Tornar a la llista de grups</Link>
     </div>

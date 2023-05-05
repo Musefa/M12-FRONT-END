@@ -6,7 +6,7 @@ import "../styles/ActaPage.css";
 function ActaPage() {
   return (
     <div className="acta-page-container">
-      <h1 className="acta-page-title">ACTES</h1>
+      <h1 className="acta-page-title">Actes</h1>
       <Link to="/actas/create" className="acta-page-link">
         Nova acta
       </Link>

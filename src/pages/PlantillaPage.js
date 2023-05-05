@@ -22,7 +22,7 @@ function PlantillaCreate() {
 
   return (
     <div className="plantilla-form-container">
-      <h1 className="plantilla-form-title">NOVA PLANTILLA</h1>
+      <h1 className="plantilla-form-title">Nova plantilla</h1>
       <PlantillaForm onSubmit={handleCreate} userId={userId} />
       <Link to="/plantillas" className="plantilla-form-link">
         Tornar a la llista de plantilles
@@ -34,7 +34,7 @@ function PlantillaCreate() {
 function PlantillaPage() {
   return (
     <div className="plantilla-page-container">
-      <h1 className="plantilla-page-title">PLANTILLES</h1>
+      <h1 className="plantilla-page-title">Plantilles</h1>
       <Link to="/plantillas/create" className="plantilla-page-link">
         Nova plantilla
       </Link>

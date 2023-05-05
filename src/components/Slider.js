@@ -27,7 +27,7 @@ const ImageSlider = () => {
   };
 
   const styles = {
-    maxWidth: "65%",
+    maxWidth: "60%",
     margin: "0 auto",
   };
 
